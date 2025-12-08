@@ -1,0 +1,201 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import ProcessSection from '../../components/ProcessSection.astro';
+import ServiceAreasSection from '../../components/ServiceAreasSection.astro';
+import GoogleReviewsSection from '../../components/GoogleReviewsSection.astro';
+import CookieConsent from '../../components/CookieConsent';
+import HeroCarousel from '../../components/HeroCarousel';
+import { services, getServiceBySlug, type Service } from '../../data/services';
+
+// Generate static paths for all services
+export function getStaticPaths() {
+  return services.map((service) => ({
+    params: { slug: service.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+const service = getServiceBySlug(slug as string);
+
+if (!service) {
+  return Astro.redirect('/404');
+}
+
+const title = `${service.title} | Grand Kuchnie`;
+const description = service.heroSubtitle;
+
+// Icons mapping
+const iconMap: Record<string, string> = {
+  Wallet: 'M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z',
+  Shield: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
+  Palette: 'M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01',
+  Sparkles: 'M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z',
+  ShieldCheck: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
+  Layers: 'M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10',
+  Zap: 'M13 10V3L4 14h7v7l9-11h-7z',
+  Settings: 'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z M15 12a3 3 0 11-6 0 3 3 0 016 0z',
+  Crown: 'M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z',
+  Heart: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z',
+  Leaf: 'M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z',
+  Gem: 'M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z',
+  TreePine: 'M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z',
+  PenTool: 'M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z',
+  Wrench: 'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z',
+  Monitor: 'M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z',
+  Award: 'M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z',
+  CheckCircle: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z',
+  Maximize: 'M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4',
+  Sliders: 'M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4',
+  Target: 'M15 12a3 3 0 11-6 0 3 3 0 016 0z M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42',
+};
+
+const gradients = [
+  'from-blue-500 to-purple-500',
+  'from-primary to-orange-400',
+  'from-green-400 to-teal-500',
+];
+---
+
+<Layout title={title} description={description}>
+  <Header />
+  
+  <main class="min-h-screen">
+    <!-- Hero Section -->
+    <section class="pt-6 pb-16 px-4 bg-white mt-16">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h1 class="text-4xl lg:text-4xl font-bold text-secondary mb-6">
+              {service.heroTitle}
+            </h1>
+            <p class="text-xl text-gray-600 mb-8">
+              {service.heroSubtitle}
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+              <a
+                href={service.ctaUrl}
+                class="btn btn-primary btn-lg w-full sm:w-auto"
+              >
+                {service.ctaButton}
+              </a>
+              <a
+                href={service.realizationsCategorySlug ? `/realizacje?category=${service.realizationsCategorySlug}` : '/realizacje'}
+                class="btn btn-outline btn-lg w-full sm:w-auto"
+              >
+                Zobacz realizacje
+              </a>
+            </div>
+          </div>
+
+          <div class="relative h-[400px] lg:h-[500px]">
+            <div class="relative w-full h-full overflow-hidden rounded-2xl">
+              <div class="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 z-10 rounded-2xl"></div>
+              <img
+                src={service.heroImages[0]}
+                alt={service.heroTitle}
+                class="absolute inset-0 w-full h-full object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits Section -->
+    {service.benefits && service.benefits.length > 0 && (
+      <section class="py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4">
+          <h2 class="text-4xl font-bold text-center text-secondary mb-16">
+            {service.benefitsTitle}
+          </h2>
+          <div class="grid gap-8 lg:grid-cols-3">
+            {service.benefits.map((benefit, index) => (
+              <div class="group relative p-8 bg-white rounded-2xl shadow-lg">
+                <div class={`w-16 h-16 mb-6 rounded-xl bg-gradient-to-br ${gradients[index % 3]} flex items-center justify-center`}>
+                  <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={iconMap[benefit.icon] || iconMap.Shield} />
+                  </svg>
+                </div>
+                <h3 class="text-2xl font-bold text-secondary mb-4">
+                  {benefit.title}
+                </h3>
+                <p class="text-gray-600">{benefit.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
+    <ProcessSection />
+
+    <!-- Highlights Section (e.g., for projektowanie-kuchni) -->
+    {service.highlights && service.highlights.length > 0 && (
+      <section class="py-24 bg-gradient-to-b from-white to-gray-50">
+        <div class="max-w-7xl mx-auto px-4">
+          <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-secondary mb-4">Nasi projektanci</h2>
+            <div class="flex items-center justify-center gap-2">
+              <div class="h-px bg-primary w-12"></div>
+              <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+              </svg>
+              <div class="h-px bg-primary w-12"></div>
+            </div>
+          </div>
+
+          <div class="grid lg:grid-cols-2 gap-8">
+            {service.highlights.map((highlight, index) => (
+              <div class="group relative">
+                <div class="relative bg-white rounded-3xl shadow-lg overflow-hidden">
+                  <div class="aspect-[16/10] relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10 z-10"></div>
+                    <img
+                      src={highlight.imageUrl}
+                      alt={highlight.title}
+                      class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
+                    />
+                    <div class="absolute -bottom-1 left-0 right-0 h-24 bg-gradient-to-t from-white via-white/95 to-transparent z-20"></div>
+                  </div>
+                  <div class="relative -mt-12 px-8 pb-8 z-30">
+                    <div class="bg-white rounded-2xl p-6 shadow-sm">
+                      <h3 class="text-2xl font-bold text-secondary mb-3 group-hover:text-primary transition-colors">
+                        {highlight.title}
+                      </h3>
+                      <p class="text-gray-600 leading-relaxed">
+                        {highlight.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
+    <ServiceAreasSection />
+    <GoogleReviewsSection />
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-secondary text-white">
+      <div class="max-w-7xl mx-auto px-4 text-center">
+        <h2 class="text-3xl lg:text-4xl font-bold mb-6">
+          {service.contactTitle}
+        </h2>
+        <p class="text-xl mb-8 text-gray-300">
+          {service.contactSubtitle}
+        </p>
+        <a href="/kontakt" class="btn btn-primary btn-lg">
+          {service.contactCta}
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+  <CookieConsent client:load />
+</Layout>

@@ -1,0 +1,103 @@
+---
+// Footer.astro - stopka
+const services = [
+  { href: '/uslugi/plyta-laminowana', label: 'Kuchnie płyta laminowana' },
+  { href: '/uslugi/mdf-lakierowany', label: 'Kuchnie MDF lakierowany' },
+  { href: '/uslugi/akryl-lakier-plyta', label: 'Kuchnie akryl/lakier + płyta' },
+  { href: '/uslugi/akrylowe-mata', label: 'Kuchnie akrylowe/mata' },
+  { href: '/uslugi/blaty-hpl', label: 'Kuchnie blaty HPL' },
+  { href: '/uslugi/fornir', label: 'Kuchnie z fornirem' },
+  { href: '/uslugi/projektowanie-kuchni', label: 'Projektowanie kuchni' },
+  { href: '/uslugi/lazienka-na-wymiar', label: 'Łazienki na wymiar' },
+  { href: '/uslugi/szafy-zabudowy-garderoby', label: 'Szafy, zabudowy, garderoby' },
+];
+
+const cities = [
+  { href: '/miasto/torun', label: 'Toruń' },
+  { href: '/miasto/bydgoszcz', label: 'Bydgoszcz' },
+  { href: '/miasto/grudziadz', label: 'Grudziądz' },
+  { href: '/miasto/inowroclaw', label: 'Inowrocław' },
+  { href: '/miasto/wloclawek', label: 'Włocławek' },
+];
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-secondary text-white">
+  <div class="max-w-7xl mx-auto px-4 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div>
+        <h3 class="text-xl font-bold mb-4">Grand Kuchnie</h3>
+        <p class="text-gray-300">
+          Kuchnia na wymiar - projektowanie, produkcja, montaż. Marka jest
+          własnością{' '}
+          <a
+            href="https://www.meblesystem.pl"
+            class="text-primary hover:text-primary-dark underline transition"
+          >
+            MebleSystem
+          </a>
+          .
+        </p>
+      </div>
+
+      <div>
+        <h4 class="text-lg font-semibold mb-4">Usługi</h4>
+        <ul class="space-y-2">
+          {services.map((service) => (
+            <li>
+              <a
+                href={service.href}
+                class="text-gray-300 hover:text-primary transition-colors"
+              >
+                {service.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-lg font-semibold mb-4">Miasta</h4>
+        <ul class="space-y-2">
+          {cities.map((city) => (
+            <li>
+              <a
+                href={city.href}
+                class="text-gray-300 hover:text-primary transition-colors"
+              >
+                {city.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-lg font-semibold mb-4">Kontakt</h4>
+        <ul class="space-y-2 text-gray-300">
+          <li>
+            <a href="mailto:kontakt@grandkuchnie.pl" class="hover:text-primary transition-colors">
+              kontakt@grandkuchnie.pl
+            </a>
+          </li>
+          <li>
+            <a href="tel:576376567" class="hover:text-primary transition-colors">
+              tel.: 576 376 567
+            </a>
+          </li>
+          <li>87-100 Toruń</li>
+          <li>ul. Polna 134, hala nr 3</li>
+          <li>NIP: 956-211-16-20</li>
+          <li>REGON: 389437853</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-300">
+      <p>
+        &copy; {currentYear} Grand Kuchnie. Wszelkie prawa zastrzeżone.
+      </p>
+    </div>
+  </div>
+</footer>

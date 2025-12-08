@@ -1,0 +1,72 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import HeroCarousel from '../components/HeroCarousel';
+import KitchenTypesSection from '../components/KitchenTypesSection.astro';
+import FeaturesSection from '../components/FeaturesSection.astro';
+import ProcessSection from '../components/ProcessSection.astro';
+import ServiceAreasSection from '../components/ServiceAreasSection.astro';
+import GoogleReviewsSection from '../components/GoogleReviewsSection.astro';
+import CookieConsent from '../components/CookieConsent';
+
+const title = 'Grand Kuchnie - Kuchnie na wymiar | Projektowanie, produkcja, montaż';
+const description = 'Profesjonalne kuchnie na wymiar w województwie kujawsko-pomorskim. Kompleksowa obsługa od projektu do montażu. Toruń, Bydgoszcz, Włocławek, Grudziądz, Inowrocław. Darmowa wycena!';
+---
+
+<Layout title={title} description={description}>
+  <Header />
+  
+  <main class="min-h-screen bg-white">
+    <!-- Hero Section -->
+    <section class="pt-6 pb-16 px-4">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h1 class="text-4xl lg:text-5xl font-bold text-secondary mb-6">
+              Tworzymy eleganckie i praktyczne kuchnie na wymiar
+            </h1>
+            <p class="text-xl text-gray-600 mb-8">
+              Zleć nam kompleksowe wykonanie - od projektu po realizację. Stworzymy Twoją wymarzoną przestrzeń!
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a href="/kontakt" class="btn btn-primary btn-lg">
+                Darmowa wycena
+              </a>
+              <a href="/realizacje" class="btn btn-outline btn-lg">
+                Zobacz realizacje
+              </a>
+            </div>
+          </div>
+          <div class="relative h-[400px] lg:h-[500px]">
+            <HeroCarousel client:load />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <KitchenTypesSection />
+    <FeaturesSection />
+    <ProcessSection />
+    <ServiceAreasSection />
+    <GoogleReviewsSection />
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-secondary text-white">
+      <div class="max-w-7xl mx-auto px-4 text-center">
+        <h2 class="text-3xl font-bold mb-6">
+          Chcesz zlecić kuchnię na wymiar?
+        </h2>
+        <p class="text-xl mb-8 text-gray-300">
+          Skontaktuj się z nami i uzyskaj bezpłatną wycenę!
+        </p>
+        <a href="/kontakt" class="btn btn-primary btn-lg">
+          Darmowa wycena
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+  <CookieConsent client:load />
+</Layout>

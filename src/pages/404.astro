@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Strona nie znaleziona | Grand Kuchnie">
+  <Header />
+  
+  <main class="min-h-screen bg-white flex items-center justify-center">
+    <div class="text-center px-4">
+      <h1 class="text-9xl font-bold text-primary mb-4">404</h1>
+      <h2 class="text-3xl font-bold text-secondary mb-4">
+        Strona nie znaleziona
+      </h2>
+      <p class="text-xl text-gray-600 mb-8">
+        Przepraszamy, strona której szukasz nie istnieje.
+      </p>
+      <a href="/" class="btn btn-primary btn-lg">
+        Wróć na stronę główną
+      </a>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

@@ -1,0 +1,21 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import RealizationsGallery from '../components/RealizationsGallery';
+import CookieConsent from '../components/CookieConsent';
+
+const title = 'Realizacje | Grand Kuchnie - Galeria kuchni na wymiar';
+const description = 'Zobacz nasze realizacje kuchni na wymiar. Galeria zdjęć przedstawiająca projekty i wykonania kuchni laminowanych, akrylowych, z fornirem, łazienek i szaf.';
+---
+
+<Layout title={title} description={description}>
+  <Header />
+  
+  <main class="min-h-screen bg-white pt-8">
+    <RealizationsGallery client:load />
+  </main>
+
+  <Footer />
+  <CookieConsent client:load />
+</Layout>

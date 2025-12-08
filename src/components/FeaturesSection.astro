@@ -1,0 +1,64 @@
+---
+// FeaturesSection.astro - Nasze wartości
+const features = [
+  {
+    title: 'Rzetelność i uczciwość',
+    description: 'Zależy nam na partnerskiej współpracy, która bazuje na zaufaniu, dlatego uczciwość to nasza podstawowa wartość. Dotrzymujemy danego słowa, przykładamy szczególną wagę do terminowości i transparentności podejmowanych działań.',
+    icon: 'shield',
+    gradient: 'from-blue-500 to-purple-500',
+  },
+  {
+    title: 'Jakość i solidność',
+    description: 'Od dekady zajmujemy się tworzeniem kuchni na wymiar w województwie kujawsko-pomorskim. Doskonale orientujemy się w aktualnych trendach i wiemy, jakie rozwiązania oraz technologie dobierać, aby osiągnąć rezultaty, o jakich marzysz.',
+    icon: 'trophy',
+    gradient: 'from-primary to-orange-400',
+  },
+  {
+    title: 'Terminowość i sumienność',
+    description: 'Zdajemy sobie sprawę, jak ważne jest dla Ciebie dotrzymywanie terminów, dlatego skrupulatnie trzymamy się ustalonych harmonogramów. Zapewniamy też bezpłatną wycenę - zadzwoń lub napisz do nas, opisz swój projekt, a bezpłatnie otrzymasz wstępną kalkulację kosztów!',
+    icon: 'clock',
+    gradient: 'from-green-400 to-teal-500',
+  },
+];
+---
+
+<section class="py-24 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4">
+    <h2 class="text-4xl font-bold text-center text-secondary mb-16">
+      Nasze wartości
+    </h2>
+
+    <div class="grid gap-8 lg:grid-cols-3">
+      {features.map((feature, index) => (
+        <div
+          class="group relative p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
+        >
+          {/* Icon */}
+          <div class={`w-16 h-16 mb-6 rounded-xl bg-gradient-to-br ${feature.gradient} p-4 flex items-center justify-center`}>
+            {feature.icon === 'shield' && (
+              <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            )}
+            {feature.icon === 'trophy' && (
+              <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+              </svg>
+            )}
+            {feature.icon === 'clock' && (
+              <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            )}
+          </div>
+
+          <h3 class="text-2xl font-bold text-secondary mb-4">
+            {feature.title}
+          </h3>
+
+          <p class="text-gray-600">{feature.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

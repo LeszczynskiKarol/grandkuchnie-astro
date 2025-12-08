@@ -1,0 +1,86 @@
+---
+// Header.astro - statyczny nagłówek
+const menuItems = [
+  { href: '/', label: 'Strona główna' },
+  { href: '/realizacje', label: 'Realizacje' },
+  { href: '/kontakt', label: 'Kontakt' },
+];
+
+const cities = ['Bydgoszcz', 'Toruń', 'Włocławek', 'Inowrocław', 'Grudziądz'];
+---
+
+<header class="navbar bg-base-100 shadow-sm fixed top-0 z-50">
+  <div class="navbar-start">
+    <a href="/" class="px-2 flex items-center gap-2">
+      <div class="relative w-10 h-10 md:w-12 md:h-12">
+        <img
+          src="/img/logo.png"
+          alt="Grand Kuchnie Logo"
+          class="w-full h-full object-contain"
+        />
+      </div>
+      <div class="flex flex-col items-center justify-center">
+        <span class="text-base md:text-lg font-bold text-secondary leading-tight">
+          Grand Kuchnie
+        </span>
+        <span class="text-xs text-gray-600 leading-tight text-center">
+          by MebleSystem
+        </span>
+      </div>
+    </a>
+  </div>
+
+  <div class="navbar-center hidden lg:flex">
+    <ul class="menu menu-horizontal px-1">
+      {cities.map((city) => (
+        <li>
+          <a
+            href={`/miasto/${city.toLowerCase().replace(/ą/g, 'a').replace(/ń/g, 'n').replace(/ł/g, 'l')}`}
+            class="text-secondary hover:text-secondary"
+          >
+            {city}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <div class="navbar-end flex items-center gap-4">
+    <a href="/realizacje" class="btn-primary hidden md:inline-flex">
+      Realizacje
+    </a>
+    <a href="/kontakt" class="btn btn-primary hidden md:inline-flex">
+      Darmowa wycena
+    </a>
+
+    <!-- Mobile menu button -->
+    <div class="dropdown dropdown-end md:hidden">
+      <label tabindex="0" class="btn btn-ghost">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </label>
+      <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-64">
+        {menuItems.map((item) => (
+          <li><a href={item.href} class="text-lg py-3">{item.label}</a></li>
+        ))}
+        <li class="menu-title pt-4">
+          <span>Miasta</span>
+        </li>
+        {cities.map((city) => (
+          <li>
+            <a href={`/miasto/${city.toLowerCase().replace(/ą/g, 'a').replace(/ń/g, 'n').replace(/ł/g, 'l')}`}>
+              {city}
+            </a>
+          </li>
+        ))}
+        <li class="pt-4">
+          <a href="/kontakt" class="btn btn-primary">Darmowa wycena</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<!-- Spacer for fixed navbar -->
+<div class="h-16 md:h-20"></div>

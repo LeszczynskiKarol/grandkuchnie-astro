@@ -1,0 +1,41 @@
+---
+import { services } from '../data/services';
+import { cities } from '../data/cities';
+
+const site = 'https://www.grandkuchnie.pl';
+
+// Static pages
+const staticPages = [
+  { url: '/', priority: '1.0', changefreq: 'weekly' },
+  { url: '/realizacje', priority: '0.9', changefreq: 'weekly' },
+  { url: '/kontakt', priority: '0.8', changefreq: 'monthly' },
+];
+
+// Service pages
+const servicePages = services.map(service => ({
+  url: `/uslugi/${service.slug}`,
+  priority: '0.8',
+  changefreq: 'monthly',
+}));
+
+// City pages
+const cityPages = cities.map(city => ({
+  url: `/miasto/${city.slug}`,
+  priority: '0.8',
+  changefreq: 'monthly',
+}));
+
+const allPages = [...staticPages, ...servicePages, ...cityPages];
+const today = new Date().toISOString().split('T')[0];
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  {allPages.map(page => (
+    <url>
+      <loc>{site}{page.url}</loc>
+      <lastmod>{today}</lastmod>
+      <changefreq>{page.changefreq}</changefreq>
+      <priority>{page.priority}</priority>
+    </url>
+  ))}
+</urlset>

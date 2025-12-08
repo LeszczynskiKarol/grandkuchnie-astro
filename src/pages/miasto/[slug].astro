@@ -1,0 +1,97 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import KitchenTypesSection from '../../components/KitchenTypesSection.astro';
+import FeaturesSection from '../../components/FeaturesSection.astro';
+import ProcessSection from '../../components/ProcessSection.astro';
+import GoogleReviewsSection from '../../components/GoogleReviewsSection.astro';
+import CookieConsent from '../../components/CookieConsent';
+import { cities, getCityBySlug } from '../../data/cities';
+
+// Generate static paths for all cities
+export function getStaticPaths() {
+  return cities.map((city) => ({
+    params: { slug: city.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+const city = getCityBySlug(slug as string);
+
+if (!city) {
+  return Astro.redirect('/404');
+}
+
+const title = `Kuchnia na wymiar - ${city.name} | Projektowanie, montaż, produkcja na zamówienie`;
+const description = `Profesjonalne meble kuchenne na wymiar w ${city.nameLocative}. Kompleksowa obsługa od projektu do montażu. Darmowa wycena.`;
+---
+
+<Layout title={title} description={description}>
+  <Header />
+  
+  <main class="min-h-screen bg-white">
+    <!-- Hero Section -->
+    <section class="pt-6 pb-16 px-4 mt-16">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h1 class="text-4xl lg:text-5xl font-bold text-secondary mb-6">
+              {city.heroTitle}
+            </h1>
+            <p class="text-xl text-gray-600 mb-8">
+              {city.heroSubtitle}
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a href="/kontakt" class="btn btn-primary btn-lg">
+                Darmowa wycena
+              </a>
+              <a href="/realizacje" class="btn btn-outline btn-lg">
+                Zobacz realizacje
+              </a>
+            </div>
+          </div>
+          <div class="relative h-[400px] lg:h-[500px]">
+            <div class="relative w-full h-full overflow-hidden rounded-2xl">
+              <div class="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 z-10 rounded-2xl"></div>
+              <img
+                src={city.heroImage}
+                alt={city.name}
+                class="absolute inset-0 w-full h-full object-cover"
+              />
+              <!-- City name badge -->
+              <div class="absolute bottom-6 left-6 z-20">
+                <span class="bg-white/90 backdrop-blur-sm text-secondary font-bold text-xl px-6 py-3 rounded-full shadow-lg">
+                  {city.name}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <KitchenTypesSection />
+    <ProcessSection />
+    <FeaturesSection />
+    <GoogleReviewsSection />
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-secondary text-white">
+      <div class="max-w-7xl mx-auto px-4 text-center">
+        <h2 class="text-3xl font-bold mb-6">
+          Szukasz wykonawcy kuchni na wymiar w {city.nameLocative}?
+        </h2>
+        <p class="text-xl mb-8 text-gray-300">
+          Skontaktuj się z nami i uzyskaj bezpłatną wycenę!
+        </p>
+        <a href="/kontakt" class="btn btn-primary btn-lg">
+          Darmowa wycena
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+  <CookieConsent client:load />
+</Layout>
