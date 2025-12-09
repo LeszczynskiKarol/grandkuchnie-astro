@@ -1,0 +1,293 @@
+---
+// src/pages/polityka-prywatnosci.astro
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import CookieConsent from '../../components/CookieConsent';
+
+const title = 'Polityka Prywatności | Grand Kuchnie';
+const description = 'Polityka prywatności serwisu grandkuchnie.pl - informacje o przetwarzaniu danych osobowych i plikach cookies.';
+---
+
+<Layout title={title} description={description}>
+  <Header />
+  
+  <main class="min-h-screen bg-gray-50">
+    <!-- Hero -->
+    <section class="bg-secondary py-16">
+      <div class="max-w-4xl mx-auto px-4 text-center">
+        <h1 class="text-4xl font-bold text-white mb-4">Polityka Prywatności</h1>
+        <p class="text-gray-300">Ostatnia aktualizacja: 9 grudnia 2025</p>
+      </div>
+    </section>
+
+    <!-- Content -->
+    <section class="py-16">
+      <div class="max-w-4xl mx-auto px-4">
+        <div class="bg-white rounded-2xl shadow-lg p-8 md:p-12 prose prose-lg max-w-none">
+          
+          <!-- 1. Administrator -->
+          <h2 class="text-2xl font-bold text-secondary mb-4 flex items-center gap-3">
+            <span class="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-secondary text-sm font-bold">1</span>
+            Administrator danych osobowych
+          </h2>
+          <p class="text-gray-600 mb-6">
+            Administratorem Twoich danych osobowych jest:
+          </p>
+          <div class="bg-gray-50 rounded-xl p-6 mb-8">
+            <p class="font-semibold text-secondary mb-2">MebleSystem Sp. z o.o.</p>
+            <p class="text-gray-600">
+              ul. Polna 134, hala nr 3<br />
+              87-100 Toruń<br />
+              NIP: 9562111620<br />
+              REGON: 389437853
+            </p>
+            <p class="text-gray-600 mt-3">
+              <strong>Kontakt:</strong><br />
+              E-mail: <a href="mailto:kontakt@grandkuchnie.pl" class="text-primary hover:underline">kontakt@grandkuchnie.pl</a><br />
+              Telefon: <a href="tel:+48576376567" class="text-primary hover:underline">576 376 567</a>
+            </p>
+          </div>
+
+          <!-- 2. Zakres danych -->
+          <h2 class="text-2xl font-bold text-secondary mb-4 flex items-center gap-3">
+            <span class="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-secondary text-sm font-bold">2</span>
+            Jakie dane zbieramy?
+          </h2>
+          <p class="text-gray-600 mb-4">
+            W ramach korzystania z serwisu grandkuchnie.pl możemy zbierać następujące dane:
+          </p>
+          <ul class="list-disc list-inside text-gray-600 mb-8 space-y-2">
+            <li><strong>Dane kontaktowe</strong> - imię i nazwisko, adres e-mail, numer telefonu (podawane dobrowolnie w formularzu kontaktowym)</li>
+            <li><strong>Dane techniczne</strong> - adres IP, typ przeglądarki, system operacyjny, czas wizyty</li>
+            <li><strong>Pliki załączników</strong> - zdjęcia i dokumenty przesyłane przez formularz kontaktowy</li>
+            <li><strong>Dane z cookies</strong> - informacje o zachowaniu na stronie (za Twoją zgodą)</li>
+          </ul>
+
+          <!-- 3. Cele przetwarzania -->
+          <h2 class="text-2xl font-bold text-secondary mb-4 flex items-center gap-3">
+            <span class="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-secondary text-sm font-bold">3</span>
+            W jakim celu przetwarzamy dane?
+          </h2>
+          <div class="space-y-4 mb-8">
+            <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-lg">
+              <div class="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-semibold text-secondary">Obsługa zapytań</h4>
+                <p class="text-gray-600 text-sm">Odpowiadamy na Twoje wiadomości z formularza kontaktowego i przygotowujemy wyceny.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-lg">
+              <div class="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-semibold text-secondary">Analityka</h4>
+                <p class="text-gray-600 text-sm">Za Twoją zgodą analizujemy ruch na stronie, aby ją ulepszać (Google Analytics).</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-lg">
+              <div class="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-semibold text-secondary">Marketing</h4>
+                <p class="text-gray-600 text-sm">Za Twoją zgodą wyświetlamy spersonalizowane reklamy (Google Ads, Meta Pixel).</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. Podstawy prawne -->
+          <h2 class="text-2xl font-bold text-secondary mb-4 flex items-center gap-3">
+            <span class="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-secondary text-sm font-bold">4</span>
+            Podstawy prawne przetwarzania
+          </h2>
+          <ul class="list-disc list-inside text-gray-600 mb-8 space-y-2">
+            <li><strong>Art. 6 ust. 1 lit. a RODO</strong> - Twoja zgoda (cookies analityczne i reklamowe)</li>
+            <li><strong>Art. 6 ust. 1 lit. b RODO</strong> - wykonanie umowy lub działania przed jej zawarciem (odpowiedź na zapytanie)</li>
+            <li><strong>Art. 6 ust. 1 lit. f RODO</strong> - prawnie uzasadniony interes administratora (bezpieczeństwo strony)</li>
+          </ul>
+
+          <!-- 5. Cookies -->
+          <h2 class="text-2xl font-bold text-secondary mb-4 flex items-center gap-3">
+            <span class="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-secondary text-sm font-bold">5</span>
+            Pliki cookies
+          </h2>
+          <p class="text-gray-600 mb-4">
+            Nasza strona wykorzystuje pliki cookies. Zgodnie z wymogami RODO i Google Consent Mode v2, 
+            przed zapisaniem cookies wymagających zgody pytamy o Twoją akceptację.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-secondary mt-6 mb-3">Rodzaje cookies:</h3>
+          
+          <div class="overflow-x-auto mb-6">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="bg-gray-100">
+                  <th class="text-left p-3 font-semibold text-secondary">Kategoria</th>
+                  <th class="text-left p-3 font-semibold text-secondary">Cel</th>
+                  <th class="text-left p-3 font-semibold text-secondary">Zgoda</th>
+                </tr>
+              </thead>
+              <tbody class="text-gray-600">
+                <tr class="border-b">
+                  <td class="p-3 font-medium">Niezbędne</td>
+                  <td class="p-3">Podstawowe funkcjonowanie strony, bezpieczeństwo</td>
+                  <td class="p-3"><span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs">Zawsze aktywne</span></td>
+                </tr>
+                <tr class="border-b">
+                  <td class="p-3 font-medium">Analityczne</td>
+                  <td class="p-3">Google Analytics - statystyki odwiedzin</td>
+                  <td class="p-3"><span class="bg-yellow-100 text-yellow-700 px-2 py-1 rounded text-xs">Wymagana zgoda</span></td>
+                </tr>
+                <tr class="border-b">
+                  <td class="p-3 font-medium">Funkcjonalne</td>
+                  <td class="p-3">Zapamiętywanie preferencji użytkownika</td>
+                  <td class="p-3"><span class="bg-yellow-100 text-yellow-700 px-2 py-1 rounded text-xs">Wymagana zgoda</span></td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-medium">Reklamowe</td>
+                  <td class="p-3">Google Ads, Meta Pixel - personalizacja reklam</td>
+                  <td class="p-3"><span class="bg-yellow-100 text-yellow-700 px-2 py-1 rounded text-xs">Wymagana zgoda</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="bg-primary/10 border border-primary/20 rounded-xl p-6 mb-8">
+            <p class="text-secondary font-medium mb-3">🍪 Zarządzaj swoimi zgodami</p>
+            <p class="text-gray-600 text-sm mb-4">
+              Możesz w każdej chwili zmienić swoje preferencje dotyczące cookies.
+            </p>
+            <button 
+              type="button"
+              onclick="window.openCookieSettings && window.openCookieSettings()"
+              class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-secondary font-semibold rounded-lg hover:bg-primary/90 transition-colors"
+            >
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              Ustawienia cookies
+            </button>
+          </div>
+
+          <!-- 6. Odbiorcy danych -->
+          <h2 class="text-2xl font-bold text-secondary mb-4 flex items-center gap-3">
+            <span class="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-secondary text-sm font-bold">6</span>
+            Komu udostępniamy dane?
+          </h2>
+          <p class="text-gray-600 mb-4">
+            Twoje dane mogą być przekazywane następującym podmiotom:
+          </p>
+          <ul class="list-disc list-inside text-gray-600 mb-8 space-y-2">
+            <li><strong>Google LLC</strong> - usługi analityczne (Google Analytics) i reklamowe (Google Ads)</li>
+            <li><strong>Meta Platforms Inc.</strong> - usługi reklamowe (Meta Pixel)</li>
+            <li><strong>Cloudinary</strong> - przechowywanie załączników z formularza</li>
+            <li><strong>EmailJS</strong> - wysyłka wiadomości z formularza kontaktowego</li>
+            <li><strong>Amazon Web Services</strong> - hosting strony</li>
+          </ul>
+
+          <!-- 7. Przekazywanie do państw trzecich -->
+          <h2 class="text-2xl font-bold text-secondary mb-4 flex items-center gap-3">
+            <span class="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-secondary text-sm font-bold">7</span>
+            Przekazywanie danych poza EOG
+          </h2>
+          <p class="text-gray-600 mb-8">
+            Niektórzy nasi dostawcy usług (Google, Meta, Cloudinary) mogą przetwarzać dane w USA. 
+            Transfer odbywa się na podstawie standardowych klauzul umownych zatwierdzonych przez Komisję Europejską 
+            lub w ramach EU-US Data Privacy Framework.
+          </p>
+
+          <!-- 8. Okres przechowywania -->
+          <h2 class="text-2xl font-bold text-secondary mb-4 flex items-center gap-3">
+            <span class="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-secondary text-sm font-bold">8</span>
+            Jak długo przechowujemy dane?
+          </h2>
+          <ul class="list-disc list-inside text-gray-600 mb-8 space-y-2">
+            <li><strong>Dane z formularza kontaktowego</strong> - do 3 lat od ostatniego kontaktu</li>
+            <li><strong>Załączniki</strong> - do 1 roku od przesłania</li>
+            <li><strong>Cookies analityczne</strong> - zgodnie z polityką Google (do 26 miesięcy)</li>
+            <li><strong>Cookies reklamowe</strong> - zgodnie z polityką dostawców (do 13 miesięcy)</li>
+          </ul>
+
+          <!-- 9. Twoje prawa -->
+          <h2 class="text-2xl font-bold text-secondary mb-4 flex items-center gap-3">
+            <span class="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-secondary text-sm font-bold">9</span>
+            Twoje prawa
+          </h2>
+          <p class="text-gray-600 mb-4">
+            Zgodnie z RODO przysługują Ci następujące prawa:
+          </p>
+          <div class="grid md:grid-cols-2 gap-4 mb-8">
+            <div class="p-4 border border-gray-200 rounded-lg">
+              <h4 class="font-semibold text-secondary mb-1">Prawo dostępu</h4>
+              <p class="text-gray-600 text-sm">Możesz uzyskać informację o przetwarzanych danych</p>
+            </div>
+            <div class="p-4 border border-gray-200 rounded-lg">
+              <h4 class="font-semibold text-secondary mb-1">Prawo do sprostowania</h4>
+              <p class="text-gray-600 text-sm">Możesz poprawić nieprawidłowe dane</p>
+            </div>
+            <div class="p-4 border border-gray-200 rounded-lg">
+              <h4 class="font-semibold text-secondary mb-1">Prawo do usunięcia</h4>
+              <p class="text-gray-600 text-sm">Możesz żądać usunięcia swoich danych</p>
+            </div>
+            <div class="p-4 border border-gray-200 rounded-lg">
+              <h4 class="font-semibold text-secondary mb-1">Prawo do ograniczenia</h4>
+              <p class="text-gray-600 text-sm">Możesz ograniczyć przetwarzanie danych</p>
+            </div>
+            <div class="p-4 border border-gray-200 rounded-lg">
+              <h4 class="font-semibold text-secondary mb-1">Prawo do przenoszenia</h4>
+              <p class="text-gray-600 text-sm">Możesz otrzymać dane w formacie do przeniesienia</p>
+            </div>
+            <div class="p-4 border border-gray-200 rounded-lg">
+              <h4 class="font-semibold text-secondary mb-1">Prawo do sprzeciwu</h4>
+              <p class="text-gray-600 text-sm">Możesz sprzeciwić się przetwarzaniu</p>
+            </div>
+          </div>
+          <p class="text-gray-600 mb-8">
+            Aby skorzystać z powyższych praw, skontaktuj się z nami: 
+            <a href="mailto:kontakt@grandkuchnie.pl" class="text-primary hover:underline">kontakt@grandkuchnie.pl</a>
+          </p>
+
+          <!-- 10. Skarga do UODO -->
+          <h2 class="text-2xl font-bold text-secondary mb-4 flex items-center gap-3">
+            <span class="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-secondary text-sm font-bold">10</span>
+            Skarga do organu nadzorczego
+          </h2>
+          <p class="text-gray-600 mb-8">
+            Jeśli uważasz, że przetwarzanie Twoich danych narusza przepisy RODO, 
+            masz prawo złożyć skargę do Prezesa Urzędu Ochrony Danych Osobowych:<br /><br />
+            <strong>Urząd Ochrony Danych Osobowych</strong><br />
+            ul. Stawki 2, 00-193 Warszawa<br />
+            <a href="https://uodo.gov.pl" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">uodo.gov.pl</a>
+          </p>
+
+          <!-- 11. Zmiany polityki -->
+          <h2 class="text-2xl font-bold text-secondary mb-4 flex items-center gap-3">
+            <span class="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-secondary text-sm font-bold">11</span>
+            Zmiany polityki prywatności
+          </h2>
+          <p class="text-gray-600">
+            Zastrzegamy sobie prawo do aktualizacji niniejszej polityki prywatności. 
+            O istotnych zmianach poinformujemy przez wyświetlenie komunikatu na stronie. 
+            Zalecamy regularne sprawdzanie tej strony.
+          </p>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+  <CookieConsent client:load />
+</Layout>

@@ -1,13 +1,12 @@
-import { useState, useRef } from 'react';
-import { X, Plus, FileText } from 'lucide-react';
+import { useState, useRef } from "react";
+import { X, Plus, FileText } from "lucide-react";
 
 // Konfiguracja EmailJS i Cloudinary
-// UWAGA: Uzupełnij te wartości swoimi kluczami!
-const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
-const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
-const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
-const CLOUDINARY_UPLOAD_PRESET = 'YOUR_PRESET';
-const CLOUDINARY_CLOUD_NAME = 'YOUR_CLOUD_NAME';
+const EMAILJS_SERVICE_ID = "service_h3jd20g";
+const EMAILJS_TEMPLATE_ID = "template_okptqlg";
+const EMAILJS_PUBLIC_KEY = "gjau8dneW58l9l3tz";
+const CLOUDINARY_UPLOAD_PRESET = "grandkuchnie";
+const CLOUDINARY_CLOUD_NAME = "drpll3ho2";
 
 interface FormData {
   name: string;
@@ -18,20 +17,22 @@ interface FormData {
 
 export default function ContactForm() {
   const [formData, setFormData] = useState<FormData>({
-    name: '',
-    email: '',
-    phone: '',
-    message: '',
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
   });
   const [attachments, setAttachments] = useState<File[]>([]);
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
-  const [error, setError] = useState('');
+  const [status, setStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
+  const [error, setError] = useState("");
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const formatFileSize = (bytes: number): string => {
-    if (bytes < 1024) return bytes + ' B';
-    else if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
-    else return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+    if (bytes < 1024) return bytes + " B";
+    else if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + " KB";
+    else return (bytes / (1024 * 1024)).toFixed(1) + " MB";
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -40,42 +41,47 @@ export default function ContactForm() {
     const newFiles = Array.from(e.target.files);
 
     if (attachments.length + newFiles.length > 10) {
-      setError('Możesz dodać maksymalnie 10 plików');
+      setError("Możesz dodać maksymalnie 10 plików");
       return;
     }
 
-    const tooLargeFiles = newFiles.filter((file) => file.size > 50 * 1024 * 1024);
+    const tooLargeFiles = newFiles.filter(
+      (file) => file.size > 50 * 1024 * 1024
+    );
     if (tooLargeFiles.length > 0) {
-      setError(`Pliki: ${tooLargeFiles.map((f) => f.name).join(', ')} przekraczają limit 50 MB`);
+      setError(
+        `Pliki: ${tooLargeFiles
+          .map((f) => f.name)
+          .join(", ")} przekraczają limit 50 MB`
+      );
       return;
     }
 
     setAttachments((prev) => [...prev, ...newFiles]);
-    setError('');
+    setError("");
 
-    if (fileInputRef.current) fileInputRef.current.value = '';
+    if (fileInputRef.current) fileInputRef.current.value = "";
   };
 
   const handleRemoveFile = (index: number) => {
     setAttachments((prev) => prev.filter((_, i) => i !== index));
   };
 
-  // Upload pliku do Cloudinary
   const uploadToCloudinary = async (file: File): Promise<string> => {
     const formData = new FormData();
-    formData.append('file', file);
-    formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+    formData.append("file", file);
+    formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
 
     const response = await fetch(
       `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/auto/upload`,
       {
-        method: 'POST',
+        method: "POST",
         body: formData,
       }
     );
 
     if (!response.ok) {
-      throw new Error('Błąd podczas uploadu pliku');
+      throw new Error("Błąd podczas uploadu pliku");
     }
 
     const data = await response.json();
@@ -84,33 +90,38 @@ export default function ContactForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus('loading');
-    setError('');
+    setStatus("loading");
+    setError("");
 
     try {
-      // Upload załączników do Cloudinary
-      let attachmentUrls: string[] = [];
+      let attachmentsHtml =
+        '<span style="color: #64748b;">Brak załączników</span>';
+
       if (attachments.length > 0) {
-        attachmentUrls = await Promise.all(
+        const uploadedUrls = await Promise.all(
           attachments.map((file) => uploadToCloudinary(file))
         );
+
+        attachmentsHtml = uploadedUrls
+          .map(
+            (url, i) =>
+              `<a href="${url}" target="_blank" style="display: inline-block; margin: 5px; padding: 10px 16px; background: #fbbf24; color: #1e293b; border-radius: 8px; text-decoration: none; font-weight: 500; font-size: 14px;">📎 Załącznik ${
+                i + 1
+              }</a>`
+          )
+          .join(" ");
       }
 
-      // Dynamiczny import EmailJS (lazy loading)
-      const emailjs = await import('@emailjs/browser');
+      const emailjs = await import("@emailjs/browser");
 
-      // Przygotuj dane dla EmailJS
       const templateParams = {
         from_name: formData.name,
         from_email: formData.email,
-        phone: formData.phone || 'Nie podano',
+        phone: formData.phone || "Nie podano",
         message: formData.message,
-        attachments: attachmentUrls.length > 0 
-          ? attachmentUrls.join('\n') 
-          : 'Brak załączników',
+        attachments: attachmentsHtml,
       };
 
-      // Wyślij email przez EmailJS
       await emailjs.send(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
@@ -118,37 +129,76 @@ export default function ContactForm() {
         EMAILJS_PUBLIC_KEY
       );
 
-      setStatus('success');
-      setFormData({ name: '', email: '', phone: '', message: '' });
+      setStatus("success");
+      setFormData({ name: "", email: "", phone: "", message: "" });
       setAttachments([]);
 
-      // Auto-ukryj success po 5s
-      setTimeout(() => setStatus('idle'), 5000);
+      setTimeout(() => setStatus("idle"), 5000);
     } catch (err) {
-      console.error('Error:', err);
-      setStatus('error');
-      setError('Wystąpił błąd podczas wysyłania wiadomości. Spróbuj ponownie później.');
+      console.error("Error:", err);
+      setStatus("error");
+      setError(
+        "Wystąpił błąd podczas wysyłania wiadomości. Spróbuj ponownie później."
+      );
     }
+  };
+
+  const StatusMessage = () => {
+    if (status === "success") {
+      return (
+        <div className="alert alert-success">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M5 13l4 4L19 7"
+            />
+          </svg>
+          <span>
+            Dziękujemy! Odpowiemy na Twoją wiadomość w ciągu 1-2 dni roboczych.
+          </span>
+        </div>
+      );
+    }
+
+    if (status === "error") {
+      return (
+        <div className="alert alert-error">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+          <span>{error}</span>
+        </div>
+      );
+    }
+
+    return null;
   };
 
   return (
     <div className="card bg-base-100 shadow-xl">
       <div className="card-body">
-        {status === 'success' && (
-          <div className="alert alert-success mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-            </svg>
-            <span>Dziękujemy! Odpowiemy na Twoją wiadomość w ciągu 1-2 dni roboczych.</span>
-          </div>
-        )}
-
-        {status === 'error' && (
-          <div className="alert alert-error mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-            <span>{error}</span>
+        {(status === "success" || status === "error") && (
+          <div className="mb-4">
+            <StatusMessage />
           </div>
         )}
 
@@ -161,7 +211,9 @@ export default function ContactForm() {
               type="text"
               className="input input-bordered w-full"
               value={formData.name}
-              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              onChange={(e) =>
+                setFormData({ ...formData, name: e.target.value })
+              }
               required
             />
           </div>
@@ -174,7 +226,9 @@ export default function ContactForm() {
               type="email"
               className="input input-bordered w-full"
               value={formData.email}
-              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              onChange={(e) =>
+                setFormData({ ...formData, email: e.target.value })
+              }
               required
             />
           </div>
@@ -187,7 +241,9 @@ export default function ContactForm() {
               type="tel"
               className="input input-bordered w-full"
               value={formData.phone}
-              onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+              onChange={(e) =>
+                setFormData({ ...formData, phone: e.target.value })
+              }
             />
           </div>
 
@@ -198,12 +254,13 @@ export default function ContactForm() {
             <textarea
               className="textarea textarea-bordered h-64"
               value={formData.message}
-              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+              onChange={(e) =>
+                setFormData({ ...formData, message: e.target.value })
+              }
               required
             />
           </div>
 
-          {/* Attachments section */}
           <div className="form-control">
             <label className="label">
               <span className="label-text">Załączniki</span>
@@ -224,14 +281,13 @@ export default function ContactForm() {
               <button
                 type="button"
                 onClick={() => fileInputRef.current?.click()}
-                className="btn btn-outline btn-sm mb-3"
+                className="btn btn-outline btn-sm mb-3 flex items-center justify-center gap-2"
                 disabled={attachments.length >= 10}
               >
-                <Plus className="w-4 h-4 mr-2" />
-                Dodaj pliki
+                <Plus className="w-4 h-4" />
+                <span>Dodaj pliki</span>
               </button>
 
-              {/* File list */}
               <div className="space-y-2">
                 {attachments.map((file, index) => (
                   <div
@@ -243,8 +299,12 @@ export default function ContactForm() {
                         <FileText className="w-4 h-4 text-primary" />
                       </div>
                       <div className="overflow-hidden max-w-[200px]">
-                        <p className="text-sm font-medium truncate">{file.name}</p>
-                        <p className="text-xs text-gray-500">{formatFileSize(file.size)}</p>
+                        <p className="text-sm font-medium truncate">
+                          {file.name}
+                        </p>
+                        <p className="text-xs text-gray-500">
+                          {formatFileSize(file.size)}
+                        </p>
                       </div>
                     </div>
                     <button
@@ -263,14 +323,20 @@ export default function ContactForm() {
           <button
             type="submit"
             className="btn btn-primary w-full"
-            disabled={status === 'loading'}
+            disabled={status === "loading"}
           >
-            {status === 'loading' ? (
+            {status === "loading" ? (
               <span className="loading loading-spinner loading-sm"></span>
             ) : (
-              'Wyślij wiadomość'
+              "Wyślij wiadomość"
             )}
           </button>
+
+          {(status === "success" || status === "error") && (
+            <div className="mt-4">
+              <StatusMessage />
+            </div>
+          )}
         </form>
       </div>
     </div>

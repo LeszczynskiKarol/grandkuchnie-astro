@@ -1,8 +1,10 @@
+// src/data/cities.ts
+
 // Dane miast - hardkodowane
 export interface City {
   slug: string;
   name: string;
-  nameLocative: string; // odmiana miejscownikowa (w Toruniu, w Bydgoszczy)
+  nameLocative: string;
   heroTitle: string;
   heroSubtitle: string;
   heroImage: string;
@@ -61,9 +63,19 @@ export function getCityBySlug(slug: string): City | undefined {
 }
 
 // Dane do sekcji "Gdzie działamy" na stronie głównej
-export const serviceAreas = [
+export interface ServiceArea {
+  name: string;
+  nameLocative?: string;
+  image: string;
+  slug: string;
+  isMain?: boolean;
+  description?: string;
+}
+
+export const serviceAreas: ServiceArea[] = [
   {
     name: "Kujawsko-pomorskie",
+    nameLocative: "województwie kujawsko-pomorskim",
     image:
       "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/kujawsko-pomorskie.png",
     slug: "kujawsko-pomorskie",
@@ -73,32 +85,37 @@ export const serviceAreas = [
   },
   {
     name: "Toruń",
+    nameLocative: "Toruniu",
     image:
       "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/torun.jpg",
-    slug: "/miasto/torun",
+    slug: "torun",
   },
   {
     name: "Bydgoszcz",
+    nameLocative: "Bydgoszczy",
     image:
       "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/bydgoszcz.jpg",
-    slug: "/miasto/bydgoszcz",
+    slug: "bydgoszcz",
   },
   {
     name: "Włocławek",
+    nameLocative: "Włocławku",
     image:
       "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/wloclawek.jpg",
-    slug: "/miasto/wloclawek",
+    slug: "wloclawek",
   },
   {
     name: "Grudziądz",
+    nameLocative: "Grudziądzu",
     image:
       "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/grudziadz.jpg",
-    slug: "/miasto/grudziadz",
+    slug: "grudziadz",
   },
   {
     name: "Inowrocław",
+    nameLocative: "Inowrocławiu",
     image:
       "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/inowroclaw.jpg",
-    slug: "/miasto/inowroclaw",
+    slug: "inowroclaw",
   },
 ];

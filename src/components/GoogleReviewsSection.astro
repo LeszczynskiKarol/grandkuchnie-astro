@@ -1,43 +1,50 @@
 ---
 // GoogleReviewsSection.astro
-// Placeholder - docelowo dane będą pobierane z Lambda + API Gateway
 
-// Hardkodowane opinie (do zastąpienia API)
 const reviews = [
   {
+    id: 1,
     author_name: 'Sylwia',
     rating: 5,
-    text: 'Na firmę Meble System zdecydowałam się na podstawie wielu pozytywnych opinii w internecie i to był trafiony strzał. Pan Arek od początku projektu szaf...',
+    text: 'Na firmę Meble System zdecydowałam się na podstawie wielu pozytywnych opinii w internecie i to był trafiony strzał. Pan Arek od początku projektu szaf wnękowych służył pomocą i radą. Meble zostały wykonane solidnie, zgodnie z projektem i w ustalonym terminie. Montaż przebiegł sprawnie i profesjonalnie. Polecam serdecznie!',
     date: '18.05.2025',
   },
   {
+    id: 2,
     author_name: 'Agnieszka Gruszczyńska',
     rating: 5,
-    text: 'Współpraca z firmą Meble System od samego początku była bardzo dobra. Pan Jacek doradzał na kazdym etapie, świetny kontakt telefoniczny i mailowy, wy...',
+    text: 'Współpraca z firmą Meble System od samego początku była bardzo dobra. Pan Jacek doradzał na każdym etapie, świetny kontakt telefoniczny i mailowy, wykonanie mebli zgodne z projektem, montaż szybki i profesjonalny. Meble są piękne i funkcjonalne. Z pewnością będziemy wracać przy kolejnych zamówieniach!',
     date: '2.08.2024',
   },
   {
+    id: 3,
     author_name: 'Marta Dobrogoszcz',
     rating: 5,
-    text: 'Firma znaleziona przez internet. Zdecydowaliśmy się dzięki bardzo dobrym opiniom. I był to strzał w dziesiątkę. Cała współpraca przebiegała sprawnie i...',
+    text: 'Firma znaleziona przez internet. Zdecydowaliśmy się dzięki bardzo dobrym opiniom. I był to strzał w dziesiątkę. Cała współpraca przebiegała sprawnie i profesjonalnie. Kuchnia wyszła dokładnie taka jak sobie wymarzyliśmy. Jakość wykonania i materiałów na najwyższym poziomie. Gorąco polecam!',
     date: '10.02.2025',
   },
   {
+    id: 4,
     author_name: 'Julia',
     rating: 5,
-    text: 'Jesteśmy ogromnie zadowoleni z realizacji wykonanej przez firmę Meble System. Przez cały proces, od wyceny do ostatecznego projektu, przeprowadził nas...',
+    text: 'Jesteśmy ogromnie zadowoleni z realizacji wykonanej przez firmę Meble System. Przez cały proces, od wyceny do ostatecznego projektu, przeprowadził nas Pan Jacek, który był bardzo pomocny i cierpliwy. Kuchnia jest piękna, funkcjonalna i wykonana z dbałością o każdy detal.',
     date: '17.11.2024',
   },
   {
+    id: 5,
     author_name: 'Magdalena Kowalska',
     rating: 5,
-    text: 'Polecam wszystkim tę firmę, od pierwszego spotkania Pan Jacek służył mi pomocą i radą, a przede wszystkim wykazał zainteresowanie przyjęciem niewielki...',
+    text: 'Polecam wszystkim tę firmę, od pierwszego spotkania Pan Jacek służył mi pomocą i radą, a przede wszystkim wykazał zainteresowanie przyjęciem niewielkiego zlecenia jakim była zabudowa lodówki. Wykonanie perfekcyjne, terminowość wzorowa. Na pewno wrócę z większym projektem!',
     date: '1.08.2025',
   },
 ];
 
 const totalRating = 4.9;
 const totalReviews = 109;
+const GOOGLE_REVIEWS_URL = "https://www.google.com/search?sca_esv=5a21cf7e0cf15b69&rlz=1C1CHBD_plPL1113PL1113&sxsrf=AE3TifM4RGOPsLctWrlMxh_8KK4BX8u22A:1765272925518&q=meble+system+toru%C5%84&si=AMgyJEtREmoPL4P1I5IDCfuA8gybfVI2d5Uj7QMwYCZHKDZ-E7k8aFc4NE4UCL0pCLLpwTG_BBlP7SEuQFH3WJ3oKTQtrDhMxoJfYS-YuOQJCQBtT_C_Otg%3D&uds=AOm0WdHmOFDPI7FIyNbJw6Zwd9kSwBYjkPlvo4NMOB_j9xczTSYgHjLy1I5mFRckber6XxeNwklzkIsYUrcnFRJnHvoqTAT5JgcAdq7jOVx-xzsnmExyXXY&sa=X&sqi=2&ved=2ahUKEwjnv6CNmrCRAxXKQfEDHc-QEYUQ3PALegQIGxAE&biw=1068&bih=449&dpr=1.8";
+
+const TRUNCATE_LENGTH_DESKTOP = 120;
+const TRUNCATE_LENGTH_MOBILE = 200;
 ---
 
 <section class="py-16 bg-gray-50">
@@ -62,23 +69,28 @@ const totalReviews = 109;
             </svg>
           ))}
         </div>
-        <div class="text-gray-600">
-          Na podstawie {totalReviews} opinii Google
+        <div class="flex items-center justify-center gap-2 text-gray-600">
+          <span>Na podstawie {totalReviews} opinii</span>
+          <img 
+            src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" 
+            alt="Google" 
+            class="h-5"
+          />
         </div>
       </div>
 
       <!-- Desktop - all reviews in one row -->
       <div class="hidden lg:grid grid-cols-5 gap-4 mb-8">
         {reviews.map((review) => (
-          <div class="p-4 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <div class="p-4 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col" data-review-id={review.id}>
             <div class="flex items-center gap-2 mb-3">
-              <div class="w-9 h-9 bg-gray-100 rounded-full flex items-center justify-center">
-                <svg class="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                </svg>
+              <div class="w-9 h-9 bg-primary/10 rounded-full flex items-center justify-center">
+                <span class="text-primary font-semibold text-sm">
+                  {review.author_name.charAt(0)}
+                </span>
               </div>
-              <div class="flex-1">
-                <h3 class="font-semibold text-sm">{review.author_name}</h3>
+              <div class="flex-1 min-w-0">
+                <h3 class="font-semibold text-sm truncate">{review.author_name}</h3>
                 <div class="flex gap-0.5">
                   {[...Array(5)].map((_, i) => (
                     <svg
@@ -91,10 +103,28 @@ const totalReviews = 109;
                 </div>
               </div>
             </div>
-            <p class="text-gray-600 text-sm">
-              {review.text.length > 150 ? review.text.slice(0, 150) + '...' : review.text}
-            </p>
-            <p class="mt-2 text-xs text-gray-400">{review.date}</p>
+            
+            <!-- Text with expand/collapse -->
+            <div class="flex-1">
+              <p class="text-gray-600 text-sm review-text-short">
+                {review.text.length > TRUNCATE_LENGTH_DESKTOP 
+                  ? review.text.slice(0, TRUNCATE_LENGTH_DESKTOP) + '...' 
+                  : review.text}
+              </p>
+              <p class="text-gray-600 text-sm review-text-full hidden">
+                {review.text}
+              </p>
+              {review.text.length > TRUNCATE_LENGTH_DESKTOP && (
+                <button 
+                  class="text-primary hover:text-primary/80 text-xs font-medium mt-2 toggle-review-btn"
+                  data-expanded="false"
+                >
+                  Rozwiń
+                </button>
+              )}
+            </div>
+            
+            <p class="mt-3 text-xs text-gray-400">{review.date}</p>
           </div>
         ))}
       </div>
@@ -102,12 +132,12 @@ const totalReviews = 109;
       <!-- Mobile/Tablet - reviews stacked -->
       <div class="lg:hidden grid grid-cols-1 md:grid-cols-2 gap-6">
         {reviews.map((review) => (
-          <div class="p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <div class="p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300" data-review-id={review.id}>
             <div class="flex items-center gap-4 mb-4">
-              <div class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
-                <svg class="w-6 h-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                </svg>
+              <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                <span class="text-primary font-semibold">
+                  {review.author_name.charAt(0)}
+                </span>
               </div>
               <div class="flex-1">
                 <h3 class="font-semibold">{review.author_name}</h3>
@@ -123,13 +153,79 @@ const totalReviews = 109;
                 </div>
               </div>
             </div>
-            <p class="text-gray-600">
-              {review.text.length > 250 ? review.text.slice(0, 250) + '...' : review.text}
-            </p>
-            <p class="mt-2 text-sm text-gray-400">{review.date}</p>
+            
+            <!-- Text with expand/collapse -->
+            <div>
+              <p class="text-gray-600 review-text-short">
+                {review.text.length > TRUNCATE_LENGTH_MOBILE 
+                  ? review.text.slice(0, TRUNCATE_LENGTH_MOBILE) + '...' 
+                  : review.text}
+              </p>
+              <p class="text-gray-600 review-text-full hidden">
+                {review.text}
+              </p>
+              {review.text.length > TRUNCATE_LENGTH_MOBILE && (
+                <button 
+                  class="text-primary hover:text-primary/80 text-sm font-medium mt-2 toggle-review-btn"
+                  data-expanded="false"
+                >
+                  Rozwiń
+                </button>
+              )}
+            </div>
+            
+            <p class="mt-3 text-sm text-gray-400">{review.date}</p>
           </div>
         ))}
+      </div>
+
+      <!-- Zobacz wszystkie opinie button -->
+      <div class="text-center mt-10">
+        <a 
+          href={GOOGLE_REVIEWS_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-6 py-3 bg-secondary hover:bg-secondary/90 text-white font-semibold rounded-full transition-all hover:scale-105"
+        >
+          <img 
+            src="https://www.google.com/favicon.ico" 
+            alt="Google" 
+            class="w-5 h-5"
+          />
+          Zobacz wszystkie opinie
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          </svg>
+        </a>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  // Toggle review expand/collapse
+  document.querySelectorAll('.toggle-review-btn').forEach(btn => {
+    btn.addEventListener('click', function(this: HTMLButtonElement) {
+      const card = this.closest('[data-review-id]');
+      if (!card) return;
+      
+      const shortText = card.querySelector('.review-text-short');
+      const fullText = card.querySelector('.review-text-full');
+      const isExpanded = this.dataset.expanded === 'true';
+      
+      if (isExpanded) {
+        // Collapse
+        shortText?.classList.remove('hidden');
+        fullText?.classList.add('hidden');
+        this.textContent = 'Rozwiń';
+        this.dataset.expanded = 'false';
+      } else {
+        // Expand
+        shortText?.classList.add('hidden');
+        fullText?.classList.remove('hidden');
+        this.textContent = 'Zwiń';
+        this.dataset.expanded = 'true';
+      }
+    });
+  });
+</script>

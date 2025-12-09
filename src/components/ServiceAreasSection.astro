@@ -1,6 +1,10 @@
 ---
 // ServiceAreasSection.astro - Gdzie działamy?
 import { serviceAreas } from '../data/cities';
+
+// Rozdziel główny region od miast
+const mainRegion = serviceAreas.find(area => area.isMain);
+const cityAreas = serviceAreas.filter(area => !area.isMain);
 ---
 
 <section class="py-24 bg-white">
@@ -11,45 +15,67 @@ import { serviceAreas } from '../data/cities';
 
     <!-- Mobile version -->
     <div class="md:hidden space-y-4">
-      {serviceAreas.map((area) => (
-        <div
-          class={`relative h-48 rounded-2xl overflow-hidden ${area.isMain ? 'bg-secondary' : ''}`}
+      {cityAreas.map((area) => (
+        <a 
+          href={`/miasto/${area.slug}`}
+          class="group bg-gray-50 rounded-2xl p-6 hover:bg-gray-100 hover:shadow-lg transition-all duration-300 cursor-pointer block"
         >
-          <img
-            src={area.image}
-            alt={area.name}
-            class="w-full h-full object-cover"
-            loading="lazy"
-          />
-          <div class="absolute inset-0 bg-gradient-to-b from-transparent to-secondary/80" />
-          <div class="absolute bottom-0 left-0 right-0 p-6">
-            <h3 class="text-xl font-bold text-white">{area.name}</h3>
-            {area.isMain && area.description && (
-              <p class="text-gray-200 text-sm mt-2">
-                {area.description}
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+              <svg class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl font-bold text-secondary group-hover:text-primary transition-colors">
+                {area.name}
+              </h3>
+              <p class="text-gray-600 mt-2 text-sm">
+                Kuchnie na wymiar w {area.nameLocative}. Projektowanie, produkcja i montaż.
               </p>
-            )}
-            {!area.isMain && (
-              <div class="mt-2">
-                <a
-                  href={area.slug}
-                  class="px-4 py-2 bg-primary text-secondary rounded-full text-sm hover:bg-primary/90 transition-colors inline-block"
-                >
-                  Zobacz więcej
-                </a>
-              </div>
-            )}
+              <span class="inline-flex items-center gap-1 text-primary font-medium mt-3 group-hover:gap-2 transition-all">
+                Zobacz więcej
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </span>
+            </div>
           </div>
-        </div>
+        </a>
       ))}
     </div>
 
     <!-- Desktop version -->
     <div class="hidden md:flex gap-2 h-[500px]">
-      {serviceAreas.map((area) => (
-        <div
-          class={`relative overflow-hidden rounded-2xl transition-all duration-500 ease-in-out group
-            ${area.isMain ? 'w-2/6 cursor-default bg-secondary' : 'w-1/6 hover:w-3/6 cursor-pointer'}`}
+      <!-- Główny region (nie klikalny) -->
+      {mainRegion && (
+        <div class="relative overflow-hidden rounded-2xl w-2/6 bg-secondary">
+          <div class="absolute inset-0">
+            <img
+              src={mainRegion.image}
+              alt={mainRegion.name}
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-secondary/80" />
+          </div>
+          <div class="absolute bottom-0 left-0 right-0 p-6">
+            <h3 class="text-lg font-bold text-white mb-2">
+              {mainRegion.name}
+            </h3>
+            <p class="text-gray-200 text-lg">
+              {mainRegion.description}
+            </p>
+          </div>
+        </div>
+      )}
+
+      <!-- Miasta (klikalne - cała karta) -->
+      {cityAreas.map((area) => (
+        
+        <a href={`/miasto/${area.slug}`}
+          class="relative overflow-hidden rounded-2xl transition-all duration-500 ease-in-out group w-1/6 hover:w-3/6 cursor-pointer block"
         >
           <div class="absolute inset-0">
             <img
@@ -65,25 +91,13 @@ import { serviceAreas } from '../data/cities';
             <h3 class="text-lg font-bold text-white mb-2">
               {area.name}
             </h3>
-
-            {area.isMain && area.description && (
-              <p class="text-gray-200 text-lg">
-                {area.description}
-              </p>
-            )}
-
-            {!area.isMain && (
-              <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <a
-                  href={area.slug}
-                  class="inline-flex items-center px-4 py-2 bg-primary text-secondary rounded-full hover:bg-primary/90 transition-colors"
-                >
-                  Zobacz więcej
-                </a>
-              </div>
-            )}
+            <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <span class="inline-flex items-center px-4 py-2 bg-primary text-secondary rounded-full">
+                Zobacz więcej
+              </span>
+            </div>
           </div>
-        </div>
+        </a>
       ))}
     </div>
   </div>
