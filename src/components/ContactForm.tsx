@@ -1,10 +1,10 @@
-import { useState, useRef } from "react";
-import { X, Plus, FileText } from "lucide-react";
+import { FileText, Plus, X } from "lucide-react";
+import { useRef, useState } from "react";
 
-// Konfiguracja EmailJS i Cloudinary
-const EMAILJS_SERVICE_ID = "service_h3jd20g";
-const EMAILJS_TEMPLATE_ID = "template_okptqlg";
-const EMAILJS_PUBLIC_KEY = "gjau8dneW58l9l3tz";
+// Konfiguracja API i Cloudinary
+const API_ENDPOINT =
+  "https://4xz7pkbd51.execute-api.eu-north-1.amazonaws.com/prod/send";
+const DOMAIN = "grandkuchnie.pl";
 const CLOUDINARY_UPLOAD_PRESET = "grandkuchnie";
 const CLOUDINARY_CLOUD_NAME = "drpll3ho2";
 
@@ -94,8 +94,7 @@ export default function ContactForm() {
     setError("");
 
     try {
-      let attachmentsHtml =
-        '<span style="color: #64748b;">Brak załączników</span>';
+      let attachmentsHtml = "";
 
       if (attachments.length > 0) {
         const uploadedUrls = await Promise.all(
@@ -112,22 +111,22 @@ export default function ContactForm() {
           .join(" ");
       }
 
-      const emailjs = await import("@emailjs/browser");
+      const response = await fetch(API_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone || "Nie podano",
+          message: formData.message,
+          attachments: attachmentsHtml,
+          domain: DOMAIN,
+        }),
+      });
 
-      const templateParams = {
-        from_name: formData.name,
-        from_email: formData.email,
-        phone: formData.phone || "Nie podano",
-        message: formData.message,
-        attachments: attachmentsHtml,
-      };
-
-      await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        templateParams,
-        EMAILJS_PUBLIC_KEY
-      );
+      if (!response.ok) {
+        throw new Error("Błąd wysyłania");
+      }
 
       setStatus("success");
       setFormData({ name: "", email: "", phone: "", message: "" });
