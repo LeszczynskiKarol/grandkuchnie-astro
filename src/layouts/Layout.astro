@@ -1,4 +1,5 @@
 ---
+// src/layouts/Layout.astro
 import '../styles/global.css';
 
 interface Props {
@@ -14,6 +15,9 @@ const {
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+// GTM ID z oryginalnego projektu Next.js
+const GTM_ID = 'GTM-5S7T7F2G';
 ---
 
 <!DOCTYPE html>
@@ -49,22 +53,13 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   
   <title>{title}</title>
   
-  <!-- Google Tag Manager -->
-  <script is:inline>
-    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-XXXXXXX');
-  </script>
-  <!-- End Google Tag Manager -->
-  
-  <!-- Google Consent Mode v2 default -->
-  <script is:inline>
+  <!-- Google Consent Mode v2 - MUSI BYĆ PRZED GTM -->
+  <script is:inline define:vars={{ GTM_ID }}>
+    // Inicjalizacja dataLayer
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     
-    // Domyślne ustawienia - wszystko zablokowane do czasu zgody
+    // Domyślne ustawienia zgód - wszystko zablokowane przed zgodą użytkownika
     gtag('consent', 'default', {
       'ad_storage': 'denied',
       'ad_user_data': 'denied',
@@ -73,36 +68,65 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       'functionality_storage': 'denied',
       'personalization_storage': 'denied',
       'security_storage': 'granted',
-      'wait_for_update': 500
+      'region': ['PL', 'EU'],
+      'wait_for_update': 2000
     });
     
-    // Oznacz region (EU wymaga zgody)
+    // Dodatkowe ustawienia dla EU
     gtag('set', 'ads_data_redaction', true);
     gtag('set', 'url_passthrough', true);
+    
+    // Event inicjalizacji konsentu
+    dataLayer.push({'event': 'consent_initialized'});
   </script>
+  
+  <!-- Google Tag Manager -->
+  <script is:inline define:vars={{ GTM_ID }}>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer', GTM_ID);
+  </script>
+  <!-- End Google Tag Manager -->
 </head>
+
 <body class="min-h-screen flex flex-col">
   <!-- Google Tag Manager (noscript) -->
   <noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    <iframe 
+      src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+      height="0" 
+      width="0" 
+      style="display:none;visibility:hidden">
+    </iframe>
   </noscript>
   <!-- End Google Tag Manager (noscript) -->
   
   <slot />
   
-  <!-- Cookie Consent Script - przywróć zapisane zgody -->
+  <!-- Przywróć zapisane zgody z localStorage -->
   <script is:inline>
     (function() {
+      // Funkcja gtag musi być dostępna
+      function gtag(){dataLayer.push(arguments);}
+      
       var saved = localStorage.getItem('consentSettings');
       if (saved) {
         try {
           var settings = JSON.parse(saved);
-          if (typeof gtag !== 'undefined') {
-            gtag('consent', 'update', settings);
-          }
+          gtag('consent', 'update', settings);
+          
+          // Wyślij event informujący o przywróceniu zgód
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            'event': 'consent_restored',
+            'consent_changed': true
+          });
+          
+          console.log('[Consent] Restored from localStorage:', settings);
         } catch(e) {
-          console.error('Error restoring consent:', e);
+          console.error('[Consent] Error restoring consent:', e);
         }
       }
     })();

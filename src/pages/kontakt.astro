@@ -1,8 +1,10 @@
 ---
+// src/pages/kontakt.astro
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import ContactForm from '../components/ContactForm';
+import PhoneLink from '../components/PhoneLink';
 import CookieConsent from '../components/CookieConsent';
 
 const title = 'Kontakt | Grand Kuchnie - Darmowa wycena kuchni na wymiar';
@@ -28,6 +30,7 @@ const description = 'Skontaktuj się z nami i uzyskaj darmową wycenę kuchni na
           </p>
 
           <div class="space-y-6">
+            <!-- Email -->
             <div class="flex items-start">
               <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
                 <svg class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -42,6 +45,7 @@ const description = 'Skontaktuj się z nami i uzyskaj darmową wycenę kuchni na
               </div>
             </div>
 
+            <!-- Telefon - z śledzeniem konwersji -->
             <div class="flex items-start">
               <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
                 <svg class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -50,12 +54,16 @@ const description = 'Skontaktuj się z nami i uzyskaj darmową wycenę kuchni na
               </div>
               <div class="ml-4">
                 <h3 class="font-semibold text-lg">Telefon</h3>
-                <a href="tel:576376567" class="text-gray-600 hover:text-primary transition-colors">
-                  576 376 567
-                </a>
+                <!-- Komponent React do śledzenia kliknięć -->
+                <PhoneLink 
+                  client:load
+                  phoneNumber="576 376 567"
+                  className="text-gray-600 hover:text-primary hover:underline cursor-pointer transition-colors"
+                />
               </div>
             </div>
 
+            <!-- Adres -->
             <div class="flex items-start">
               <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
                 <svg class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -102,3 +110,43 @@ const description = 'Skontaktuj się z nami i uzyskaj darmową wycenę kuchni na
   <Footer />
   <CookieConsent client:load />
 </Layout>
+
+<!-- 
+  Alternatywny skrypt do śledzenia telefonu bez React
+  (dla statycznych linków w innych miejscach strony)
+-->
+<script>
+  // Funkcja do śledzenia kliknięć w telefon
+  function trackPhoneClick() {
+    if (typeof window !== 'undefined') {
+      // Wyślij do dataLayer
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'phone_click',
+        event_category: 'engagement',
+        event_label: 'phone_number_click',
+        conversion_value: 50,
+        conversion_currency: 'PLN'
+      });
+      
+      // Bezpośrednia konwersja Google Ads
+      if (typeof window.gtag !== 'undefined') {
+        window.gtag('event', 'conversion', {
+          'send_to': 'AW-988030143/YQkUCNjx1s0aEL_JkNcD',
+          'value': 1.0,
+          'currency': 'PLN'
+        });
+      }
+      
+      console.log('[GA] Phone click tracked');
+    }
+  }
+
+  // Dodaj listenery do wszystkich linków tel: na stronie
+  document.addEventListener('DOMContentLoaded', () => {
+    const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
+    phoneLinks.forEach(link => {
+      link.addEventListener('click', trackPhoneClick);
+    });
+  });
+</script>
