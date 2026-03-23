@@ -1,4 +1,4 @@
 User-agent: \*
 Allow: /
 
-Sitemap: https://www.grandkuchnie.pl/sitemap.xml
+Sitemap: https://www.grandkuchnie.pl/sitemap-index.xml
