@@ -4,8 +4,20 @@
 S3_BUCKET="www.grandkuchnie.pl"
 CLOUDFRONT_ID="E3BHDI3E6KXQAJ"
 
-echo "🔨 Building Astro site..."
 cd /d/grandkuchnie-astro
+
+echo "📦 Pushing to GitHub..."
+git add .
+git commit -m "git push from local"
+git push origin main
+
+if [ $? -ne 0 ]; then
+  echo "❌ Git push failed!"
+  exit 1
+fi
+
+echo "🔨 Building Astro site..."
+
 npm run build
 
 if [ $? -ne 0 ]; then
