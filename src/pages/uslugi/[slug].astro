@@ -6,8 +6,7 @@ import ProcessSection from '../../components/ProcessSection.astro';
 import ServiceAreasSection from '../../components/ServiceAreasSection.astro';
 import GoogleReviewsSection from '../../components/GoogleReviewsSection.astro';
 import CookieConsent from '../../components/CookieConsent';
-import HeroCarousel from '../../components/HeroCarousel';
-import { services, getServiceBySlug, type Service } from '../../data/services';
+import { services, getServiceBySlug} from '../../data/services';
 
 // Generate static paths for all services
 export function getStaticPaths() {
@@ -81,7 +80,7 @@ const gradients = [
                 {service.ctaButton}
               </a>
               <a
-                href={service.realizationsCategorySlug ? `/realizacje?category=${service.realizationsCategorySlug}` : '/realizacje'}
+                href={service.realizationsCategorySlug ? `/realizacje/?category=${service.realizationsCategorySlug}` : '/realizacje'}
                 class="btn btn-outline btn-lg w-full sm:w-auto"
               >
                 Zobacz realizacje
