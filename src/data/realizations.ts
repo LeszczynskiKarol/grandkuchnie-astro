@@ -2154,36 +2154,7 @@ export const realizations: Realization[] = [
   // ==========================================
   // Szafy, garderoby, zabudowy (categoryId: 8) - 65 zdjęć
   // ==========================================
-  {
-    id: 349,
-    imageUrl:
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1755073546432-1l-2_opt_opt.webp",
-    categoryId: 8,
-  },
-  {
-    id: 350,
-    imageUrl:
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1755073546434-1r-2_opt_opt.webp",
-    categoryId: 8,
-  },
-  {
-    id: 351,
-    imageUrl:
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1755073546453-1r-8_opt_opt.webp",
-    categoryId: 8,
-  },
-  {
-    id: 352,
-    imageUrl:
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1755073546465-3k-1_opt-1_opt.webp",
-    categoryId: 8,
-  },
-  {
-    id: 353,
-    imageUrl:
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1755073546473-3k-3_opt-1_opt.webp",
-    categoryId: 8,
-  },
+
   {
     id: 354,
     imageUrl:
@@ -2292,12 +2263,7 @@ export const realizations: Realization[] = [
       "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1755073546667-kufczarn-6_opt.webp",
     categoryId: 8,
   },
-  {
-    id: 372,
-    imageUrl:
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1755073546673-l9-6_opt_opt.webp",
-    categoryId: 8,
-  },
+
   {
     id: 373,
     imageUrl:
@@ -2334,12 +2300,7 @@ export const realizations: Realization[] = [
       "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1755073546773-Maj-83_opt.webp",
     categoryId: 8,
   },
-  {
-    id: 379,
-    imageUrl:
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1755073546781-Maj-89_opt.webp",
-    categoryId: 8,
-  },
+
   {
     id: 380,
     imageUrl:
@@ -2382,30 +2343,14 @@ export const realizations: Realization[] = [
       "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1755073546824-Meble-czerwiec-lipiec-43_opt.webp",
     categoryId: 8,
   },
-  {
-    id: 387,
-    imageUrl:
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1755073546833-Meble-czerwiec-lipiec-51_opt.webp",
-    categoryId: 8,
-  },
+
   {
     id: 388,
     imageUrl:
       "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1755073546839-Meble-Grudzien-72_opt_opt.webp",
     categoryId: 8,
   },
-  {
-    id: 389,
-    imageUrl:
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1755073546844-Meble-Grudzien-134_opt_opt.webp",
-    categoryId: 8,
-  },
-  {
-    id: 390,
-    imageUrl:
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1755073546850-meble-lipiec-2-tura-25_opt.webp",
-    categoryId: 8,
-  },
+
   {
     id: 391,
     imageUrl:
@@ -2430,12 +2375,7 @@ export const realizations: Realization[] = [
       "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1755073546893-Meble-na-wymiar-87_opt.webp",
     categoryId: 8,
   },
-  {
-    id: 395,
-    imageUrl:
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1755073546935-Meble-na-wymiar-103_opt.webp",
-    categoryId: 8,
-  },
+
   {
     id: 396,
     imageUrl:
@@ -2448,12 +2388,7 @@ export const realizations: Realization[] = [
       "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1755073546951-MEBLE-SYCZEN-78-of-91_opt.webp",
     categoryId: 8,
   },
-  {
-    id: 398,
-    imageUrl:
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1755073546957-MEBLE-SYCZEN-89-of-91-scaled_opt.webp",
-    categoryId: 8,
-  },
+
   {
     id: 399,
     imageUrl:
@@ -2466,12 +2401,7 @@ export const realizations: Realization[] = [
       "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1755073546967-Meble-Tu-33_opt.webp",
     categoryId: 8,
   },
-  {
-    id: 401,
-    imageUrl:
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1755073546975-Meble-Wrzesien-155_opt_opt.webp",
-    categoryId: 8,
-  },
+
   {
     id: 402,
     imageUrl:
@@ -2560,7 +2490,7 @@ export const realizations: Realization[] = [
 
 // Funkcje pomocnicze
 export function getRealizationsByCategory(
-  categoryId: number | null
+  categoryId: number | null,
 ): Realization[] {
   if (categoryId === null) {
     return realizations;
@@ -2573,7 +2503,7 @@ export function getCategoryById(id: number): RealizationCategory | undefined {
 }
 
 export function getCategoryBySlug(
-  slug: string
+  slug: string,
 ): RealizationCategory | undefined {
   return realizationCategories.find((c) => c.slug === slug);
 }
@@ -2582,7 +2512,7 @@ export function getCategoryBySlug(
 export function getPaginatedRealizations(
   categoryId: number | null,
   page: number = 1,
-  limit: number = 12
+  limit: number = 12,
 ): { realizations: Realization[]; total: number; pages: number } {
   const filtered =
     categoryId === null
