@@ -2265,12 +2265,6 @@ export const realizations: Realization[] = [
   },
 
   {
-    id: 373,
-    imageUrl:
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1755073546707-lazi-2_opt_opt.webp",
-    categoryId: 8,
-  },
-  {
     id: 374,
     imageUrl:
       "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1755073546740-lo3-4_opt_opt.webp",
