@@ -302,14 +302,14 @@ export const services: Service[] = [
         description:
           "Zajmuję się projektowaniem wnętrz, tworząc funkcjonalne i estetyczne przestrzenie dopasowane do indywidualnych potrzeb klientów. Łączę kreatywność z praktycznymi rozwiązaniami, dbając o każdy detal – od koncepcji po finalną realizację. Moim celem jest tworzenie wnętrz, w których chce się żyć, pracować i odpoczywać.",
         imageUrl:
-          "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1751702133785-Dorota-Stefa%C5%84ska_opt.webp",
+          "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/dorota-stefanska.webp",
       },
       {
         title: "Cezary Mazurkiewicz",
         description:
           "Tworzę przestrzenie, które odpowiadają na indywidualne potrzeby. Nie trzymam się jednego stylu, ważniejsza jest dla mnie atmosfera niż estetyczna etykieta. Czasem to czysta linia, kiedy indziej detal z przeszłości. Liczy się to, co buduje sens miejsca i wspiera rytm życia jego mieszkańców.",
         imageUrl:
-          "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1751702133786-Cezary-Mazurkiewicz_opt.webp",
+          "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/cezary-mazurkiewicz.webp",
       },
     ],
     contactTitle: "Zamów projekt kuchni",
