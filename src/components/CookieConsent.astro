@@ -1,0 +1,236 @@
+---
+// Vanilla Astro CookieConsent — no React.
+// Layout.astro już ustawia Consent Mode v2 default = 'denied' inline w <head>.
+// Ten komponent tylko renderuje UI banera i modalu, oraz aktualizuje consent po wyborze użytkownika.
+---
+
+<div id="cc-banner" class="fixed bottom-0 left-0 right-0 bg-white shadow-2xl border-t border-gray-200 p-4 md:p-6 z-50 hidden">
+  <div class="max-w-7xl mx-auto">
+    <div class="flex flex-col lg:flex-row lg:items-center gap-4">
+      <div class="flex-1">
+        <h3 class="text-lg font-semibold text-gray-900 mb-2">🍪 Ta strona używa plików cookies</h3>
+        <p class="text-gray-600 text-sm">
+          Używamy plików cookies, aby zapewnić najlepsze doświadczenia na naszej stronie. Możesz zaakceptować wszystkie cookies lub dostosować swoje preferencje.
+        </p>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-3">
+        <button type="button" id="cc-open-settings" class="px-4 py-2 text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-sm font-medium">
+          Ustawienia
+        </button>
+        <button type="button" id="cc-reject" class="px-4 py-2 text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-sm font-medium">
+          Odrzuć wszystkie
+        </button>
+        <button type="button" id="cc-accept" class="px-6 py-2 bg-primary text-secondary font-semibold rounded-lg hover:bg-primary/90 transition-colors text-sm">
+          Akceptuj wszystkie
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="cc-modal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4 hidden">
+  <div class="bg-white rounded-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto">
+    <div class="p-6">
+      <div class="flex items-center justify-between mb-6">
+        <h3 class="text-xl font-bold text-gray-900">Ustawienia cookies</h3>
+        <button type="button" id="cc-close-settings" class="text-gray-400 hover:text-gray-600" aria-label="Zamknij">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="space-y-4">
+        <div class="p-4 bg-gray-50 rounded-lg">
+          <div class="flex items-center justify-between">
+            <div>
+              <h4 class="font-semibold text-gray-900">Niezbędne</h4>
+              <p class="text-sm text-gray-600 mt-1">Wymagane do prawidłowego działania strony</p>
+            </div>
+            <div class="bg-primary/20 text-primary text-xs font-medium px-2 py-1 rounded">Zawsze aktywne</div>
+          </div>
+        </div>
+
+        <label class="block p-4 bg-gray-50 rounded-lg cursor-pointer">
+          <div class="flex items-center justify-between">
+            <div class="flex-1 pr-4">
+              <h4 class="font-semibold text-gray-900">Analityczne</h4>
+              <p class="text-sm text-gray-600 mt-1">Pomagają zrozumieć, jak użytkownicy korzystają ze strony</p>
+            </div>
+            <span class="relative inline-flex items-center">
+              <input type="checkbox" id="cc-cb-analytics" class="sr-only peer" />
+              <span class="w-11 h-6 bg-gray-300 peer-focus:outline-none rounded-full peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></span>
+            </span>
+          </div>
+        </label>
+
+        <label class="block p-4 bg-gray-50 rounded-lg cursor-pointer">
+          <div class="flex items-center justify-between">
+            <div class="flex-1 pr-4">
+              <h4 class="font-semibold text-gray-900">Funkcjonalne</h4>
+              <p class="text-sm text-gray-600 mt-1">Umożliwiają zapamiętanie preferencji użytkownika</p>
+            </div>
+            <span class="relative inline-flex items-center">
+              <input type="checkbox" id="cc-cb-functionality" class="sr-only peer" />
+              <span class="w-11 h-6 bg-gray-300 peer-focus:outline-none rounded-full peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></span>
+            </span>
+          </div>
+        </label>
+
+        <label class="block p-4 bg-gray-50 rounded-lg cursor-pointer">
+          <div class="flex items-center justify-between">
+            <div class="flex-1 pr-4">
+              <h4 class="font-semibold text-gray-900">Reklamowe</h4>
+              <p class="text-sm text-gray-600 mt-1">Służą do wyświetlania spersonalizowanych reklam</p>
+            </div>
+            <span class="relative inline-flex items-center">
+              <input type="checkbox" id="cc-cb-ads" class="sr-only peer" />
+              <span class="w-11 h-6 bg-gray-300 peer-focus:outline-none rounded-full peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></span>
+            </span>
+          </div>
+        </label>
+      </div>
+
+      <div class="flex gap-3 mt-6">
+        <button type="button" id="cc-modal-reject" class="flex-1 px-4 py-3 text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors font-medium">
+          Odrzuć wszystkie
+        </button>
+        <button type="button" id="cc-modal-save" class="flex-1 px-4 py-3 bg-primary text-secondary font-semibold rounded-lg hover:bg-primary/90 transition-colors">
+          Zapisz wybrane
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  type ConsentValue = 'granted' | 'denied';
+  interface ConsentSettings {
+    analytics_storage: ConsentValue;
+    ad_storage: ConsentValue;
+    ad_user_data: ConsentValue;
+    ad_personalization: ConsentValue;
+    functionality_storage: ConsentValue;
+  }
+
+  declare global {
+    interface Window {
+      dataLayer: any[];
+      openCookieSettings?: () => void;
+    }
+  }
+
+  const banner = document.getElementById('cc-banner');
+  const modal = document.getElementById('cc-modal');
+  const openBtn = document.getElementById('cc-open-settings');
+  const closeBtn = document.getElementById('cc-close-settings');
+  const acceptBtn = document.getElementById('cc-accept');
+  const rejectBtn = document.getElementById('cc-reject');
+  const modalReject = document.getElementById('cc-modal-reject');
+  const modalSave = document.getElementById('cc-modal-save');
+  const cbAnalytics = document.getElementById('cc-cb-analytics') as HTMLInputElement | null;
+  const cbFunc = document.getElementById('cc-cb-functionality') as HTMLInputElement | null;
+  const cbAds = document.getElementById('cc-cb-ads') as HTMLInputElement | null;
+
+  if (!banner || !modal) {
+    // Komponent nie wyrenderowany — wyjście.
+  } else {
+    const show = (el: HTMLElement | null) => el?.classList.remove('hidden');
+    const hide = (el: HTMLElement | null) => el?.classList.add('hidden');
+
+    const gtag = (...args: any[]) => {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push(args);
+    };
+
+    const applyConsent = (settings: ConsentSettings) => {
+      gtag('consent', 'update', settings);
+      localStorage.setItem('consentSettings', JSON.stringify(settings));
+      localStorage.setItem('cookieConsent', 'true');
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'consent_update', ...settings });
+    };
+
+    const allGranted: ConsentSettings = {
+      analytics_storage: 'granted',
+      ad_storage: 'granted',
+      ad_user_data: 'granted',
+      ad_personalization: 'granted',
+      functionality_storage: 'granted',
+    };
+    const allDenied: ConsentSettings = {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      functionality_storage: 'denied',
+    };
+
+    // Decyzja przy load: pokazać banner czy nie
+    const savedConsent = localStorage.getItem('cookieConsent');
+    const savedSettings = localStorage.getItem('consentSettings');
+
+    if (!savedConsent) {
+      show(banner);
+    } else if (savedSettings && cbAnalytics && cbFunc && cbAds) {
+      try {
+        const parsed = JSON.parse(savedSettings) as ConsentSettings;
+        cbAnalytics.checked = parsed.analytics_storage === 'granted';
+        cbFunc.checked = parsed.functionality_storage === 'granted';
+        cbAds.checked = parsed.ad_storage === 'granted';
+      } catch {
+        /* ignore */
+      }
+    }
+
+    // Linki w stopce typu "Ustawienia cookies"
+    window.openCookieSettings = () => {
+      hide(banner);
+      show(modal);
+    };
+
+    openBtn?.addEventListener('click', () => {
+      hide(banner);
+      show(modal);
+    });
+
+    closeBtn?.addEventListener('click', () => {
+      hide(modal);
+      if (!localStorage.getItem('cookieConsent')) show(banner);
+    });
+
+    acceptBtn?.addEventListener('click', () => {
+      applyConsent(allGranted);
+      hide(banner);
+      hide(modal);
+    });
+
+    rejectBtn?.addEventListener('click', () => {
+      applyConsent(allDenied);
+      hide(banner);
+      hide(modal);
+    });
+
+    modalReject?.addEventListener('click', () => {
+      if (cbAnalytics) cbAnalytics.checked = false;
+      if (cbFunc) cbFunc.checked = false;
+      if (cbAds) cbAds.checked = false;
+      applyConsent(allDenied);
+      hide(banner);
+      hide(modal);
+    });
+
+    modalSave?.addEventListener('click', () => {
+      const adVal: ConsentValue = cbAds?.checked ? 'granted' : 'denied';
+      applyConsent({
+        analytics_storage: cbAnalytics?.checked ? 'granted' : 'denied',
+        ad_storage: adVal,
+        ad_user_data: adVal,
+        ad_personalization: adVal,
+        functionality_storage: cbFunc?.checked ? 'granted' : 'denied',
+      });
+      hide(banner);
+      hide(modal);
+    });
+  }
+</script>

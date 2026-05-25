@@ -5,7 +5,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import ContactForm from '../components/ContactForm';
 import PhoneLink from '../components/PhoneLink';
-import CookieConsent from '../components/CookieConsent';
+import CookieConsent from '../components/CookieConsent.astro';
 
 const title = 'Kontakt | Grand Kuchnie - Darmowa wycena kuchni na wymiar';
 const description = 'Skontaktuj się z nami i uzyskaj darmową wycenę kuchni na wymiar. Toruń, ul. Polna 134. Tel: 576 376 567. Email: kontakt@grandkuchnie.pl';
@@ -108,7 +108,7 @@ const description = 'Skontaktuj się z nami i uzyskaj darmową wycenę kuchni na
   </main>
 
   <Footer />
-  <CookieConsent client:idle />
+  <CookieConsent />
 </Layout>
 
 <!-- 

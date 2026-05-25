@@ -2,13 +2,13 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import HeroCarousel from '../components/HeroCarousel';
+import HeroCarousel from '../components/HeroCarousel.astro';
 import KitchenTypesSection from '../components/KitchenTypesSection.astro';
 import FeaturesSection from '../components/FeaturesSection.astro';
 import ProcessSection from '../components/ProcessSection.astro';
 import ServiceAreasSection from '../components/ServiceAreasSection.astro';
 import GoogleReviewsSection from '../components/GoogleReviewsSection.astro';
-import CookieConsent from '../components/CookieConsent';
+import CookieConsent from '../components/CookieConsent.astro';
 
 const title = 'Grand Kuchnie - Kuchnie na wymiar | Projektowanie, produkcja, montaż';
 const description = 'Profesjonalne kuchnie na wymiar w województwie kujawsko-pomorskim. Kompleksowa obsługa od projektu do montażu. Toruń, Bydgoszcz, Włocławek, Grudziądz, Inowrocław. Darmowa wycena!';
@@ -39,7 +39,7 @@ const description = 'Profesjonalne kuchnie na wymiar w województwie kujawsko-po
             </div>
           </div>
           <div class="relative h-[400px] lg:h-[500px]">
-            <HeroCarousel client:load />
+            <HeroCarousel />
           </div>
         </div>
       </div>
@@ -68,5 +68,5 @@ const description = 'Profesjonalne kuchnie na wymiar w województwie kujawsko-po
   </main>
 
   <Footer />
-  <CookieConsent client:idle />
+  <CookieConsent />
 </Layout>

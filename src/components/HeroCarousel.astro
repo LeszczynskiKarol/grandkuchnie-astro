@@ -1,0 +1,120 @@
+---
+const images = [
+  { src: '/img/kuchnia_na_wymiar.webp', alt: 'Nowoczesna kuchnia na wymiar z białymi frontami' },
+  { src: '/img/kuchnia_na_wymiar1.webp', alt: 'Elegancka kuchnia z drewnianymi akcentami' },
+  { src: '/img/kuchnia_na_wymiar2.webp', alt: 'Kuchnia z wyspą — projekt Grand Kuchnie' },
+  { src: '/img/kuchnia_na_wymiar3.webp', alt: 'Funkcjonalna kuchnia na wymiar — realizacja' },
+];
+---
+
+<div
+  class="hero-carousel relative w-full h-full overflow-hidden rounded-2xl group"
+  data-interval="5000"
+>
+  <div class="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 z-10 rounded-2xl pointer-events-none"></div>
+
+  {images.map((img, i) => (
+    <img
+      src={img.src}
+      alt={img.alt}
+      width={1200}
+      height={800}
+      fetchpriority={i === 0 ? 'high' : 'low'}
+      loading={i === 0 ? 'eager' : 'lazy'}
+      decoding={i === 0 ? 'sync' : 'async'}
+      data-slide={i}
+      class={`hc-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out ${
+        i === 0 ? 'opacity-100' : 'opacity-0'
+      }`}
+    />
+  ))}
+
+  <div class="hc-arrow absolute inset-y-0 left-4 flex items-center z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+    <button
+      type="button"
+      class="hc-prev p-2 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-all"
+      aria-label="Poprzednie zdjęcie"
+    >
+      <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+      </svg>
+    </button>
+  </div>
+
+  <div class="hc-arrow absolute inset-y-0 right-4 flex items-center z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+    <button
+      type="button"
+      class="hc-next p-2 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-all"
+      aria-label="Następne zdjęcie"
+    >
+      <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+      </svg>
+    </button>
+  </div>
+
+  <div class="absolute bottom-16 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+    {images.map((_, i) => (
+      <button
+        type="button"
+        data-dot={i}
+        class={`hc-dot h-2 rounded-full transition-all ${i === 0 ? 'bg-white w-4' : 'bg-white/50 w-2'}`}
+        aria-label={`Przejdź do slajdu ${i + 1}`}
+      ></button>
+    ))}
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.hero-carousel').forEach((root) => {
+    const slides = root.querySelectorAll<HTMLImageElement>('.hc-slide');
+    const dots = root.querySelectorAll<HTMLButtonElement>('.hc-dot');
+    const prev = root.querySelector<HTMLButtonElement>('.hc-prev');
+    const next = root.querySelector<HTMLButtonElement>('.hc-next');
+    const interval = parseInt(root.dataset.interval || '5000', 10);
+    let current = 0;
+    let timer: number | undefined;
+
+    const show = (i: number) => {
+      current = (i + slides.length) % slides.length;
+      slides.forEach((s, idx) => {
+        s.classList.toggle('opacity-100', idx === current);
+        s.classList.toggle('opacity-0', idx !== current);
+      });
+      dots.forEach((d, idx) => {
+        d.classList.toggle('bg-white', idx === current);
+        d.classList.toggle('w-4', idx === current);
+        d.classList.toggle('bg-white/50', idx !== current);
+        d.classList.toggle('w-2', idx !== current);
+      });
+    };
+
+    const start = () => {
+      stop();
+      timer = window.setInterval(() => show(current + 1), interval);
+    };
+    const stop = () => {
+      if (timer) window.clearInterval(timer);
+    };
+
+    prev?.addEventListener('click', () => {
+      show(current - 1);
+      start();
+    });
+    next?.addEventListener('click', () => {
+      show(current + 1);
+      start();
+    });
+    dots.forEach((d) =>
+      d.addEventListener('click', () => {
+        show(parseInt(d.dataset.dot || '0', 10));
+        start();
+      })
+    );
+
+    root.addEventListener('mouseenter', stop);
+    root.addEventListener('mouseleave', start);
+
+    start();
+  });
+</script>

@@ -6,7 +6,7 @@ import KitchenTypesSection from '../../components/KitchenTypesSection.astro';
 import FeaturesSection from '../../components/FeaturesSection.astro';
 import ProcessSection from '../../components/ProcessSection.astro';
 import GoogleReviewsSection from '../../components/GoogleReviewsSection.astro';
-import CookieConsent from '../../components/CookieConsent';
+import CookieConsent from '../../components/CookieConsent.astro';
 import { cities, getCityBySlug } from '../../data/cities';
 
 // Generate static paths for all cities
@@ -71,6 +71,20 @@ const description = `Profesjonalne meble kuchenne na wymiar w ${city.nameLocativ
       </div>
     </section>
 
+    <!-- Lokalna treść unikalna per miasto (anti-doorway) -->
+    <section class="py-16 px-4 bg-white">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl lg:text-4xl font-bold text-secondary mb-8">
+          {city.localContentHeading}
+        </h2>
+        <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+          {city.localContent.split("\n\n").map((para) => (
+            <p class="mb-5">{para}</p>
+          ))}
+        </div>
+      </div>
+    </section>
+
     <KitchenTypesSection />
     <ProcessSection />
     <FeaturesSection />
@@ -93,5 +107,5 @@ const description = `Profesjonalne meble kuchenne na wymiar w ${city.nameLocativ
   </main>
 
   <Footer />
-  <CookieConsent client:idle />
+  <CookieConsent />
 </Layout>

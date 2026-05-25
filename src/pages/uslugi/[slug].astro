@@ -5,7 +5,7 @@ import Footer from '../../components/Footer.astro';
 import ProcessSection from '../../components/ProcessSection.astro';
 import ServiceAreasSection from '../../components/ServiceAreasSection.astro';
 import GoogleReviewsSection from '../../components/GoogleReviewsSection.astro';
-import CookieConsent from '../../components/CookieConsent';
+import CookieConsent from '../../components/CookieConsent.astro';
 import { services, getServiceBySlug} from '../../data/services';
 
 // Generate static paths for all services
@@ -196,5 +196,5 @@ const gradients = [
   </main>
 
   <Footer />
-  <CookieConsent client:idle />
+  <CookieConsent />
 </Layout>

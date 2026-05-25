@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import CookieConsent from '../components/CookieConsent';
+import CookieConsent from '../components/CookieConsent.astro';
 import { realizationCategories, realizations, getRealizationsByCategory } from '../data/realizations';
 
 const sortedCategories = [...realizationCategories].sort((a, b) => a.order - b.order);
@@ -113,7 +113,7 @@ const description = 'Zobacz nasze realizacje kuchni na wymiar w Toruniu. Galeria
   </main>
 
   <Footer />
-  <CookieConsent client:idle />
+  <CookieConsent />
 </Layout>
 
 <!-- ============================================================
