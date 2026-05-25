@@ -23,7 +23,7 @@ if (!service) {
 }
 
 const title = `${service.title} | Grand Kuchnie`;
-const description = service.heroSubtitle;
+const description = service.metaDescription ?? service.heroSubtitle;
 
 // Icons mapping
 const iconMap: Record<string, string> = {

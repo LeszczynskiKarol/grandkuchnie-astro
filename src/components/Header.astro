@@ -1,5 +1,8 @@
 ---
 // Header.astro - statyczny nagłówek
+import { services } from '../data/services';
+import { cities as cityData } from '../data/cities';
+
 const menuItems = [
   { href: '/', label: 'Strona główna' },
   { href: '/blog', label: 'Blog' },
@@ -33,22 +36,40 @@ const cities = ['Bydgoszcz', 'Toruń', 'Włocławek', 'Inowrocław', 'Grudziądz
 
   <div class="navbar-center hidden lg:flex">
     <ul class="menu menu-horizontal px-1">
-      {cities.map((city) => (
-        <li>
-          <a
-            href={`/miasto/${city.toLowerCase().replace(/ą/g, 'a').replace(/ń/g, 'n').replace(/ł/g, 'l')}`}
-            class="text-secondary hover:text-secondary"
-          >
-            {city}
-          </a>
-        </li>
-      ))}
+      <li>
+        <details>
+          <summary class="text-secondary hover:text-secondary">Usługi</summary>
+          <ul class="bg-base-100 rounded-t-none p-2 w-64 z-50 shadow-lg">
+            {services.map((service) => (
+              <li>
+                <a href={`/uslugi/${service.slug}`} class="text-secondary hover:text-primary">
+                  {service.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary class="text-secondary hover:text-secondary">Miasta</summary>
+          <ul class="bg-base-100 rounded-t-none p-2 w-48 z-50 shadow-lg">
+            {cityData.map((city) => (
+              <li>
+                <a href={`/miasto/${city.slug}`} class="text-secondary hover:text-primary">
+                  {city.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </details>
+      </li>
     </ul>
   </div>
 
   <div class="navbar-end flex items-center gap-2 md:gap-3">
-    <a 
-      href="/blog" 
+    <a
+      href="/blog"
       class="hidden md:inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-base-content/70 hover:text-primary transition-colors"
     >
       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -73,6 +94,14 @@ const cities = ['Bydgoszcz', 'Toruń', 'Włocławek', 'Inowrocław', 'Grudziądz
       <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-64">
         {menuItems.map((item) => (
           <li><a href={item.href} class="text-lg py-3">{item.label}</a></li>
+        ))}
+        <li class="menu-title pt-4">
+          <span>Usługi</span>
+        </li>
+        {services.map((service) => (
+          <li>
+            <a href={`/uslugi/${service.slug}`}>{service.title}</a>
+          </li>
         ))}
         <li class="menu-title pt-4">
           <span>Miasta</span>

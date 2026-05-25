@@ -15,10 +15,10 @@ export const cities: City[] = [
     slug: "torun",
     name: "Toruń",
     nameLocative: "Toruniu",
-    heroTitle: "Kuchnie na wymiar - Toruń",
+    heroTitle: "Kuchnia na wymiar - Toruń",
     heroSubtitle: "Projekt, produkcja, montaż",
     heroImage:
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/torun.jpg",
+      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/torun-opt.webp",
   },
   {
     slug: "bydgoszcz",
@@ -27,7 +27,7 @@ export const cities: City[] = [
     heroTitle: "Kuchnia na wymiar - Bydgoszcz",
     heroSubtitle: "Projektowanie, wykonanie, montaż",
     heroImage:
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/bydgoszcz.jpg",
+      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/bydgoszcz-opt.webp",
   },
   {
     slug: "wloclawek",
@@ -36,7 +36,7 @@ export const cities: City[] = [
     heroTitle: "Kuchnia na wymiar - Włocławek",
     heroSubtitle: "Projektowanie, wykonanie, montaż",
     heroImage:
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/wloclawek.jpg",
+      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/wloclawek-opt.webp",
   },
   {
     slug: "grudziadz",
@@ -45,7 +45,7 @@ export const cities: City[] = [
     heroTitle: "Kuchnia na wymiar - Grudziądz",
     heroSubtitle: "Projektowanie, wykonanie, montaż",
     heroImage:
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/grudziadz.jpg",
+      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/grudziadz-opt.webp",
   },
   {
     slug: "inowroclaw",
@@ -54,7 +54,7 @@ export const cities: City[] = [
     heroTitle: "Kuchnia na wymiar - Inowrocław",
     heroSubtitle: "Projektowanie, wykonanie, montaż",
     heroImage:
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/inowroclaw.jpg",
+      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/inowroclaw-opt.webp",
   },
 ];
 
@@ -77,7 +77,7 @@ export const serviceAreas: ServiceArea[] = [
     name: "Kujawsko-pomorskie",
     nameLocative: "województwie kujawsko-pomorskim",
     image:
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/kujawsko-pomorskie.png",
+      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/kujawsko-pomorskie-opt.webp",
     slug: "kujawsko-pomorskie",
     isMain: true,
     description:
@@ -87,35 +87,35 @@ export const serviceAreas: ServiceArea[] = [
     name: "Toruń",
     nameLocative: "Toruniu",
     image:
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/torun.jpg",
+      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/torun-opt.webp",
     slug: "torun",
   },
   {
     name: "Bydgoszcz",
     nameLocative: "Bydgoszczy",
     image:
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/bydgoszcz.jpg",
+      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/bydgoszcz-opt.webp",
     slug: "bydgoszcz",
   },
   {
     name: "Włocławek",
     nameLocative: "Włocławku",
     image:
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/wloclawek.jpg",
+      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/wloclawek-opt.webp",
     slug: "wloclawek",
   },
   {
     name: "Grudziądz",
     nameLocative: "Grudziądzu",
     image:
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/grudziadz.jpg",
+      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/grudziadz-opt.webp",
     slug: "grudziadz",
   },
   {
     name: "Inowrocław",
     nameLocative: "Inowrocławiu",
     image:
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/inowroclaw.jpg",
+      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/inowroclaw-opt.webp",
     slug: "inowroclaw",
   },
 ];

@@ -14,7 +14,7 @@ tags:
     "blaty kuchenne",
     "budżet kuchnia",
   ]
-image: "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1739376104808-meble-wa-16.jpg"
+image: "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1739376104808-meble-wa-16-opt.webp"
 imageAlt: "Nowoczesna kuchnia na wymiar z białymi frontami i drewnianym blatem"
 featured: true
 draft: false

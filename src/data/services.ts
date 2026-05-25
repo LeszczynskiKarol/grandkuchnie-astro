@@ -18,6 +18,7 @@ export interface Service {
   title: string;
   heroTitle: string;
   heroSubtitle: string;
+  metaDescription?: string;
   heroImages: string[];
   ctaButton: string;
   ctaUrl: string;
@@ -36,6 +37,8 @@ export const services: Service[] = [
     title: "Kuchnie płyta laminowana",
     heroTitle: "Kuchnia płyta laminowana na wymiar",
     heroSubtitle: "Projekt, wykonanie, montaż",
+    metaDescription:
+      "Kuchnia z płyty laminowanej na wymiar w Toruniu i woj. kujawsko-pomorskim — ekonomiczna, odporna na zarysowania, szeroka paleta wzorów. Darmowa wycena.",
     heroImages: [
       "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1739372336299-kuku-5_opt.webp",
     ],
@@ -72,8 +75,10 @@ export const services: Service[] = [
     title: "Kuchnie MDF lakierowany",
     heroTitle: "Kuchnia MDF lakierowany na wymiar",
     heroSubtitle: "Projekt, wykonanie, montaż",
+    metaDescription:
+      "Kuchnia MDF lakierowany na wymiar — elegancka, gładka, z głębokim kolorem. Produkcja i montaż w Toruniu, Bydgoszczy, Włocławku. Bezpłatna wycena.",
     heroImages: [
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1739377197489-Meble-Tu-4.jpg",
+      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1739377197489-Meble-Tu-4-opt.webp",
     ],
     ctaButton: "Zamów wycenę",
     ctaUrl: "/kontakt",
@@ -109,8 +114,10 @@ export const services: Service[] = [
     title: "Kuchnie akryl/lakier + płyta",
     heroTitle: "Kuchnia akryl/lakier + płyta na wymiar",
     heroSubtitle: "Projekt, montaż, produkcja",
+    metaDescription:
+      "Nowoczesna kuchnia akryl/lakier + płyta na wymiar — wysoki połysk i praktyczna płyta. Wykonanie i montaż w Toruniu i okolicach. Darmowa wycena.",
     heroImages: [
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1739376104808-meble-wa-16.jpg",
+      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1739376104808-meble-wa-16-opt.webp",
     ],
     ctaButton: "Zamów wycenę",
     ctaUrl: "/kontakt",
@@ -146,8 +153,10 @@ export const services: Service[] = [
     title: "Kuchnie akrylowe / mata",
     heroTitle: "Kuchnia akrylowa na wymiar",
     heroSubtitle: "Projekt, produkcja, montaż",
+    metaDescription:
+      "Kuchnia akrylowa na wymiar — ekskluzywne, matowe fronty bez odcisków palców. Projekt, produkcja i montaż w Toruniu, Bydgoszczy. Bezpłatna wycena.",
     heroImages: [
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1739376513294-KA2-4.jpg",
+      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1739376513294-KA2-4-opt.webp",
     ],
     ctaButton: "Zamów wycenę",
     ctaUrl: "/kontakt",
@@ -183,6 +192,8 @@ export const services: Service[] = [
     title: "Kuchnie blaty HPL",
     heroTitle: "Kuchnie blaty HPL na wymiar",
     heroSubtitle: "Projekt, produkcja, montaż",
+    metaDescription:
+      "Blaty HPL w kuchni na wymiar — najwyższa odporność na zarysowania, temperaturę i wilgoć. Imitacje kamienia i drewna. Toruń, kujawsko-pomorskie.",
     heroImages: [
       "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1739376882960-kik-1_opt.webp",
     ],
@@ -219,8 +230,10 @@ export const services: Service[] = [
     title: "Kuchnie z fornirem",
     heroTitle: "Kuchnia z fornirem na wymiar",
     heroSubtitle: "Projekt, produkcja, montaż",
+    metaDescription:
+      "Kuchnia z fornirem — naturalne usłojenie drewna, szlachetne wykończenie, ekologiczne rozwiązanie. Wykonanie na wymiar w Toruniu. Bezpłatna wycena.",
     heroImages: [
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1739377196824-kuchsier-3.jpg",
+      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1739377196824-kuchsier-3-opt.webp",
     ],
     ctaButton: "Zamów wycenę",
     ctaUrl: "/kontakt",
@@ -255,8 +268,10 @@ export const services: Service[] = [
     title: "Projektowanie kuchni",
     heroTitle: "Projektujemy piękne i praktyczne kuchnie",
     heroSubtitle: "Zamów swoją wymarzoną aranżację kuchenną",
+    metaDescription:
+      "Projektowanie kuchni na wymiar — fotorealistyczne wizualizacje 3D, doświadczeni projektanci wnętrz, kompleksowa realizacja w Toruniu i okolicach.",
     heroImages: [
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1751701550370-IMG_1811.jpeg",
+      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1751701550370-IMG_1811-opt.webp",
     ],
     ctaButton: "Zamów projekt",
     ctaUrl: "/kontakt",
@@ -306,6 +321,8 @@ export const services: Service[] = [
     title: "Łazienki na wymiar",
     heroTitle: "Łazienki na wymiar",
     heroSubtitle: "Piękne i praktyczne przestrzenie od projektu po montaż",
+    metaDescription:
+      "Łazienka na wymiar — projekt, produkcja, montaż. Kompleksowe wykonanie w Toruniu, Bydgoszczy, Włocławku. Sprawdzone materiały, bezpłatna wycena.",
     heroImages: [
       "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1754927990972-lazi-1_opt-1_opt.webp",
     ],
@@ -342,6 +359,8 @@ export const services: Service[] = [
     title: "Szafy, zabudowy, garderoby",
     heroTitle: "Szafy, zabudowy, garderoby na wymiar",
     heroSubtitle: "Stylowe i praktyczne rozwiązania dla Twojego komfortu",
+    metaDescription:
+      "Szafy, zabudowy i garderoby na wymiar — wykorzystanie każdego cm przestrzeni, oświetlenie LED, ciche domyki. Toruń, kujawsko-pomorskie. Wycena gratis.",
     heroImages: [
       "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1755073547033-ram1-7_opt_opt.webp",
     ],
@@ -391,21 +410,21 @@ export const kitchenTypes = [
   {
     name: "Kuchnie MDF lakierowany",
     image:
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1739377197489-Meble-Tu-4.jpg",
+      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1739377197489-Meble-Tu-4-opt.webp",
     slug: "mdf-lakierowany",
     description: "Eleganckie wykończenie z możliwością personalizacji koloru",
   },
   {
     name: "Kuchnie akryl/lakier + płyta",
     image:
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1739376104808-meble-wa-16.jpg",
+      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1739376104808-meble-wa-16-opt.webp",
     slug: "akryl-lakier-plyta",
     description: "Nowoczesne połączenie wysokiego połysku z praktyczną płytą",
   },
   {
     name: "Kuchnie akrylowe / mata",
     image:
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1739376513294-KA2-4.jpg",
+      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1739376513294-KA2-4-opt.webp",
     slug: "akrylowe-mata",
     description: "Ekskluzywne wykończenie o wyjątkowej głębi koloru",
   },
@@ -419,14 +438,14 @@ export const kitchenTypes = [
   {
     name: "Kuchnie z fornirem",
     image:
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1739377196824-kuchsier-3.jpg",
+      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1739377196824-kuchsier-3-opt.webp",
     slug: "fornir",
     description: "Naturalne piękno drewna w nowoczesnym wydaniu",
   },
   {
     name: "Projektowanie kuchni",
     image:
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1751701550370-IMG_1811.jpeg",
+      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1751701550370-IMG_1811-opt.webp",
     slug: "projektowanie-kuchni",
     description: "Zamów projekt Twojej wymarzonej kuchni",
   },

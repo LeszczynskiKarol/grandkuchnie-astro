@@ -29,7 +29,7 @@ const currentYear = new Date().getFullYear();
       <div>
         <h3 class="text-lg font-bold mb-4">Usługi</h3>
         <ul class="space-y-2">
-          {services.slice(0, 6).map((service) => (
+          {services.map((service) => (
             <li>
               <a 
                 href={`/uslugi/${service.slug}`} 

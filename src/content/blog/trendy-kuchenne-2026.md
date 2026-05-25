@@ -15,7 +15,7 @@ tags:
     "fronty kuchenne",
     "smart kuchnia",
   ]
-image: "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1739377197489-Meble-Tu-4.jpg"
+image: "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1739377197489-Meble-Tu-4-opt.webp"
 imageAlt: "Nowoczesna kuchnia 2026 z matowymi frontami w kolorze kaszmiru i drewnianymi akcentami"
 featured: true
 draft: false
