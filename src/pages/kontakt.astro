@@ -55,8 +55,8 @@ const description = 'Skontaktuj się z nami i uzyskaj darmową wycenę kuchni na
               <div class="ml-4">
                 <h3 class="font-semibold text-lg">Telefon</h3>
                 <!-- Komponent React do śledzenia kliknięć -->
-                <PhoneLink 
-                  client:load
+                <PhoneLink
+                  client:idle
                   phoneNumber="576 376 567"
                   className="text-gray-600 hover:text-primary hover:underline cursor-pointer transition-colors"
                 />
@@ -108,7 +108,7 @@ const description = 'Skontaktuj się z nami i uzyskaj darmową wycenę kuchni na
   </main>
 
   <Footer />
-  <CookieConsent client:load />
+  <CookieConsent client:idle />
 </Layout>
 
 <!-- 
