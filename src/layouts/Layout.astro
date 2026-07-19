@@ -39,8 +39,14 @@ const localBusinessSchema = {
     '@type': 'PostalAddress',
     streetAddress: 'ul. Polna 134, hala nr 3',
     addressLocality: 'Toruń',
+    addressRegion: 'kujawsko-pomorskie',
     postalCode: '87-100',
     addressCountry: 'PL',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 53.0378558,
+    longitude: 18.6448634,
   },
   areaServed: [
     'Toruń',
@@ -82,6 +88,9 @@ const localBusinessSchema = {
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
   <meta name="twitter:image" content={ogImageURL} />
+
+  <!-- Preconnect do bucketa z obrazami realizacji/bloga (hero = LCP na podstronach) -->
+  <link rel="preconnect" href="https://s3.eu-north-1.amazonaws.com" crossorigin />
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="96x96" href="/img/favicon.png" />

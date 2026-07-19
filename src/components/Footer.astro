@@ -32,7 +32,7 @@ const currentYear = new Date().getFullYear();
           {services.map((service) => (
             <li>
               <a 
-                href={`/uslugi/${service.slug}`} 
+                href={`/uslugi/${service.slug}/`}
                 class="text-gray-300 hover:text-primary transition-colors"
               >
                 {service.title}
@@ -49,7 +49,7 @@ const currentYear = new Date().getFullYear();
           {cities.map((city) => (
             <li>
               <a 
-                href={`/miasto/${city.slug}`} 
+                href={`/miasto/${city.slug}/`}
                 class="text-gray-300 hover:text-primary transition-colors"
               >
                 {city.name}
@@ -107,7 +107,7 @@ const currentYear = new Date().getFullYear();
   © {currentYear} Grand Kuchnie. Wszelkie prawa zastrzeżone. | Realizacja: <a href="https://www.torweb.pl" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">TorWeb.pl</a>
 </p>
         <div class="flex items-center gap-6 text-sm">
-          <a href="/polityka-prywatnosci" class="text-gray-400 hover:text-primary transition-colors">
+          <a href="/polityka-prywatnosci/" class="text-gray-400 hover:text-primary transition-colors">
             Polityka prywatności
           </a>
           <button 

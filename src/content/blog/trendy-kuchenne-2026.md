@@ -4,7 +4,7 @@ description: "Odkryj najwa≈ºniejsze trendy kuchenne 2026. Modne kolory, materia≈
 publishDate: 2026-01-19
 updateDate: 2026-01-19
 author: "Grand Kuchnie"
-category: "Trendy i inspiracje"
+category: "Trendy w kuchniach"
 tags:
   [
     "trendy kuchenne 2026",

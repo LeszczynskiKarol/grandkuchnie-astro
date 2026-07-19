@@ -49,18 +49,10 @@ export async function getStaticPaths() {
       .replace(/\s+/g, '-');
   }
 
-  // WSZYSTKIE KATEGORIE - musi być WEWNĄTRZ getStaticPaths
-  const ALL_CATEGORIES = [
-    "Poradniki",
-    "Trendy w kuchniach",
-    "Materiały i wykończenia",
-    "Aranżacje wnętrz",
-    "Projektowanie kuchni",
-    "Porady ekspertów",
-    "Realizacje",
-    "Łazienki i garderoby",
-    "FAQ",
-  ];
+  // Generujemy TYLKO kategorie z co najmniej jednym postem — puste strony
+  // "artykuły w przygotowaniu" to thin content zgłaszany w sitemapie (audyt 2026-07-19).
+  // Nowa kategoria pojawi się tu automatycznie wraz z pierwszym postem.
+  const ALL_CATEGORIES = [...new Set(posts.map((p) => p.data.category))];
 
   return ALL_CATEGORIES.map((category) => ({
     params: { category: slugify(category) },
@@ -135,7 +127,7 @@ const categoryIcons: Record<string, string> = {
           </li>
           <li class="text-base-content/40">/</li>
           <li>
-            <a href="/blog" class="hover:text-primary transition-colors">
+            <a href="/blog/" class="hover:text-primary transition-colors">
               Blog
             </a>
           </li>
@@ -174,7 +166,7 @@ const categoryIcons: Record<string, string> = {
             Wkrótce dodamy treści dotyczące: {categoryName}
           </p>
           <a
-            href="/blog"
+            href="/blog/"
             class="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-content rounded-xl hover:bg-primary/90 transition-colors font-semibold"
           >
             ← Zobacz dostępne artykuły
@@ -184,7 +176,7 @@ const categoryIcons: Record<string, string> = {
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {posts.map((post) => (
             <a
-              href={`/blog/${post.slug}`}
+              href={`/blog/${post.slug}/`}
               class="group block bg-base-100 border border-base-200 rounded-xl overflow-hidden hover:border-primary hover:shadow-lg transition-all"
             >
               {post.data.image ? (
@@ -230,7 +222,7 @@ const categoryIcons: Record<string, string> = {
       {/* Powrót do bloga */}
       <div class="mt-12 text-center">
         <a
-          href="/blog"
+          href="/blog/"
           class="inline-flex items-center gap-2 text-primary hover:underline font-medium"
         >
           ← Wszystkie artykuły
@@ -247,7 +239,7 @@ const categoryIcons: Record<string, string> = {
             Skontaktuj się z nami i otrzymaj bezpłatną wycenę. Działamy w Toruniu, Bydgoszczy i całym województwie kujawsko-pomorskim.
           </p>
           <a
-            href="/kontakt"
+            href="/kontakt/"
             class="inline-flex items-center gap-2 px-8 py-3 bg-primary text-primary-content rounded-xl hover:bg-primary/90 transition-colors font-semibold"
           >
             Bezpłatna wycena

@@ -19,7 +19,6 @@ const blogCollection = defineCollection({
       "Realizacje",
       "Łazienki i garderoby",
       "FAQ",
-      "Trendy i inspiracje",
     ]),
     tags: z.array(z.string()).default([]),
     image: z.string().optional(),

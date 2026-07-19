@@ -61,7 +61,7 @@ const articleSchema = {
   "@type": "Article",
   headline: title,
   description: description,
-  image: image ? `https://www.grandkuchnie.pl${image}` : undefined,
+  image: image ? new URL(image, Astro.site).toString() : undefined,
   author: {
     "@type": "Organization",
     name: author,
@@ -78,7 +78,7 @@ const articleSchema = {
   dateModified: (updateDate || publishDate).toISOString(),
   mainEntityOfPage: {
     "@type": "WebPage",
-    "@id": `https://www.grandkuchnie.pl/blog/${post.slug}`,
+    "@id": `https://www.grandkuchnie.pl/blog/${post.slug}/`,
   },
 };
 
@@ -91,19 +91,19 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       position: 1,
       name: "Strona główna",
-      item: "https://www.grandkuchnie.pl",
+      item: "https://www.grandkuchnie.pl/",
     },
     {
       "@type": "ListItem",
       position: 2,
       name: "Blog",
-      item: "https://www.grandkuchnie.pl/blog",
+      item: "https://www.grandkuchnie.pl/blog/",
     },
     {
       "@type": "ListItem",
       position: 3,
       name: title,
-      item: `https://www.grandkuchnie.pl/blog/${post.slug}`,
+      item: `https://www.grandkuchnie.pl/blog/${post.slug}/`,
     },
   ],
 };
@@ -140,7 +140,7 @@ const breadcrumbSchema = {
           </li>
           <li class="text-base-content/40">/</li>
           <li>
-            <a href="/blog" class="hover:text-primary transition-colors">
+            <a href="/blog/" class="hover:text-primary transition-colors">
               Blog
             </a>
           </li>
@@ -155,7 +155,7 @@ const breadcrumbSchema = {
       <header class="mb-10">
         <div class="flex flex-wrap items-center gap-3 mb-4">
           <a
-            href={`/blog/kategoria/${slugify(category)}`}
+            href={`/blog/kategoria/${slugify(category)}/`}
             class="px-3 py-1 text-sm font-medium bg-primary/10 text-primary rounded-full hover:bg-primary/20 transition-colors"
           >
             {category}
@@ -192,6 +192,7 @@ const breadcrumbSchema = {
             alt={imageAlt || title}
             class="w-full h-auto object-cover"
             loading="eager"
+            fetchpriority="high"
           />
         </div>
       )}
@@ -211,7 +212,7 @@ const breadcrumbSchema = {
             Skontaktuj się z nami i otrzymaj bezpłatną wycenę. Realizujemy projekty w Toruniu, Bydgoszczy i okolicach.
           </p>
           <a
-            href="/kontakt"
+            href="/kontakt/"
             class="inline-flex items-center gap-2 px-8 py-3 bg-primary text-primary-content rounded-xl hover:bg-primary/90 transition-colors font-semibold"
           >
             Bezpłatna wycena
@@ -240,7 +241,7 @@ const breadcrumbSchema = {
           <div class="flex items-center gap-3">
             <span class="text-sm text-base-content/60">Udostępnij:</span>
             <a
-              href={`https://www.facebook.com/sharer/sharer.php?u=https://www.grandkuchnie.pl/blog/${post.slug}`}
+              href={`https://www.facebook.com/sharer/sharer.php?u=https://www.grandkuchnie.pl/blog/${post.slug}/`}
               target="_blank"
               rel="noopener noreferrer"
               class="w-10 h-10 flex items-center justify-center rounded-full bg-base-200 hover:bg-blue-100 text-base-content/60 hover:text-blue-600 transition-colors"
@@ -251,7 +252,7 @@ const breadcrumbSchema = {
               </svg>
             </a>
             <a
-              href={`https://twitter.com/intent/tweet?url=https://www.grandkuchnie.pl/blog/${post.slug}&text=${encodeURIComponent(title)}`}
+              href={`https://twitter.com/intent/tweet?url=https://www.grandkuchnie.pl/blog/${post.slug}/&text=${encodeURIComponent(title)}`}
               target="_blank"
               rel="noopener noreferrer"
               class="w-10 h-10 flex items-center justify-center rounded-full bg-base-200 hover:bg-sky-100 text-base-content/60 hover:text-sky-600 transition-colors"
@@ -262,7 +263,7 @@ const breadcrumbSchema = {
               </svg>
             </a>
             <a
-              href={`https://www.linkedin.com/shareArticle?mini=true&url=https://www.grandkuchnie.pl/blog/${post.slug}&title=${encodeURIComponent(title)}`}
+              href={`https://www.linkedin.com/shareArticle?mini=true&url=https://www.grandkuchnie.pl/blog/${post.slug}/&title=${encodeURIComponent(title)}`}
               target="_blank"
               rel="noopener noreferrer"
               class="w-10 h-10 flex items-center justify-center rounded-full bg-base-200 hover:bg-blue-100 text-base-content/60 hover:text-blue-700 transition-colors"
