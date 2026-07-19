@@ -16,6 +16,24 @@ interface FormData {
   message: string;
 }
 
+function __leadSource() {
+  try {
+    const p = new URLSearchParams(location.search);
+    const u = p.get("utm_source");
+    if (u) return u;
+    const r = document.referrer;
+    if (!r) return "direct";
+    const h = new URL(r).hostname;
+    if (h.includes(location.hostname)) return "direct";
+    if (/google\./.test(h)) return "google";
+    if (/bing\./.test(h)) return "bing";
+    if (/facebook|fb\.|instagram|t\.co/.test(h)) return "social";
+    return h;
+  } catch (e) {
+    return "referral";
+  }
+}
+
 export default function ContactForm() {
   const [formData, setFormData] = useState<FormData>({
     name: "",
@@ -111,6 +129,21 @@ export default function ContactForm() {
           )
           .join(" ");
       }
+
+      // Fire-and-forget: lead do wspólnego panelu (obok istniejącej wysyłki)
+      fetch("https://elk3bw9gj4.execute-api.eu-central-1.amazonaws.com/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        keepalive: true,
+        body: JSON.stringify({
+          domain: "grandkuchnie.pl",
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone || "",
+          message: formData.message || "",
+          source: __leadSource(),
+        }),
+      }).catch(() => {});
 
       const response = await fetch(API_ENDPOINT, {
         method: "POST",

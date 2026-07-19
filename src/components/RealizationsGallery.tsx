@@ -8,13 +8,13 @@ import {
   ZoomOut,
 } from "lucide-react";
 import {
-  realizations,
-  realizationCategories,
-  type Realization,
-} from "../data/realizations";
+  portfolio,
+  portfolioCategories,
+  type PortfolioImage,
+} from "../data/portfolio";
 
 export default function RealizationsGallery() {
-  const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalIndex, setModalIndex] = useState(0);
@@ -22,12 +22,12 @@ export default function RealizationsGallery() {
   const [scale, setScale] = useState(1);
   const limit = 12;
 
-  // Filter realizations
+  // Filter portfolio
   const filteredRealizations = useMemo(() => {
     if (selectedCategory === null) {
-      return realizations;
+      return portfolio;
     }
-    return realizations.filter((r) => r.categoryId === selectedCategory);
+    return portfolio.filter((r) => r.category === selectedCategory);
   }, [selectedCategory]);
 
   // Pagination
@@ -37,8 +37,8 @@ export default function RealizationsGallery() {
     return filteredRealizations.slice(start, start + limit);
   }, [filteredRealizations, currentPage]);
 
-  const handleCategoryChange = (categoryId: number | null) => {
-    setSelectedCategory(categoryId);
+  const handleCategoryChange = (categorySlug: string | null) => {
+    setSelectedCategory(categorySlug);
     setCurrentPage(1);
     setIsFilterOpen(false);
   };
@@ -185,12 +185,12 @@ export default function RealizationsGallery() {
                 >
                   Wszystkie
                 </button>
-                {realizationCategories.map((category) => (
+                {portfolioCategories.map((category) => (
                   <button
-                    key={category.id}
-                    onClick={() => handleCategoryChange(category.id)}
+                    key={category.slug}
+                    onClick={() => handleCategoryChange(category.slug)}
                     className={`px-4 py-2 rounded-full transition-all ${
-                      selectedCategory === category.id
+                      selectedCategory === category.slug
                         ? "bg-primary text-white"
                         : "bg-gray-100 hover:bg-gray-200"
                     }`}
@@ -221,18 +221,18 @@ export default function RealizationsGallery() {
                       : "bg-gray-100 hover:bg-gray-200"
                   }`}
                 >
-                  Wszystkie ({realizations.length})
+                  Wszystkie ({portfolio.length})
                 </button>
-                {realizationCategories.map((category) => {
-                  const count = realizations.filter(
-                    (r) => r.categoryId === category.id
+                {portfolioCategories.map((category) => {
+                  const count = portfolio.filter(
+                    (r) => r.category === category.slug
                   ).length;
                   return (
                     <button
-                      key={category.id}
-                      onClick={() => handleCategoryChange(category.id)}
+                      key={category.slug}
+                      onClick={() => handleCategoryChange(category.slug)}
                       className={`px-4 py-2 rounded-full transition-all ${
-                        selectedCategory === category.id
+                        selectedCategory === category.slug
                           ? "bg-primary text-white"
                           : "bg-gray-100 hover:bg-gray-200"
                       }`}
@@ -249,14 +249,14 @@ export default function RealizationsGallery() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {paginatedRealizations.map((realization, index) => (
               <div
-                key={realization.id}
+                key={(currentPage - 1) * limit + index}
                 className="group cursor-pointer"
                 onClick={() => openModal(index)}
               >
                 <div className="aspect-square overflow-hidden rounded-lg">
                   <img
-                    src={realization.imageUrl}
-                    alt=""
+                    src={realization.src}
+                    alt={realization.alt ?? ""}
                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                     loading="lazy"
                   />
@@ -335,8 +335,8 @@ export default function RealizationsGallery() {
             onClick={(e) => e.stopPropagation()}
           >
             <img
-              src={filteredRealizations[modalIndex]?.imageUrl}
-              alt=""
+              src={filteredRealizations[modalIndex]?.src}
+              alt={filteredRealizations[modalIndex]?.alt ?? ""}
               className="max-w-full max-h-[85vh] object-contain transition-transform duration-300"
               style={{ transform: `scale(${scale})` }}
             />
@@ -353,7 +353,7 @@ export default function RealizationsGallery() {
                 const actualIndex = Math.max(0, modalIndex - 5) + i;
                 return (
                   <button
-                    key={r.id}
+                    key={actualIndex}
                     onClick={(e) => {
                       e.stopPropagation();
                       setModalIndex(actualIndex);
@@ -364,8 +364,8 @@ export default function RealizationsGallery() {
                     }`}
                   >
                     <img
-                      src={r.imageUrl}
-                      alt=""
+                      src={r.src}
+                      alt={r.alt ?? ""}
                       className="w-full h-full object-cover"
                     />
                   </button>
