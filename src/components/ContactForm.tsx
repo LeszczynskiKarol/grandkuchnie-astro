@@ -1,5 +1,6 @@
 import { FileText, Plus, X } from "lucide-react";
 import { useRef, useState } from "react";
+import { trackFormSubmission } from "../lib/ga";
 
 // Konfiguracja API i Cloudinary
 const API_ENDPOINT =
@@ -129,6 +130,7 @@ export default function ContactForm() {
       }
 
       setStatus("success");
+      trackFormSubmission();
       setFormData({ name: "", email: "", phone: "", message: "" });
       setAttachments([]);
 
