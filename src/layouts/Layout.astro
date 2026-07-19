@@ -19,8 +19,11 @@ const {
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImageURL = new URL(ogImage, Astro.site).toString();
 
-// GTM ID z oryginalnego projektu Next.js
-const GTM_ID = 'GTM-5S7T7F2G';
+// Tagi ladowane bezposrednio przez gtag.js (bez GTM — cala konfiguracja w kodzie):
+// GA4: property "GrandKuchnie 2026 (czyste)" properties/546178771
+// AW:  konwersje Google Ads (formularz IIukCPrJ180aEL_JkNcD, telefon YQkUCNjx1s0aEL_JkNcD)
+const GA4_ID = 'G-7PC4J6DTTW';
+const ADS_ID = 'AW-988030143';
 
 const localBusinessSchema = {
   '@context': 'https://schema.org',
@@ -92,8 +95,8 @@ const localBusinessSchema = {
   <!-- Per-page schema injection (Article/BreadcrumbList/Blog itp.) -->
   <slot name="head" />
   
-  <!-- Google Consent Mode v2 - MUSI BYĆ PRZED GTM -->
-  <script is:inline define:vars={{ GTM_ID }}>
+  <!-- Google Consent Mode v2 - MUSI BYĆ PRZED gtag.js -->
+  <script is:inline>
     // Inicjalizacja dataLayer
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -117,33 +120,39 @@ const localBusinessSchema = {
     
     // Event inicjalizacji konsentu
     dataLayer.push({'event': 'consent_initialized'});
+    // gtag globalnie — uzywany przez lib/ga.ts i skrypty konwersji
+    window.gtag = gtag;
   </script>
-  
-  <!-- Google Tag Manager -->
-  <script is:inline define:vars={{ GTM_ID }}>
-    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer', GTM_ID);
+
+  <!-- Google tag (gtag.js) — GA4 + konwersje Ads, bez GTM -->
+  <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`}></script>
+  <script is:inline define:vars={{ GA4_ID, ADS_ID }}>
+    window.gtag('js', new Date());
+    window.gtag('config', GA4_ID);
+    window.gtag('config', ADS_ID); // zawiera conversion linker
   </script>
-  <!-- End Google Tag Manager -->
 </head>
 
 <body class="min-h-screen flex flex-col">
-  <!-- Google Tag Manager (noscript) -->
-  <noscript>
-    <iframe 
-      src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
-      height="0" 
-      width="0" 
-      style="display:none;visibility:hidden">
-    </iframe>
-  </noscript>
-  <!-- End Google Tag Manager (noscript) -->
-  
   <slot />
   
+  <!-- Globalne sledzenie klikniec w telefon (delegacja: dziala tez dla linkow hydrowanych pozniej przez React) -->
+  <script is:inline define:vars={{ ADS_ID }}>
+    document.addEventListener('click', function (e) {
+      var a = e.target && e.target.closest ? e.target.closest('a[href^="tel:"]') : null;
+      if (!a || !window.gtag) return;
+      window.gtag('event', 'phone_click', {
+        event_category: 'engagement',
+        event_label: 'phone_number_click',
+      });
+      window.gtag('event', 'conversion', {
+        send_to: ADS_ID + '/YQkUCNjx1s0aEL_JkNcD',
+        value: 1.0,
+        currency: 'PLN',
+      });
+    });
+  </script>
+
   <!-- Przywróć zapisane zgody z localStorage -->
   <script is:inline>
     (function() {

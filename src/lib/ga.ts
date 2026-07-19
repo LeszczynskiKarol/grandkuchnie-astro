@@ -15,11 +15,14 @@ export const sendGAEvent = (
   parameters?: Record<string, any>
 ) => {
   if (typeof window !== "undefined") {
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: eventName,
-      ...parameters,
-    });
+    // gtag.js (bez GTM): eventy musza isc przez gtag('event', ...),
+    // pusty push {event: ...} do dataLayer nie dotarlby do GA4
+    if (window.gtag) {
+      window.gtag("event", eventName, parameters || {});
+    } else {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: eventName, ...parameters });
+    }
 
     console.log(`[GA] Event sent: ${eventName}`, parameters);
   }

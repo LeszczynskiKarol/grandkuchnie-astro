@@ -1,5 +1,6 @@
 // src/components/PhoneLink.tsx
-import { trackPhoneClick } from "../lib/ga";
+// Tracking klikniec obsluguje globalny delegowany listener w Layout.astro
+// (nie dublowac go tutaj — bylaby podwojna konwersja).
 
 interface PhoneLinkProps {
   phoneNumber: string;
@@ -7,24 +8,17 @@ interface PhoneLinkProps {
   className?: string;
 }
 
-export default function PhoneLink({ 
-  phoneNumber, 
-  displayText, 
-  className = "text-gray-600 hover:text-primary transition-colors" 
+export default function PhoneLink({
+  phoneNumber,
+  displayText,
+  className = "text-gray-600 hover:text-primary transition-colors"
 }: PhoneLinkProps) {
-  
-  const handleClick = () => {
-    // Śledź konwersję kliknięcia w telefon
-    trackPhoneClick();
-  };
-
   // Formatuj numer do href (usuń spacje)
   const hrefNumber = phoneNumber.replace(/\s/g, '');
 
   return (
-    <a 
+    <a
       href={`tel:${hrefNumber}`}
-      onClick={handleClick}
       className={className}
     >
       {displayText || phoneNumber}

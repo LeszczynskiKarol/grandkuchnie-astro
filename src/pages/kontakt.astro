@@ -111,42 +111,5 @@ const description = 'Skontaktuj się z nami i uzyskaj darmową wycenę kuchni na
   <CookieConsent />
 </Layout>
 
-<!-- 
-  Alternatywny skrypt do śledzenia telefonu bez React
-  (dla statycznych linków w innych miejscach strony)
--->
-<script>
-  // Funkcja do śledzenia kliknięć w telefon
-  function trackPhoneClick() {
-    if (typeof window !== 'undefined') {
-      // Wyślij do dataLayer
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({
-        event: 'phone_click',
-        event_category: 'engagement',
-        event_label: 'phone_number_click',
-        conversion_value: 50,
-        conversion_currency: 'PLN'
-      });
-      
-      // Bezpośrednia konwersja Google Ads
-      if (typeof window.gtag !== 'undefined') {
-        window.gtag('event', 'conversion', {
-          'send_to': 'AW-988030143/YQkUCNjx1s0aEL_JkNcD',
-          'value': 1.0,
-          'currency': 'PLN'
-        });
-      }
-      
-      console.log('[GA] Phone click tracked');
-    }
-  }
+<!-- Sledzenie klikniec w telefon: globalny delegowany listener w Layout.astro -->
 
-  // Dodaj listenery do wszystkich linków tel: na stronie
-  document.addEventListener('DOMContentLoaded', () => {
-    const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
-    phoneLinks.forEach(link => {
-      link.addEventListener('click', trackPhoneClick);
-    });
-  });
-</script>
