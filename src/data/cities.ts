@@ -18,13 +18,28 @@ export interface City {
 // (GSC 28 dni: `/` poz. 13,9 przy 56 wyśw. vs `/miasto/torun/` poz. 41,0 przy 55 wyśw.).
 // Dlatego tego wpisu NIE MA w tablicy `cities` — jej jedynym zadaniem jest napędzanie
 // getStaticPaths w src/pages/miasto/[slug].astro.
-export const torunHeading = "Kuchnie na wymiar w Toruniu — pracownia przy ul. Polnej 134";
+export const torun = {
+  heading: "Kuchnie na wymiar w Toruniu",
 
-export const torunLocalContent = `Pracownia Grand Kuchnie znajduje się w Toruniu przy ul. Polnej 134 (hala nr 3) — to nasza siedziba, salon i zakład produkcyjny w jednym miejscu. Wszystkie meble kuchenne powstają u nas na hali, dzięki czemu kontrolujemy każdy etap produkcji i mamy najkrótszy czas realizacji w regionie.
+  lead: `Nasza pracownia stoi przy ul. Batorego 92F. Tu powstaje projekt, tu tniemy i okleinujemy płytę, stąd wyjeżdża ekipa montażowa. Nie zlecamy nic na zewnątrz, więc przez cały czas wiadomo, kto za co odpowiada i kiedy kuchnia będzie gotowa.`,
 
-Realizujemy projekty w całym mieście. W kamienicach Starówki i Bydgoskiego Przedmieścia pracujemy często z wąskimi pomieszczeniami z lat 30. — zabudowy zachowujemy ze sztukateriami i oryginalnymi futrynami, a wysokie sufity wykorzystujemy montując szafki sięgające do 3 m wysokości. Na osiedlach Rubinkowo, Skarpa i Bielany najczęściej realizujemy kuchnie połączone z salonem (open space) po wyburzeniu ścianki działowej. Nowe inwestycje deweloperskie w dzielnicach Wrzosy, Stawki i JAR otrzymują u nas projekty dopasowane do mieszkań 50-80 m², z optymalizacją przestrzeni przez wysokie zabudowy i wyspy kuchenne.
+  facts: [
+    {
+      title: "Wszystko na jednej hali",
+      body: "Projekt, produkcja i montaż u nas przy Batorego. Bez podwykonawców i bez przerzucania odpowiedzialności między firmami.",
+    },
+    {
+      title: "Pomiar w tym samym tygodniu",
+      body: "W Toruniu zwykle dzień lub dwa od telefonu. Pomiar i wycena nic nie kosztują.",
+    },
+    {
+      title: "4–6 tygodni od umowy",
+      body: "Tyle trwa standardowa kuchnia. Przy frontach lakierowanych 6–8 tygodni.",
+    },
+  ],
 
-Dla klientów z Torunia oferujemy bezpłatny pomiar w tym samym tygodniu — najczęściej dzień lub dwa od telefonicznego ustalenia terminu. Montaż w mieszkaniach na wyższych piętrach bez windy realizujemy bez dopłat (dotyczy to wielu kamienic toruńskiej Starówki i Bydgoskiego). Pełna realizacja od podpisania umowy do montażu trwa średnio 4-6 tygodni dla kuchni standardowych, 6-8 tygodni dla nietypowych projektów z elementami lakierowanymi.`;
+  body: `Toruńskie mieszkania rzadko bywają typowe. W kamienicach na Starówce i Bydgoskim Przedmieściu pracujemy z wąskimi pomieszczeniami z lat 30. — zabudowę dopasowujemy do sztukaterii i oryginalnych futryn, a wysokie sufity wykorzystujemy na szafki sięgające trzech metrów. Na Rubinkowie, Skarpie i Bielanach najczęściej łączymy kuchnię z salonem po wyburzeniu ścianki działowej. Na Wrzosach, Stawkach i JAR-ze projektujemy pod mieszkania 50–80 m², gdzie liczy się każdy centymetr: wysoka zabudowa do sufitu i wyspa, która jednocześnie służy za stół. Montaż na wyższym piętrze bez windy nie jest u nas dopłatą — w toruńskich kamienicach to norma.`,
+};
 
 export const cities: City[] = [
   {
@@ -36,7 +51,7 @@ export const cities: City[] = [
     heroImage:
       "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/bydgoszcz-opt.webp",
     localContentHeading: "Kuchnie na wymiar w Bydgoszczy — dojazd i realizacja",
-    localContent: `Bydgoszcz to drugie po Toruniu największe miasto, w którym regularnie realizujemy kuchnie na wymiar — dojazd na pomiar z naszej pracowni przy ul. Polnej w Toruniu zajmuje około 45 minut autostradą A1 i S5. Obsługujemy wszystkie dzielnice mieszkaniowe Bydgoszczy bez doliczania opłat za dojazd do standardowej wyceny.
+    localContent: `Bydgoszcz to drugie po Toruniu największe miasto, w którym regularnie realizujemy kuchnie na wymiar — dojazd na pomiar z naszej pracowni przy ul. Batorego w Toruniu zajmuje około 45 minut autostradą A1 i S5. Obsługujemy wszystkie dzielnice mieszkaniowe Bydgoszczy bez doliczania opłat za dojazd do standardowej wyceny.
 
 Nowoczesne osiedla w Fordonie (Bohaterów, Tatrzańskie, Bajka) to najczęstsza lokalizacja naszych realizacji w Bydgoszczy. W mieszkaniach 50-70 m² kluczowa jest optymalizacja przestrzeni — proponujemy wysokie zabudowy do sufitu, narożne carousele typu Le Mans i wąskie cargo. Apartamentowce na Bartodziejach i Czyżkówku oraz mieszkania na Wyżynach i Szwederowie częściej dostają u nas projekty kuchni otwartych na salon ze wspólną wyspą. W kamienicach Śródmieścia i wokół Placu Wolności (ul. Gdańska, Cieszkowskiego) pracujemy z wysokimi pomieszczeniami i nietypowymi rzutami — zabudowy meblowe sięgają częściowo sufitu, zachowując otwartą przestrzeń na żyrandol lub dekoracyjne półki.
 

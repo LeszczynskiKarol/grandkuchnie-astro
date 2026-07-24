@@ -9,14 +9,13 @@ import ProcessSection from '../components/ProcessSection.astro';
 import ServiceAreasSection from '../components/ServiceAreasSection.astro';
 import GoogleReviewsSection from '../components/GoogleReviewsSection.astro';
 import CookieConsent from '../components/CookieConsent.astro';
-import { torunHeading, torunLocalContent } from '../data/cities';
+import { torun } from '../data/cities';
 
 // Toruń jest siedzibą firmy — to strona główna ma rankować na „kuchnie na wymiar toruń",
 // nie osobna podstrona miejska (patrz komentarz w src/data/cities.ts).
 const title = 'Kuchnie na wymiar Toruń — pracownia Grand Kuchnie';
 const description = 'Kuchnie na wymiar z własnej pracowni w Toruniu — projekt, produkcja i montaż. Realizacje w Bydgoszczy, Włocławku, Grudziądzu i Inowrocławiu. Darmowa wycena.';
 
-const torunParagraphs = torunLocalContent.split('\n\n');
 ---
 
 <Layout title={title} description={description}>
@@ -55,15 +54,32 @@ const torunParagraphs = torunLocalContent.split('\n\n');
     <ProcessSection />
 
     <!-- Treść lokalna dla Torunia — przeniesiona z /miasto/torun/, które przekierowuje tutaj -->
-    <section id="kuchnie-na-wymiar-torun" class="py-16 bg-gray-50 scroll-mt-24">
-      <div class="max-w-4xl mx-auto px-4">
-        <h2 class="text-3xl font-bold text-secondary mb-8">
-          {torunHeading}
-        </h2>
-        <div class="prose prose-lg max-w-none text-gray-700">
-          {torunParagraphs.map((paragraph) => (
-            <p class="mb-5">{paragraph}</p>
+    <section id="kuchnie-na-wymiar-torun" class="py-24 bg-gray-50 scroll-mt-24">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="max-w-3xl mx-auto text-center mb-16">
+          <h2 class="text-4xl font-bold text-secondary mb-6">
+            {torun.heading}
+          </h2>
+          <p class="text-xl text-gray-600">
+            {torun.lead}
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+          {torun.facts.map((fact) => (
+            <div class="bg-white p-8 rounded-2xl h-full border-t-4 border-primary">
+              <h3 class="text-lg font-bold text-secondary mb-3">{fact.title}</h3>
+              <p class="text-gray-600">{fact.body}</p>
+            </div>
           ))}
+        </div>
+
+        <div class="max-w-3xl mx-auto">
+          <p class="text-lg text-gray-700 leading-relaxed">{torun.body}</p>
+          <div class="mt-8 flex flex-col sm:flex-row gap-4">
+            <a href="/kontakt/" class="btn btn-primary">Umów bezpłatny pomiar</a>
+            <a href="/realizacje/" class="btn btn-outline">Zobacz nasze realizacje</a>
+          </div>
         </div>
       </div>
     </section>

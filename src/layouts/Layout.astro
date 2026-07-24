@@ -56,7 +56,7 @@ const localBusinessSchema = {
   // https://developers.google.com/search/docs/appearance/structured-data/review-snippet
   address: {
     '@type': 'PostalAddress',
-    streetAddress: 'ul. Polna 134, hala nr 3',
+    streetAddress: 'ul. Batorego 92F',
     addressLocality: 'Toruń',
     addressRegion: 'kujawsko-pomorskie',
     postalCode: '87-100',
@@ -64,8 +64,9 @@ const localBusinessSchema = {
   },
   geo: {
     '@type': 'GeoCoordinates',
-    latitude: 53.0378558,
-    longitude: 18.6448634,
+    // Współrzędne wizytówki Google Grand Kuchnie (Places API, 2026-07-25).
+    latitude: 53.0387476,
+    longitude: 18.6247926,
   },
   areaServed: [
     'Toruń',
