@@ -1,7 +1,9 @@
 ---
 // src/components/Footer.astro GRAND KUCHNIE
 import { services } from '../data/services';
-import { cities } from '../data/cities';
+import { serviceAreas, areaHref } from '../data/cities';
+
+const footerAreas = serviceAreas.filter((area) => !area.isMain);
 
 const currentYear = new Date().getFullYear();
 ---
@@ -13,16 +15,17 @@ const currentYear = new Date().getFullYear();
       <div>
         <h3 class="text-xl font-bold mb-4 text-primary">Grand Kuchnie</h3>
         <p class="text-gray-300 mb-4">
-          Kuchnia na wymiar - projektowanie, produkcja, montaż. Marka jest własnością 
-          <a 
-            href="https://www.meblesystem.pl" 
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-primary hover:text-primary/80 font-semibold underline underline-offset-2 decoration-primary/50 hover:decoration-primary transition-all"
-          >
-            MebleSystem            
-          </a>.
+          Kuchnia na wymiar - projektowanie, produkcja, montaż. Pracownia i salon
+          przy ul. Polnej 134 w Toruniu, realizacje w całym województwie
+          kujawsko-pomorskim.
         </p>
+        {/*
+          Informacja o właścicielu marki (MebleSystem) była tu jako linkowany,
+          dofollow odnośnik powielony na 26 podstronach — jedyny stały link
+          wychodzący z witryny przy zaledwie 3 domenach odsyłających.
+          Grand Kuchnie ma własną wizytówkę Google, więc rozdzielamy encje.
+          Informacja o właścicielu wraca w treści strony „O nas", gdy powstanie.
+        */}
       </div>
 
       <!-- Usługi -->
@@ -46,13 +49,13 @@ const currentYear = new Date().getFullYear();
       <div>
         <h3 class="text-lg font-bold mb-4">Obsługiwane miasta</h3>
         <ul class="space-y-2">
-          {cities.map((city) => (
+          {footerAreas.map((area) => (
             <li>
-              <a 
-                href={`/miasto/${city.slug}/`}
+              <a
+                href={areaHref(area)}
                 class="text-gray-300 hover:text-primary transition-colors"
               >
-                {city.name}
+                {area.name}
               </a>
             </li>
           ))}
@@ -87,6 +90,14 @@ const currentYear = new Date().getFullYear();
             <span class="text-gray-300">
               ul. Polna 134, hala nr 3<br />87-100 Toruń
             </span>            
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-primary mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span class="text-gray-300">
+              pon.–pt. 7:30–16:30<br />sob.–niedz. nieczynne
+            </span>
           </li>
           <li class="flex items-start gap-3">
             <svg class="w-5 h-5 text-primary mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">

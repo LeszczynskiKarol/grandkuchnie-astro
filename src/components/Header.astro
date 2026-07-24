@@ -1,7 +1,7 @@
 ---
 // Header.astro - statyczny nagłówek
 import { services } from '../data/services';
-import { cities as cityData } from '../data/cities';
+import { serviceAreas, areaHref } from '../data/cities';
 
 const menuItems = [
   { href: '/', label: 'Strona główna' },
@@ -10,7 +10,9 @@ const menuItems = [
   { href: '/kontakt/', label: 'Kontakt' },
 ];
 
-const cities = ['Bydgoszcz', 'Toruń', 'Włocławek', 'Inowrocław', 'Grudziądz'];
+// Jedno źródło dla obu menu (desktop + mobile). Wcześniej desktop czytał z `cities`,
+// a mobile miał osobną, ręcznie wpisaną tablicę nazw — dwa źródła się rozjeżdżały.
+const navAreas = serviceAreas.filter((area) => !area.isMain);
 ---
 
 <header class="navbar bg-base-100 shadow-sm fixed top-0 z-50">
@@ -28,7 +30,7 @@ const cities = ['Bydgoszcz', 'Toruń', 'Włocławek', 'Inowrocław', 'Grudziądz
           Grand Kuchnie
         </span>
         <span class="text-xs text-gray-600 leading-tight text-center">
-          by MebleSystem
+          Toruń
         </span>
       </div>
     </a>
@@ -54,10 +56,10 @@ const cities = ['Bydgoszcz', 'Toruń', 'Włocławek', 'Inowrocław', 'Grudziądz
         <details>
           <summary class="text-secondary hover:text-secondary">Miasta</summary>
           <ul class="bg-base-100 rounded-t-none p-2 w-48 z-50 shadow-lg">
-            {cityData.map((city) => (
+            {navAreas.map((area) => (
               <li>
-                <a href={`/miasto/${city.slug}/`} class="text-secondary hover:text-primary">
-                  {city.name}
+                <a href={areaHref(area)} class="text-secondary hover:text-primary">
+                  {area.name}
                 </a>
               </li>
             ))}
@@ -106,11 +108,9 @@ const cities = ['Bydgoszcz', 'Toruń', 'Włocławek', 'Inowrocław', 'Grudziądz
         <li class="menu-title pt-4">
           <span>Miasta</span>
         </li>
-        {cities.map((city) => (
+        {navAreas.map((area) => (
           <li>
-            <a href={`/miasto/${city.toLowerCase().replace(/ą/g, 'a').replace(/ń/g, 'n').replace(/ł/g, 'l')}/`}>
-              {city}
-            </a>
+            <a href={areaHref(area)}>{area.name}</a>
           </li>
         ))}
         <li class="pt-4">

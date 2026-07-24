@@ -34,7 +34,26 @@ const localBusinessSchema = {
   url: 'https://www.grandkuchnie.pl',
   telephone: '+48576376567',
   email: 'kontakt@grandkuchnie.pl',
-  priceRange: '$$',
+  // Wizytówka Google Grand Kuchnie — wiąże witrynę z własną encją w Google
+  // zamiast pozostawiać dopasowanie zgadywaniu.
+  // place_id ChIJdwELFE41A0cRgSWfA_vdwuo / CID 16916327220524295553,
+  // zweryfikowane przez Places API (New) 2026-07-25.
+  // TODO(Karol): dopisz tu własny profil Facebook/Instagram Grand Kuchnie, gdy powstanie.
+  sameAs: ['https://www.google.com/maps?cid=16916327220524295553'],
+  // Godziny z wizytówki Google (stan 2026-07-25). Muszą zgadzać się z tym,
+  // co widać w stopce — schema bez odpowiednika w treści to sygnał ryzyka.
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '07:30',
+      closes: '16:30',
+    },
+  ],
+  // NIE dodawaj tu aggregateRating ani review: Google od 2019 nie pokazuje
+  // "self-serving reviews" — encja recenzująca samą siebie jest niekwalifikowalna
+  // do gwiazdek przy LocalBusiness/Organization. Gwiazdki biorą się z wizytówki.
+  // https://developers.google.com/search/docs/appearance/structured-data/review-snippet
   address: {
     '@type': 'PostalAddress',
     streetAddress: 'ul. Polna 134, hala nr 3',

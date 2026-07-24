@@ -1,0 +1,76 @@
+{
+  "fetchedAt": "2026-07-24T23:10:24.718Z",
+  "placeId": "ChIJdwELFE41A0cRgSWfA_vdwuo",
+  "name": "Grand Kuchnie - kuchnie na wymiar",
+  "address": "Stefana Batorego 92e, 87-100 Toruń, Polska",
+  "phone": "576 376 567",
+  "googleMapsUri": "https://maps.google.com/?cid=16916327220524295553&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+  "openingHours": [
+    "poniedziałek: 07:30–16:30",
+    "wtorek: 07:30–16:30",
+    "środa: 07:30–16:30",
+    "czwartek: 07:30–16:30",
+    "piątek: 07:30–16:30",
+    "sobota: Zamknięte",
+    "niedziela: Zamknięte"
+  ],
+  "rating": 4.8,
+  "userRatingCount": 5,
+  "reviews": [
+    {
+      "id": "places/ChIJdwELFE41A0cRgSWfA_vdwuo/reviews/Ci9DQUlRQUNvZENodHljRjlvT25kVVNWWkNjWFV3Tm5CemNYcGxWa0ZNWTJNdFIxRRAB",
+      "author": "Ela",
+      "authorUri": "https://www.google.com/maps/contrib/108501039041455318526/reviews",
+      "authorPhoto": "https://lh3.googleusercontent.com/a/ACg8ocJv9nAZiFHl3iPye80uxTl-ydynqZapYwPosREqCEweyQqJEQ=s128-c0x00000000-cc-rp-mo-ba2",
+      "rating": 4,
+      "text": "Doceniam bardzo solidny montaż. Dbałość o każdy detal.  Ale czasu na omówienie projektu mogło być więcej, np. zaskoczył wysoki cokół. Szkoda, że  w przypadku wyboru blatu spoza katalogu trzeba samemu koordynować remont. I dochodzą dodatkowe koszty montażu sprzętu.\nBardzo rozsądna cena mebli.",
+      "publishTime": "2026-04-20T08:17:14.377124150Z",
+      "relativeTime": "3 miesiące temu",
+      "googleMapsUri": "https://www.google.com/maps/reviews/data=!4m6!14m5!1m4!2m3!1sCi9DQUlRQUNvZENodHljRjlvT25kVVNWWkNjWFV3Tm5CemNYcGxWa0ZNWTJNdFIxRRAB!2m1!1s0x4703354e140b0177:0xeac2ddfb039f2581"
+    },
+    {
+      "id": "places/ChIJdwELFE41A0cRgSWfA_vdwuo/reviews/Ci9DQUlRQUNvZENodHljRjlvT25WaVZGbFRTblZmWjNCdVVubHNTV2xFV0hoUU5tYxAB",
+      "author": "Marek Cygan",
+      "authorUri": "https://www.google.com/maps/contrib/105613795627823769077/reviews",
+      "authorPhoto": "https://lh3.googleusercontent.com/a/ACg8ocL09CNri3KuBRmfNkyNQlE6CHlOZ8Kp_p-Rc-HEmYW8SAMCxQ=s128-c0x00000000-cc-rp-mo",
+      "rating": 5,
+      "text": "Gorąco polecam, drobiazgowo przygotowany projekt i świetne wykonanie!",
+      "publishTime": "2026-02-04T14:42:05.439483054Z",
+      "relativeTime": "5 miesięcy temu",
+      "googleMapsUri": "https://www.google.com/maps/reviews/data=!4m6!14m5!1m4!2m3!1sCi9DQUlRQUNvZENodHljRjlvT25WaVZGbFRTblZmWjNCdVVubHNTV2xFV0hoUU5tYxAB!2m1!1s0x4703354e140b0177:0xeac2ddfb039f2581"
+    },
+    {
+      "id": "places/ChIJdwELFE41A0cRgSWfA_vdwuo/reviews/Ci9DQUlRQUNvZENodHljRjlvT2xKcE1uQTNOWFJwUWw5c2FXcFZlVGxSZGpZemRHYxAB",
+      "author": "Ola Jercha",
+      "authorUri": "https://www.google.com/maps/contrib/117501901163062009972/reviews",
+      "authorPhoto": "https://lh3.googleusercontent.com/a/ACg8ocIwJt1eeOAUnBnCyYV5SLHWESgv_y0k31E0upZ2QjKqsMeteg=s128-c0x00000000-cc-rp-mo",
+      "rating": 5,
+      "text": "Profesjonalna obsługa, super kontakt, jak najbardziej polecam! Szybko sprawnie i terminowo",
+      "publishTime": "2026-03-27T08:59:23.072399708Z",
+      "relativeTime": "3 miesiące temu",
+      "googleMapsUri": "https://www.google.com/maps/reviews/data=!4m6!14m5!1m4!2m3!1sCi9DQUlRQUNvZENodHljRjlvT2xKcE1uQTNOWFJwUWw5c2FXcFZlVGxSZGpZemRHYxAB!2m1!1s0x4703354e140b0177:0xeac2ddfb039f2581"
+    },
+    {
+      "id": "places/ChIJdwELFE41A0cRgSWfA_vdwuo/reviews/Ci9DQUlRQUNvZENodHljRjlvT2kxd1YwTjBORTUyTVU4d1VWaGZYMmgwUzFkaFJYYxAB",
+      "author": "Wirginia Wodziak",
+      "authorUri": "https://www.google.com/maps/contrib/116466541125559666887/reviews",
+      "authorPhoto": "https://lh3.googleusercontent.com/a/ACg8ocL3HqkDAzMusPhzeME3HYgjZtznu7TfXgIX0jH3aQ_QlJZu6Q=s128-c0x00000000-cc-rp-mo",
+      "rating": 5,
+      "text": "Wszystkie meble wykonane terminowo i profesjonalnie! Polecam!",
+      "publishTime": "2025-12-11T10:37:41.511671690Z",
+      "relativeTime": "7 miesięcy temu",
+      "googleMapsUri": "https://www.google.com/maps/reviews/data=!4m6!14m5!1m4!2m3!1sCi9DQUlRQUNvZENodHljRjlvT2kxd1YwTjBORTUyTVU4d1VWaGZYMmgwUzFkaFJYYxAB!2m1!1s0x4703354e140b0177:0xeac2ddfb039f2581"
+    },
+    {
+      "id": "places/ChIJdwELFE41A0cRgSWfA_vdwuo/reviews/Ci9DQUlRQUNvZENodHljRjlvT21GWmRGaERkVlYzYW1WWU0zVlNjMTl0V21OdlNsRRAB",
+      "author": "Daria Gładka",
+      "authorUri": "https://www.google.com/maps/contrib/106485839041761853402/reviews",
+      "authorPhoto": "https://lh3.googleusercontent.com/a/ACg8ocJ_J2bKZG6pa49Pe8xq5EVBptzo-zab0OzRXnBVoVf3q-NOsA=s128-c0x00000000-cc-rp-mo",
+      "rating": 5,
+      "text": "",
+      "publishTime": "2026-05-29T07:10:32.314880982Z",
+      "relativeTime": "miesiąc temu",
+      "googleMapsUri": "https://www.google.com/maps/reviews/data=!4m6!14m5!1m4!2m3!1sCi9DQUlRQUNvZENodHljRjlvT21GWmRGaERkVlYzYW1WWU0zVlNjMTl0V21OdlNsRRAB!2m1!1s0x4703354e140b0177:0xeac2ddfb039f2581"
+    }
+  ]
+}

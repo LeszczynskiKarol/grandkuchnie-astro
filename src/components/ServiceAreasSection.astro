@@ -1,6 +1,6 @@
 ---
 // ServiceAreasSection.astro - Gdzie działamy?
-import { serviceAreas } from '../data/cities';
+import { serviceAreas, areaHref } from '../data/cities';
 
 // Rozdziel główny region od miast
 const mainRegion = serviceAreas.find(area => area.isMain);
@@ -17,7 +17,7 @@ const cityAreas = serviceAreas.filter(area => !area.isMain);
     <div class="md:hidden space-y-4">
       {cityAreas.map((area) => (
         <a 
-          href={`/miasto/${area.slug}/`}
+          href={areaHref(area)}
           class="group bg-gray-50 rounded-2xl p-6 hover:bg-gray-100 hover:shadow-lg transition-all duration-300 cursor-pointer block"
         >
           <div class="flex items-start gap-4">
@@ -74,7 +74,7 @@ const cityAreas = serviceAreas.filter(area => !area.isMain);
       <!-- Miasta (klikalne - cała karta) -->
       {cityAreas.map((area) => (
         
-        <a href={`/miasto/${area.slug}/`}
+        <a href={areaHref(area)}
           class="relative overflow-hidden rounded-2xl transition-all duration-500 ease-in-out group w-1/6 hover:w-3/6 cursor-pointer block"
         >
           <div class="absolute inset-0">

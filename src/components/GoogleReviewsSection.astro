@@ -1,47 +1,38 @@
 ---
 // GoogleReviewsSection.astro
+//
+// Dane pochodzą z wizytówki Google *Grand Kuchnie* (place_id ChIJdwELFE41A0cRgSWfA_vdwuo),
+// pobierane przez Places API (New) skryptem `npm run reviews:refresh`.
+// Wcześniej były tu ręcznie wklejone opinie wizytówki MebleSystem — trzy z nich
+// dosłownie nazywały tamtą firmę, a ocena 4,9 / 109 opinii też należała do niej.
+//
+// ⚠ ODŚWIEŻANIE JEST OBOWIĄZKOWE, NIE OPCJONALNE.
+// Zasady Places API zabraniają cache'owania i przechowywania treści; jedynym polem
+// zwolnionym z zakazu jest place_id (można trzymać bezterminowo). Ten JSON to snapshot,
+// więc musi być regularnie odświeżany — inaczej łamiemy warunki i pokazujemy nieaktualną
+// ocenę. W pełni zgodne alternatywy, jeśli chcesz uciec od snapshotu:
+//   a) fetch po stronie klienta przez własny proxy (klucz zostaje na serwerze),
+//   b) widget Place Details z Places UI Kit — Google sam ogarnia atrybucję i świeżość.
+// https://developers.google.com/maps/documentation/places/web-service/policies
 
-const reviews = [
-  {
-    id: 1,
-    author_name: 'Sylwia',
-    rating: 5,
-    text: 'Na firmę Meble System zdecydowałam się na podstawie wielu pozytywnych opinii w internecie i to był trafiony strzał. Pan Arek od początku projektu szaf wnękowych służył pomocą i radą. Meble zostały wykonane solidnie, zgodnie z projektem i w ustalonym terminie. Montaż przebiegł sprawnie i profesjonalnie. Polecam serdecznie!',
-    date: '18.05.2025',
-  },
-  {
-    id: 2,
-    author_name: 'Agnieszka Gruszczyńska',
-    rating: 5,
-    text: 'Współpraca z firmą Meble System od samego początku była bardzo dobra. Pan Jacek doradzał na każdym etapie, świetny kontakt telefoniczny i mailowy, wykonanie mebli zgodne z projektem, montaż szybki i profesjonalny. Meble są piękne i funkcjonalne. Z pewnością będziemy wracać przy kolejnych zamówieniach!',
-    date: '2.08.2024',
-  },
-  {
-    id: 3,
-    author_name: 'Marta Dobrogoszcz',
-    rating: 5,
-    text: 'Firma znaleziona przez internet. Zdecydowaliśmy się dzięki bardzo dobrym opiniom. I był to strzał w dziesiątkę. Cała współpraca przebiegała sprawnie i profesjonalnie. Kuchnia wyszła dokładnie taka jak sobie wymarzyliśmy. Jakość wykonania i materiałów na najwyższym poziomie. Gorąco polecam!',
-    date: '10.02.2025',
-  },
-  {
-    id: 4,
-    author_name: 'Julia',
-    rating: 5,
-    text: 'Jesteśmy ogromnie zadowoleni z realizacji wykonanej przez firmę Meble System. Przez cały proces, od wyceny do ostatecznego projektu, przeprowadził nas Pan Jacek, który był bardzo pomocny i cierpliwy. Kuchnia jest piękna, funkcjonalna i wykonana z dbałością o każdy detal.',
-    date: '17.11.2024',
-  },
-  {
-    id: 5,
-    author_name: 'Magdalena Kowalska',
-    rating: 5,
-    text: 'Polecam wszystkim tę firmę, od pierwszego spotkania Pan Jacek służył mi pomocą i radą, a przede wszystkim wykazał zainteresowanie przyjęciem niewielkiego zlecenia jakim była zabudowa lodówki. Wykonanie perfekcyjne, terminowość wzorowa. Na pewno wrócę z większym projektem!',
-    date: '1.08.2025',
-  },
-];
+import placeData from '../data/google-reviews.json';
 
-const totalRating = 4.9;
-const totalReviews = 109;
-const GOOGLE_REVIEWS_URL = "https://www.google.com/search?sca_esv=5a21cf7e0cf15b69&rlz=1C1CHBD_plPL1113PL1113&sxsrf=AE3TifM4RGOPsLctWrlMxh_8KK4BX8u22A:1765272925518&q=meble+system+toru%C5%84&si=AMgyJEtREmoPL4P1I5IDCfuA8gybfVI2d5Uj7QMwYCZHKDZ-E7k8aFc4NE4UCL0pCLLpwTG_BBlP7SEuQFH3WJ3oKTQtrDhMxoJfYS-YuOQJCQBtT_C_Otg%3D&uds=AOm0WdHmOFDPI7FIyNbJw6Zwd9kSwBYjkPlvo4NMOB_j9xczTSYgHjLy1I5mFRckber6XxeNwklzkIsYUrcnFRJnHvoqTAT5JgcAdq7jOVx-xzsnmExyXXY&sa=X&sqi=2&ved=2ahUKEwjnv6CNmrCRAxXKQfEDHc-QEYUQ3PALegQIGxAE&biw=1068&bih=449&dpr=1.8";
+const reviews = placeData.reviews ?? [];
+
+const TOTAL_RATING: number | null = placeData.rating ?? null;
+const TOTAL_REVIEWS: number | null = placeData.userRatingCount ?? null;
+const hasAggregate = TOTAL_RATING !== null && TOTAL_REVIEWS !== null && reviews.length > 0;
+
+// Stabilny link do wizytówki. NIE podmieniaj go na URL skopiowany z paska adresu
+// Google — takie linki niosą parametry sesyjne (sca_esv, sxsrf, ved, rlz, biw, bih,
+// dpr), które wygasają. Ta forma jest trwała.
+const GOOGLE_REVIEWS_URL =
+  placeData.googleMapsUri ?? 'https://www.google.com/maps?cid=16916327220524295553';
+
+// Google wymaga daty publikacji przy wyświetlaniu opinii — pokazujemy opis względny
+// („3 miesiące temu") z API, z datą bezwzględną w atrybucie datetime.
+const formatDate = (iso: string | null) =>
+  iso ? new Date(iso).toLocaleDateString('pl-PL') : '';
 
 const TRUNCATE_LENGTH_DESKTOP = 120;
 const TRUNCATE_LENGTH_MOBILE = 200;
@@ -54,43 +45,54 @@ const TRUNCATE_LENGTH_MOBILE = 200;
     </h2>
     
     <div>
-      <!-- Rating summary -->
-      <div class="text-center mb-8">
-        <div class="text-4xl font-bold text-primary">
-          {totalRating.toFixed(1)}
+      <!-- Rating summary — tylko gdy znamy liczby z wizytówki Grand Kuchnie -->
+      {hasAggregate && (
+        <div class="text-center mb-8">
+          <div class="text-4xl font-bold text-primary">
+            {TOTAL_RATING!.toFixed(1)}
+          </div>
+          <div class="flex justify-center gap-1 my-2">
+            {[...Array(5)].map((_, i) => (
+              <svg
+                class={`w-6 h-6 ${i < Math.round(TOTAL_RATING!) ? 'text-yellow-400 fill-current' : 'text-gray-300'}`}
+                viewBox="0 0 24 24"
+              >
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+              </svg>
+            ))}
+          </div>
+          <div class="flex items-center justify-center gap-2 text-gray-600">
+            <span>Na podstawie {TOTAL_REVIEWS} opinii</span>
+            <img
+              src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png"
+              alt="Google"
+              class="h-5"
+            />
+          </div>
         </div>
-        <div class="flex justify-center gap-1 my-2">
-          {[...Array(5)].map((_, i) => (
-            <svg
-              class={`w-6 h-6 ${i < Math.round(totalRating) ? 'text-yellow-400 fill-current' : 'text-gray-300'}`}
-              viewBox="0 0 24 24"
-            >
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-            </svg>
-          ))}
-        </div>
-        <div class="flex items-center justify-center gap-2 text-gray-600">
-          <span>Na podstawie {totalReviews} opinii</span>
-          <img 
-            src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" 
-            alt="Google" 
-            class="h-5"
-          />
-        </div>
-      </div>
+      )}
 
-      <!-- Desktop - all reviews in one row -->
-      <div class="hidden lg:grid grid-cols-5 gap-4 mb-8">
+      <!-- Desktop - all reviews in one row (liczba kolumn = liczba opinii) -->
+      <div
+        class="hidden lg:grid gap-4 mb-8"
+        style={`grid-template-columns: repeat(${reviews.length}, minmax(0, 1fr));`}
+      >
         {reviews.map((review) => (
           <div class="p-4 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col" data-review-id={review.id}>
             <div class="flex items-center gap-2 mb-3">
-              <div class="w-9 h-9 bg-primary/10 rounded-full flex items-center justify-center">
-                <span class="text-primary font-semibold text-sm">
-                  {review.author_name.charAt(0)}
-                </span>
+              <div class="w-9 h-9 rounded-full overflow-hidden bg-primary/10 flex items-center justify-center shrink-0">
+                {review.authorPhoto ? (
+                  <img src={review.authorPhoto} alt={review.author} loading="lazy" width="36" height="36" class="w-full h-full object-cover" />
+                ) : (
+                  <span class="text-primary font-semibold text-sm">{review.author.charAt(0)}</span>
+                )}
               </div>
               <div class="flex-1 min-w-0">
-                <h3 class="font-semibold text-sm truncate">{review.author_name}</h3>
+                <h3 class="font-semibold text-sm truncate">
+                  {review.authorUri ? (
+                    <a href={review.authorUri} target="_blank" rel="noopener noreferrer nofollow" class="hover:text-primary">{review.author}</a>
+                  ) : review.author}
+                </h3>
                 <div class="flex gap-0.5">
                   {[...Array(5)].map((_, i) => (
                     <svg
@@ -124,7 +126,11 @@ const TRUNCATE_LENGTH_MOBILE = 200;
               )}
             </div>
             
-            <p class="mt-3 text-xs text-gray-400">{review.date}</p>
+            <p class="mt-3 text-xs text-gray-400">
+              <a href={review.googleMapsUri ?? GOOGLE_REVIEWS_URL} target="_blank" rel="noopener noreferrer nofollow" class="hover:text-primary">
+                <time datetime={review.publishTime ?? undefined}>{review.relativeTime ?? formatDate(review.publishTime)}</time>
+              </a>
+            </p>
           </div>
         ))}
       </div>
@@ -134,13 +140,19 @@ const TRUNCATE_LENGTH_MOBILE = 200;
         {reviews.map((review) => (
           <div class="p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300" data-review-id={review.id}>
             <div class="flex items-center gap-4 mb-4">
-              <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
-                <span class="text-primary font-semibold">
-                  {review.author_name.charAt(0)}
-                </span>
+              <div class="w-10 h-10 rounded-full overflow-hidden bg-primary/10 flex items-center justify-center shrink-0">
+                {review.authorPhoto ? (
+                  <img src={review.authorPhoto} alt={review.author} loading="lazy" width="40" height="40" class="w-full h-full object-cover" />
+                ) : (
+                  <span class="text-primary font-semibold">{review.author.charAt(0)}</span>
+                )}
               </div>
               <div class="flex-1">
-                <h3 class="font-semibold">{review.author_name}</h3>
+                <h3 class="font-semibold">
+                  {review.authorUri ? (
+                    <a href={review.authorUri} target="_blank" rel="noopener noreferrer nofollow" class="hover:text-primary">{review.author}</a>
+                  ) : review.author}
+                </h3>
                 <div class="flex gap-1">
                   {[...Array(5)].map((_, i) => (
                     <svg
@@ -174,7 +186,11 @@ const TRUNCATE_LENGTH_MOBILE = 200;
               )}
             </div>
             
-            <p class="mt-3 text-sm text-gray-400">{review.date}</p>
+            <p class="mt-3 text-sm text-gray-400">
+              <a href={review.googleMapsUri ?? GOOGLE_REVIEWS_URL} target="_blank" rel="noopener noreferrer nofollow" class="hover:text-primary">
+                <time datetime={review.publishTime ?? undefined}>{review.relativeTime ?? formatDate(review.publishTime)}</time>
+              </a>
+            </p>
           </div>
         ))}
       </div>

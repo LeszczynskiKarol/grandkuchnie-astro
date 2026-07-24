@@ -12,22 +12,21 @@ export interface City {
   localContent: string;
 }
 
-export const cities: City[] = [
-  {
-    slug: "torun",
-    name: "Toruń",
-    nameLocative: "Toruniu",
-    heroTitle: "Kuchnia na wymiar - Toruń",
-    heroSubtitle: "Projekt, produkcja, montaż",
-    heroImage:
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/torun-opt.webp",
-    localContentHeading: "Kuchnie na wymiar w Toruniu — jak pracujemy lokalnie",
-    localContent: `Pracownia Grand Kuchnie znajduje się w Toruniu przy ul. Polnej 134 (hala nr 3) — to nasza siedziba, salon i zakład produkcyjny w jednym miejscu. Wszystkie meble kuchenne powstają u nas na hali, dzięki czemu kontrolujemy każdy etap produkcji i mamy najkrótszy czas realizacji w regionie.
+// Toruń to siedziba firmy, nie „obsługiwane miasto" — treść lokalna żyje na stronie
+// głównej, a /miasto/torun/ przekierowuje na `/` (301 w CloudFront Function).
+// Powód: strona główna i strona miejska kanibalizowały się na „kuchnie na wymiar toruń"
+// (GSC 28 dni: `/` poz. 13,9 przy 56 wyśw. vs `/miasto/torun/` poz. 41,0 przy 55 wyśw.).
+// Dlatego tego wpisu NIE MA w tablicy `cities` — jej jedynym zadaniem jest napędzanie
+// getStaticPaths w src/pages/miasto/[slug].astro.
+export const torunHeading = "Kuchnie na wymiar w Toruniu — pracownia przy ul. Polnej 134";
+
+export const torunLocalContent = `Pracownia Grand Kuchnie znajduje się w Toruniu przy ul. Polnej 134 (hala nr 3) — to nasza siedziba, salon i zakład produkcyjny w jednym miejscu. Wszystkie meble kuchenne powstają u nas na hali, dzięki czemu kontrolujemy każdy etap produkcji i mamy najkrótszy czas realizacji w regionie.
 
 Realizujemy projekty w całym mieście. W kamienicach Starówki i Bydgoskiego Przedmieścia pracujemy często z wąskimi pomieszczeniami z lat 30. — zabudowy zachowujemy ze sztukateriami i oryginalnymi futrynami, a wysokie sufity wykorzystujemy montując szafki sięgające do 3 m wysokości. Na osiedlach Rubinkowo, Skarpa i Bielany najczęściej realizujemy kuchnie połączone z salonem (open space) po wyburzeniu ścianki działowej. Nowe inwestycje deweloperskie w dzielnicach Wrzosy, Stawki i JAR otrzymują u nas projekty dopasowane do mieszkań 50-80 m², z optymalizacją przestrzeni przez wysokie zabudowy i wyspy kuchenne.
 
-Dla klientów z Torunia oferujemy bezpłatny pomiar w tym samym tygodniu — najczęściej dzień lub dwa od telefonicznego ustalenia terminu. Montaż w mieszkaniach na wyższych piętrach bez windy realizujemy bez dopłat (dotyczy to wielu kamienic toruńskiej Starówki i Bydgoskiego). Pełna realizacja od podpisania umowy do montażu trwa średnio 4-6 tygodni dla kuchni standardowych, 6-8 tygodni dla nietypowych projektów z elementami lakierowanymi.`,
-  },
+Dla klientów z Torunia oferujemy bezpłatny pomiar w tym samym tygodniu — najczęściej dzień lub dwa od telefonicznego ustalenia terminu. Montaż w mieszkaniach na wyższych piętrach bez windy realizujemy bez dopłat (dotyczy to wielu kamienic toruńskiej Starówki i Bydgoskiego). Pełna realizacja od podpisania umowy do montażu trwa średnio 4-6 tygodni dla kuchni standardowych, 6-8 tygodni dla nietypowych projektów z elementami lakierowanymi.`;
+
+export const cities: City[] = [
   {
     slug: "bydgoszcz",
     name: "Bydgoszcz",
@@ -104,7 +103,16 @@ export interface ServiceArea {
   slug: string;
   isMain?: boolean;
   description?: string;
+  /** Nadpisuje domyślne `/miasto/<slug>/`. Używane dla Torunia, który nie ma
+   *  własnej podstrony — jego treść siedzi na stronie głównej. */
+  href?: string;
 }
+
+/** Jedyne miejsce, które decyduje dokąd prowadzi link do obszaru działania.
+ *  Header, Footer i ServiceAreasSection muszą używać tego helpera, żeby nie
+ *  powstał link do nieistniejącego /miasto/torun/. */
+export const areaHref = (area: Pick<ServiceArea, "slug" | "href">): string =>
+  area.href ?? `/miasto/${area.slug}/`;
 
 export const serviceAreas: ServiceArea[] = [
   {
@@ -123,6 +131,8 @@ export const serviceAreas: ServiceArea[] = [
     image:
       "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/torun-opt.webp",
     slug: "torun",
+    // Siedziba — treść lokalna jest na stronie głównej, nie na osobnej podstronie.
+    href: "/#kuchnie-na-wymiar-torun",
   },
   {
     name: "Bydgoszcz",
