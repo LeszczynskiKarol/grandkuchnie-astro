@@ -2,12 +2,14 @@ import { FileText, Plus, X } from "lucide-react";
 import { useRef, useState } from "react";
 import { trackFormSubmission } from "../lib/ga";
 
-// Konfiguracja API i Cloudinary
-const API_ENDPOINT =
-  "https://4xz7pkbd51.execute-api.eu-north-1.amazonaws.com/prod/send";
+// Backend meblowe-portfolio: SES (kontakt@grandkuchnie.pl + kopia na hub
+// oferta@meblesystem.pl + BCC) + zapis leada w panelu + presign S3 na załączniki
+const CONTACT_ENDPOINT =
+  "https://elk3bw9gj4.execute-api.eu-central-1.amazonaws.com/contact-form";
+const PRESIGN_ENDPOINT =
+  "https://elk3bw9gj4.execute-api.eu-central-1.amazonaws.com/form-presign";
 const DOMAIN = "grandkuchnie.pl";
-const CLOUDINARY_UPLOAD_PRESET = "grandkuchnie";
-const CLOUDINARY_CLOUD_NAME = "drpll3ho2";
+const MAX_FILE_SIZE = 15 * 1024 * 1024; // limit presign w Lambdzie
 
 interface FormData {
   name: string;
@@ -47,6 +49,7 @@ export default function ContactForm() {
   >("idle");
   const [error, setError] = useState("");
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const honeypotRef = useRef<HTMLInputElement>(null);
 
   const formatFileSize = (bytes: number): string => {
     if (bytes < 1024) return bytes + " B";
@@ -64,14 +67,12 @@ export default function ContactForm() {
       return;
     }
 
-    const tooLargeFiles = newFiles.filter(
-      (file) => file.size > 50 * 1024 * 1024
-    );
+    const tooLargeFiles = newFiles.filter((file) => file.size > MAX_FILE_SIZE);
     if (tooLargeFiles.length > 0) {
       setError(
         `Pliki: ${tooLargeFiles
           .map((f) => f.name)
-          .join(", ")} przekraczają limit 50 MB`
+          .join(", ")} przekraczają limit 15 MB`
       );
       return;
     }
@@ -86,25 +87,31 @@ export default function ContactForm() {
     setAttachments((prev) => prev.filter((_, i) => i !== index));
   };
 
-  const uploadToCloudinary = async (file: File): Promise<string> => {
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
+  // Upload przez presign: /form-presign -> PUT na S3 -> {key, name, size}
+  const uploadAttachment = async (
+    file: File
+  ): Promise<{ key: string; name: string; size: number }> => {
+    const presignRes = await fetch(PRESIGN_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        domain: DOMAIN,
+        filename: file.name,
+        contentType: file.type || "application/octet-stream",
+        size: file.size,
+      }),
+    });
+    if (!presignRes.ok) throw new Error("Błąd podczas przygotowania uploadu");
+    const { uploadUrl, key } = await presignRes.json();
 
-    const response = await fetch(
-      `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/auto/upload`,
-      {
-        method: "POST",
-        body: formData,
-      }
-    );
+    const putRes = await fetch(uploadUrl, {
+      method: "PUT",
+      headers: { "Content-Type": file.type || "application/octet-stream" },
+      body: file,
+    });
+    if (!putRes.ok) throw new Error("Błąd podczas uploadu pliku");
 
-    if (!response.ok) {
-      throw new Error("Błąd podczas uploadu pliku");
-    }
-
-    const data = await response.json();
-    return data.secure_url;
+    return { key, name: file.name, size: file.size };
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -113,48 +120,31 @@ export default function ContactForm() {
     setError("");
 
     try {
-      let attachmentsHtml = "";
-
-      if (attachments.length > 0) {
-        const uploadedUrls = await Promise.all(
-          attachments.map((file) => uploadToCloudinary(file))
-        );
-
-        attachmentsHtml = uploadedUrls
-          .map(
-            (url, i) =>
-              `<a href="${url}" target="_blank" style="display: inline-block; margin: 5px; padding: 10px 16px; background: #fbbf24; color: #1e293b; border-radius: 8px; text-decoration: none; font-weight: 500; font-size: 14px;">📎 Załącznik ${
-                i + 1
-              }</a>`
-          )
-          .join(" ");
+      // Załączniki: presign -> S3, po kolei
+      const uploaded: { key: string; name: string; size: number }[] = [];
+      for (const file of attachments) {
+        uploaded.push(await uploadAttachment(file));
       }
 
-      // Fire-and-forget: lead do wspólnego panelu (obok istniejącej wysyłki)
-      fetch("https://elk3bw9gj4.execute-api.eu-central-1.amazonaws.com/lead", {
+      // Jedna wysyłka: e-mail SES (kontakt@ + hub + BCC) i zapis leada w panelu
+      const params = new URLSearchParams(location.search);
+      const response = await fetch(CONTACT_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        keepalive: true,
         body: JSON.stringify({
-          domain: "grandkuchnie.pl",
+          domain: DOMAIN,
           name: formData.name,
           email: formData.email,
           phone: formData.phone || "",
-          message: formData.message || "",
-          source: __leadSource(),
-        }),
-      }).catch(() => {});
-
-      const response = await fetch(API_ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone || "Nie podano",
           message: formData.message,
-          attachments: attachmentsHtml,
-          domain: DOMAIN,
+          company: honeypotRef.current?.value || "", // honeypot
+          attachments: uploaded,
+          source: __leadSource(),
+          referrer: document.referrer || "",
+          utm_source: params.get("utm_source") || "",
+          utm_medium: params.get("utm_medium") || "",
+          utm_campaign: params.get("utm_campaign") || "",
+          landing: location.pathname,
         }),
       });
 
@@ -237,6 +227,18 @@ export default function ContactForm() {
         )}
 
         <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Honeypot antyspamowy — ukryte pole, wypełniają tylko boty */}
+          <div style={{ position: "absolute", left: "-9999px" }} aria-hidden="true">
+            <label htmlFor="company">Firma</label>
+            <input
+              type="text"
+              id="company"
+              name="company"
+              ref={honeypotRef}
+              tabIndex={-1}
+              autoComplete="off"
+            />
+          </div>
           <div className="form-control">
             <label className="label">
               <span className="label-text">Twoje imię *</span>
