@@ -14,7 +14,7 @@ tags:
     "układ kuchni",
     "funkcjonalna kuchnia",
   ]
-image: "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1739376882960-kik-1_opt.webp"
+image: "https://media.meblesystem.pl/shared/kuchnie/1739376882960-kik-1_opt.webp"
 imageAlt: "Nowoczesna kuchnia z optymalnie rozmieszczonym trójkątem roboczym"
 featured: true
 draft: false

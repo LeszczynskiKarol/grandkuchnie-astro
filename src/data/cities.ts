@@ -49,7 +49,7 @@ export const cities: City[] = [
     heroTitle: "Kuchnia na wymiar - Bydgoszcz",
     heroSubtitle: "Projektowanie, wykonanie, montaż",
     heroImage:
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/bydgoszcz-opt.webp",
+      "https://media.meblesystem.pl/shared/kuchnie/bydgoszcz-opt.webp",
     localContentHeading: "Kuchnie na wymiar w Bydgoszczy — dojazd i realizacja",
     localContent: `Bydgoszcz to drugie po Toruniu największe miasto, w którym regularnie realizujemy kuchnie na wymiar — dojazd na pomiar z naszej pracowni przy ul. Batorego w Toruniu zajmuje około 45 minut autostradą A1 i S5. Obsługujemy wszystkie dzielnice mieszkaniowe Bydgoszczy bez doliczania opłat za dojazd do standardowej wyceny.
 
@@ -64,7 +64,7 @@ Pomiar w Bydgoszczy realizujemy w terminie 2-5 dni od pierwszego kontaktu, łąc
     heroTitle: "Kuchnia na wymiar - Włocławek",
     heroSubtitle: "Projektowanie, wykonanie, montaż",
     heroImage:
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/wloclawek-opt.webp",
+      "https://media.meblesystem.pl/shared/kuchnie/wloclawek-opt.webp",
     localContentHeading: "Kuchnie na wymiar we Włocławku — lokalna obsługa",
     localContent: `Włocławek odwiedzamy regularnie — dojazd z naszej siedziby w Toruniu zajmuje około 50 minut drogą krajową nr 91. Realizujemy kuchnie w całym mieście, zarówno w nowych inwestycjach deweloperskich na Południu i Zazamczu, jak i w blokach z lat 70. na osiedlach Kazimierza Wielkiego, Bielnie i Mielęcinie, a także w kamienicach śródmiejskich wokół Pl. Wolności i ul. 3 Maja.
 
@@ -79,7 +79,7 @@ Pomiar wykonujemy w dni robocze, terminy zwykle 3-7 dni od pierwszego kontaktu. 
     heroTitle: "Kuchnia na wymiar - Grudziądz",
     heroSubtitle: "Projektowanie, wykonanie, montaż",
     heroImage:
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/grudziadz-opt.webp",
+      "https://media.meblesystem.pl/shared/kuchnie/grudziadz-opt.webp",
     localContentHeading: "Kuchnie na wymiar w Grudziądzu — kompleksowa realizacja",
     localContent: `Grudziądz to nasza najdalej położona regularna lokalizacja — dojazd z Torunia zajmuje około 1 godziny i 15 minut autostradą A1. Pomimo odległości obsługujemy miasto kompleksowo, bez doliczania opłat za dojazd do wyceny standardowych kuchni.
 
@@ -94,7 +94,7 @@ W kamienicach Śródmieścia priorytetem jest często wpasowanie zabudowy w wyso
     heroTitle: "Kuchnia na wymiar - Inowrocław",
     heroSubtitle: "Projektowanie, wykonanie, montaż",
     heroImage:
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/inowroclaw-opt.webp",
+      "https://media.meblesystem.pl/shared/kuchnie/inowroclaw-opt.webp",
     localContentHeading: "Kuchnie na wymiar w Inowrocławiu — od kamienic po deweloperkę",
     localContent: `Inowrocław odwiedzamy z naszej siedziby w Toruniu z dojazdem około 50-55 minut drogą S5/A1 i krajową nr 25. Miasto słynące z uzdrowiska solankowego i charakterystycznej secesyjnej zabudowy stawia przed nami ciekawe wyzwania projektowe.
 
@@ -134,7 +134,7 @@ export const serviceAreas: ServiceArea[] = [
     name: "Kujawsko-pomorskie",
     nameLocative: "województwie kujawsko-pomorskim",
     image:
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/kujawsko-pomorskie-opt.webp",
+      "https://media.meblesystem.pl/shared/kuchnie/kujawsko-pomorskie-opt.webp",
     slug: "kujawsko-pomorskie",
     isMain: true,
     description:
@@ -144,7 +144,7 @@ export const serviceAreas: ServiceArea[] = [
     name: "Toruń",
     nameLocative: "Toruniu",
     image:
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/torun-opt.webp",
+      "https://media.meblesystem.pl/shared/kuchnie/torun-opt.webp",
     slug: "torun",
     // Siedziba — treść lokalna jest na stronie głównej, nie na osobnej podstronie.
     href: "/#kuchnie-na-wymiar-torun",
@@ -153,28 +153,28 @@ export const serviceAreas: ServiceArea[] = [
     name: "Bydgoszcz",
     nameLocative: "Bydgoszczy",
     image:
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/bydgoszcz-opt.webp",
+      "https://media.meblesystem.pl/shared/kuchnie/bydgoszcz-opt.webp",
     slug: "bydgoszcz",
   },
   {
     name: "Włocławek",
     nameLocative: "Włocławku",
     image:
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/wloclawek-opt.webp",
+      "https://media.meblesystem.pl/shared/kuchnie/wloclawek-opt.webp",
     slug: "wloclawek",
   },
   {
     name: "Grudziądz",
     nameLocative: "Grudziądzu",
     image:
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/grudziadz-opt.webp",
+      "https://media.meblesystem.pl/shared/kuchnie/grudziadz-opt.webp",
     slug: "grudziadz",
   },
   {
     name: "Inowrocław",
     nameLocative: "Inowrocławiu",
     image:
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/inowroclaw-opt.webp",
+      "https://media.meblesystem.pl/shared/kuchnie/inowroclaw-opt.webp",
     slug: "inowroclaw",
   },
 ];

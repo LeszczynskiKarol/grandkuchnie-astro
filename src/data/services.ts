@@ -40,7 +40,7 @@ export const services: Service[] = [
     metaDescription:
       "Kuchnia z płyty laminowanej na wymiar w Toruniu i woj. kujawsko-pomorskim — ekonomiczna, odporna na zarysowania, szeroka paleta wzorów. Darmowa wycena.",
     heroImages: [
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1739372336299-kuku-5_opt.webp",
+      "https://media.meblesystem.pl/shared/kuchnie/1739372336299-kuku-5_opt.webp",
     ],
     ctaButton: "Zamów wycenę",
     ctaUrl: "/kontakt",
@@ -78,7 +78,7 @@ export const services: Service[] = [
     metaDescription:
       "Kuchnia MDF lakierowany na wymiar — elegancka, gładka, z głębokim kolorem. Produkcja i montaż w Toruniu, Bydgoszczy, Włocławku. Bezpłatna wycena.",
     heroImages: [
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1739377197489-Meble-Tu-4-opt.webp",
+      "https://media.meblesystem.pl/shared/kuchnie/1739377197489-Meble-Tu-4-opt.webp",
     ],
     ctaButton: "Zamów wycenę",
     ctaUrl: "/kontakt",
@@ -117,7 +117,7 @@ export const services: Service[] = [
     metaDescription:
       "Nowoczesna kuchnia akryl/lakier + płyta na wymiar — wysoki połysk i praktyczna płyta. Wykonanie i montaż w Toruniu i okolicach. Darmowa wycena.",
     heroImages: [
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1739376104808-meble-wa-16-opt.webp",
+      "https://media.meblesystem.pl/shared/kuchnie/1739376104808-meble-wa-16-opt.webp",
     ],
     ctaButton: "Zamów wycenę",
     ctaUrl: "/kontakt",
@@ -156,7 +156,7 @@ export const services: Service[] = [
     metaDescription:
       "Kuchnia akrylowa na wymiar — ekskluzywne, matowe fronty bez odcisków palców. Projekt, produkcja i montaż w Toruniu, Bydgoszczy. Bezpłatna wycena.",
     heroImages: [
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1739376513294-KA2-4-opt.webp",
+      "https://media.meblesystem.pl/shared/kuchnie/1739376513294-KA2-4-opt.webp",
     ],
     ctaButton: "Zamów wycenę",
     ctaUrl: "/kontakt",
@@ -195,7 +195,7 @@ export const services: Service[] = [
     metaDescription:
       "Blaty HPL w kuchni na wymiar — najwyższa odporność na zarysowania, temperaturę i wilgoć. Imitacje kamienia i drewna. Toruń, kujawsko-pomorskie.",
     heroImages: [
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1739376882960-kik-1_opt.webp",
+      "https://media.meblesystem.pl/shared/kuchnie/1739376882960-kik-1_opt.webp",
     ],
     ctaButton: "Zamów wycenę",
     ctaUrl: "/kontakt",
@@ -233,7 +233,7 @@ export const services: Service[] = [
     metaDescription:
       "Kuchnia z fornirem — naturalne usłojenie drewna, szlachetne wykończenie, ekologiczne rozwiązanie. Wykonanie na wymiar w Toruniu. Bezpłatna wycena.",
     heroImages: [
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1739377196824-kuchsier-3-opt.webp",
+      "https://media.meblesystem.pl/shared/kuchnie/1739377196824-kuchsier-3-opt.webp",
     ],
     ctaButton: "Zamów wycenę",
     ctaUrl: "/kontakt",
@@ -271,7 +271,7 @@ export const services: Service[] = [
     metaDescription:
       "Projektowanie kuchni na wymiar — fotorealistyczne wizualizacje 3D, doświadczeni projektanci wnętrz, kompleksowa realizacja w Toruniu i okolicach.",
     heroImages: [
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1751701550370-IMG_1811-opt.webp",
+      "https://media.meblesystem.pl/shared/kuchnie/1751701550370-IMG_1811-opt.webp",
     ],
     ctaButton: "Zamów projekt",
     ctaUrl: "/kontakt",
@@ -302,14 +302,14 @@ export const services: Service[] = [
         description:
           "Zajmuję się projektowaniem wnętrz, tworząc funkcjonalne i estetyczne przestrzenie dopasowane do indywidualnych potrzeb klientów. Łączę kreatywność z praktycznymi rozwiązaniami, dbając o każdy detal – od koncepcji po finalną realizację. Moim celem jest tworzenie wnętrz, w których chce się żyć, pracować i odpoczywać.",
         imageUrl:
-          "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/dorota-stefanska.webp",
+          "https://media.meblesystem.pl/shared/kuchnie/dorota-stefanska.webp",
       },
       {
         title: "Cezary Mazurkiewicz",
         description:
           "Tworzę przestrzenie, które odpowiadają na indywidualne potrzeby. Nie trzymam się jednego stylu, ważniejsza jest dla mnie atmosfera niż estetyczna etykieta. Czasem to czysta linia, kiedy indziej detal z przeszłości. Liczy się to, co buduje sens miejsca i wspiera rytm życia jego mieszkańców.",
         imageUrl:
-          "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/cezary-mazurkiewicz.webp",
+          "https://media.meblesystem.pl/shared/kuchnie/cezary-mazurkiewicz.webp",
       },
     ],
     contactTitle: "Zamów projekt kuchni",
@@ -324,7 +324,7 @@ export const services: Service[] = [
     metaDescription:
       "Łazienka na wymiar — projekt, produkcja, montaż. Kompleksowe wykonanie w Toruniu, Bydgoszczy, Włocławku. Sprawdzone materiały, bezpłatna wycena.",
     heroImages: [
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1754927990972-lazi-1_opt-1_opt.webp",
+      "https://media.meblesystem.pl/shared/kuchnie/1754927990972-lazi-1_opt-1_opt.webp",
     ],
     ctaButton: "Zamów wycenę",
     ctaUrl: "/kontakt",
@@ -362,7 +362,7 @@ export const services: Service[] = [
     metaDescription:
       "Szafy, zabudowy i garderoby na wymiar — wykorzystanie każdego cm przestrzeni, oświetlenie LED, ciche domyki. Toruń, kujawsko-pomorskie. Wycena gratis.",
     heroImages: [
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1755073547033-ram1-7_opt_opt.webp",
+      "https://media.meblesystem.pl/shared/kuchnie/1755073547033-ram1-7_opt_opt.webp",
     ],
     ctaButton: "Zamów wycenę",
     ctaUrl: "/kontakt",
@@ -403,63 +403,63 @@ export const kitchenTypes = [
   {
     name: "Kuchnie płyta laminowana",
     image:
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1739372336299-kuku-5_opt.webp",
+      "https://media.meblesystem.pl/shared/kuchnie/1739372336299-kuku-5_opt.webp",
     slug: "plyta-laminowana",
     description: "Funkcjonalne i trwałe rozwiązanie w atrakcyjnej cenie",
   },
   {
     name: "Kuchnie MDF lakierowany",
     image:
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1739377197489-Meble-Tu-4-opt.webp",
+      "https://media.meblesystem.pl/shared/kuchnie/1739377197489-Meble-Tu-4-opt.webp",
     slug: "mdf-lakierowany",
     description: "Eleganckie wykończenie z możliwością personalizacji koloru",
   },
   {
     name: "Kuchnie akryl/lakier + płyta",
     image:
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1739376104808-meble-wa-16-opt.webp",
+      "https://media.meblesystem.pl/shared/kuchnie/1739376104808-meble-wa-16-opt.webp",
     slug: "akryl-lakier-plyta",
     description: "Nowoczesne połączenie wysokiego połysku z praktyczną płytą",
   },
   {
     name: "Kuchnie akrylowe / mata",
     image:
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1739376513294-KA2-4-opt.webp",
+      "https://media.meblesystem.pl/shared/kuchnie/1739376513294-KA2-4-opt.webp",
     slug: "akrylowe-mata",
     description: "Ekskluzywne wykończenie o wyjątkowej głębi koloru",
   },
   {
     name: "Kuchnie blaty HPL",
     image:
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1739376882960-kik-1_opt.webp",
+      "https://media.meblesystem.pl/shared/kuchnie/1739376882960-kik-1_opt.webp",
     slug: "blaty-hpl",
     description: "Wytrzymałe i odporne na uszkodzenia powierzchnie",
   },
   {
     name: "Kuchnie z fornirem",
     image:
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1739377196824-kuchsier-3-opt.webp",
+      "https://media.meblesystem.pl/shared/kuchnie/1739377196824-kuchsier-3-opt.webp",
     slug: "fornir",
     description: "Naturalne piękno drewna w nowoczesnym wydaniu",
   },
   {
     name: "Projektowanie kuchni",
     image:
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1751701550370-IMG_1811-opt.webp",
+      "https://media.meblesystem.pl/shared/kuchnie/1751701550370-IMG_1811-opt.webp",
     slug: "projektowanie-kuchni",
     description: "Zamów projekt Twojej wymarzonej kuchni",
   },
   {
     name: "Łazienki na wymiar",
     image:
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1754927990972-lazi-1_opt-1_opt.webp",
+      "https://media.meblesystem.pl/shared/kuchnie/1754927990972-lazi-1_opt-1_opt.webp",
     slug: "lazienka-na-wymiar",
     description: "Powierz nam kompleksowe wykonanie łazienki",
   },
   {
     name: "Szafy, zabudowy, garderoby",
     image:
-      "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1755073547033-ram1-7_opt_opt.webp",
+      "https://media.meblesystem.pl/shared/kuchnie/1755073547033-ram1-7_opt_opt.webp",
     slug: "szafy-zabudowy-garderoby",
     description: "Tworzymy idealnie dopasowane meble na wymiar",
   },

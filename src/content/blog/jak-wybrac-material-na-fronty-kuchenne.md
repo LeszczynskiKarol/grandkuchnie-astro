@@ -14,7 +14,7 @@ tags:
     "fronty foliowane",
     "meble kuchenne",
   ]
-image: "https://s3.eu-north-1.amazonaws.com/piszemy.com.pl/grandkuchnie/1756394198643-12_opt.webp"
+image: "https://media.meblesystem.pl/shared/kuchnie/1756394198643-12_opt.webp"
 imageAlt: "Nowoczesne fronty kuchenne w różnych wykończeniach – mat i połysk"
 featured: true
 draft: false
