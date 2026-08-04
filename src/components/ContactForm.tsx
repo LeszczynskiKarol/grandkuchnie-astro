@@ -137,7 +137,7 @@ export default function ContactForm() {
           email: formData.email,
           phone: formData.phone || "",
           message: formData.message,
-          company: honeypotRef.current?.value || "", // honeypot
+          cf_extra: honeypotRef.current?.value || "", // honeypot
           attachments: uploaded,
           source: __leadSource(),
           referrer: document.referrer || "",
@@ -227,13 +227,16 @@ export default function ContactForm() {
         )}
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Honeypot antyspamowy — ukryte pole, wypełniają tylko boty */}
+          {/* Honeypot antyspamowy — ukryte pole, wypełniają tylko boty.
+              Nazwa MUSI być bez znaczenia: pole "company" było autouzupełniane przez
+              przeglądarkę mimo autoComplete="off" i odrzucało prawdziwych klientów
+              (04.08.2026). Nie zmieniaj z powrotem na nazwę realnego pola. */}
           <div style={{ position: "absolute", left: "-9999px" }} aria-hidden="true">
-            <label htmlFor="company">Firma</label>
+            <label htmlFor="cf-extra">Pozostaw to pole puste</label>
             <input
               type="text"
-              id="company"
-              name="company"
+              id="cf-extra"
+              name="cf_extra"
               ref={honeypotRef}
               tabIndex={-1}
               autoComplete="off"
