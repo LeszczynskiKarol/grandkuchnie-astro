@@ -160,6 +160,8 @@ Wyspa kuchenna nie zaburza trójkąta roboczego – wręcz przeciwnie, może go 
 
 **Minimalna odległość wyspy od zabudowy:** 120–150 cm (przy szufladach i urządzeniach po obu stronach zalecane bliżej 150 cm).
 
+Planowanie samej wyspy, od wymiarów i kształtu po doprowadzenie wody i prądu, opisuje poradnik MebleSystem o tym, [jak zaprojektować wyspę kuchenną](https://www.meblesystem.pl/blog/wyspa-kuchenna-jak-zaprojektowac-i-urzadzic-porady-wskazowki/).
+
 ### Kuchnia jednorzędowa
 
 Układ jednorzędowy, z całą zabudową przy jednej ścianie, jest najtrudniejszy do realizacji klasycznego trójkąta. Sprawdza się w bardzo małych pomieszczeniach, aneksach kuchennych i kawalerkach.

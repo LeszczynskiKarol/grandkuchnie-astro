@@ -166,6 +166,8 @@ Fronty fornirowane mają również swoje ograniczenia:
 
 **Dla kogo?** Fronty fornirowane to idealny wybór dla miłośników naturalnego drewna, którzy szukają bardziej praktycznej i przystępnej cenowo alternatywy dla litego drewna. Sprawdzą się w kuchniach klasycznych, rustykalnych i skandynawskich.
 
+Dokładniejsze zestawienie obu materiałów, z różnicami w trwałości i cenie, zawiera artykuł [fornir czy laminat na meble kuchenne](https://www.meblesystem.pl/blog/fornir-czy-laminat-jak-wykonczyc-meble-kuchenne/) w serwisie MebleSystem.
+
 ## Fronty z litego drewna – luksus na lata
 
 Fronty drewniane wykonane są w całości z litego drewna – najczęściej dębu, olchy, brzozy, jesionu lub czereśni. To najbardziej prestiżowe i najdroższe rozwiązanie, cenione za naturalną elegancję, ciepło i wyjątkową trwałość. Przy odpowiedniej pielęgnacji fronty drewniane mogą służyć przez dziesięciolecia.

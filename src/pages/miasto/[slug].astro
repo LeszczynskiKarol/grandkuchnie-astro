@@ -23,6 +23,16 @@ if (!city) {
   return Astro.redirect('/404');
 }
 
+// localContent to zwykły tekst; jedyny dozwolony znacznik to link w składni
+// markdown [anchor](https://...). Reszta jest escapowana.
+const escapeHtml = (s: string) =>
+  s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+const renderPara = (para: string) =>
+  escapeHtml(para).replace(
+    /\[([^\]]+)\]\((https:\/\/[^)\s]+)\)/g,
+    '<a href="$2" class="text-primary underline hover:no-underline">$1</a>',
+  );
+
 const title = `Kuchnia na wymiar - ${city.name} | Projektowanie, montaż, produkcja na zamówienie`;
 const description = `Profesjonalne meble kuchenne na wymiar w ${city.nameLocative}. Kompleksowa obsługa od projektu do montażu. Darmowa wycena.`;
 ---
@@ -79,7 +89,7 @@ const description = `Profesjonalne meble kuchenne na wymiar w ${city.nameLocativ
         </h2>
         <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
           {city.localContent.split("\n\n").map((para) => (
-            <p class="mb-5">{para}</p>
+            <p class="mb-5" set:html={renderPara(para)} />
           ))}
         </div>
       </div>

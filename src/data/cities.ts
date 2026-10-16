@@ -55,7 +55,9 @@ export const cities: City[] = [
 
 Nowoczesne osiedla w Fordonie (Bohaterów, Tatrzańskie, Bajka) to najczęstsza lokalizacja naszych realizacji w Bydgoszczy. W mieszkaniach 50-70 m² kluczowa jest optymalizacja przestrzeni — proponujemy wysokie zabudowy do sufitu, narożne carousele typu Le Mans i wąskie cargo. Apartamentowce na Bartodziejach i Czyżkówku oraz mieszkania na Wyżynach i Szwederowie częściej dostają u nas projekty kuchni otwartych na salon ze wspólną wyspą. W kamienicach Śródmieścia i wokół Placu Wolności (ul. Gdańska, Cieszkowskiego) pracujemy z wysokimi pomieszczeniami i nietypowymi rzutami — zabudowy meblowe sięgają częściowo sufitu, zachowując otwartą przestrzeń na żyrandol lub dekoracyjne półki.
 
-Pomiar w Bydgoszczy realizujemy w terminie 2-5 dni od pierwszego kontaktu, łącząc często wizyty w jednym kursie. Transport gotowych mebli i ekipa montażowa dojeżdżają jednym kursem z Torunia — całość zajmuje 1-2 dni roboczych, bez dopłat za dojazd. Bydgoscy klienci najczęściej wybierają nowoczesny styl: matowe fronty MDF lakierowany w odcieniach kaszmiru, kawy lub szałwii, blaty z konglomeratu lub HPL, oświetlenie LED pod szafkami górnymi.`,
+Pomiar w Bydgoszczy realizujemy w terminie 2-5 dni od pierwszego kontaktu, łącząc często wizyty w jednym kursie. Transport gotowych mebli i ekipa montażowa dojeżdżają jednym kursem z Torunia — całość zajmuje 1-2 dni roboczych, bez dopłat za dojazd. Bydgoscy klienci najczęściej wybierają nowoczesny styl: matowe fronty MDF lakierowany w odcieniach kaszmiru, kawy lub szałwii, blaty z konglomeratu lub HPL, oświetlenie LED pod szafkami górnymi.
+
+Grand Kuchnie należy do toruńskiej firmy MebleSystem, która w Bydgoszczy robi także szafy, garderoby i zabudowy łazienek. Jeśli chcesz porównać naszą ofertę z resztą mebli dla tego miasta, zajrzyj na stronę [kuchnie na wymiar w Bydgoszczy](https://www.meblesystem.pl/bydgoszcz/kuchnie-na-wymiar/) w serwisie MebleSystem.`,
   },
   {
     slug: "wloclawek",
@@ -70,7 +72,9 @@ Pomiar w Bydgoszczy realizujemy w terminie 2-5 dni od pierwszego kontaktu, łąc
 
 We Włocławku obserwujemy częsty trend kompleksowych remontów mieszkań w starym budownictwie. Wówczas projektujemy kuchnie dopasowane do pomieszczeń o nietypowych proporcjach, z zachowaniem oryginalnych elementów takich jak parapety, boazeria czy ozdobne futryny. W bardziej standardowych mieszkaniach na Południu i Zachodzie najczęściej realizujemy zabudowy w stylu nowoczesnym minimalistycznym — gładkie fronty bezuchwytowe (system push-to-open lub frezowane uchwyty integralne), wyspy kuchenne z miejscem do jedzenia i blaty kamienne lub HPL imitujące marmur.
 
-Pomiar wykonujemy w dni robocze, terminy zwykle 3-7 dni od pierwszego kontaktu. Klienci z Włocławka cenią u nas to, że nie zlecamy nic podwykonawcom — od projektu, przez produkcję w naszej hali w Toruniu, po montaż jeden zespół odpowiada za całość. Transport i montaż jednym kursem, zwykle w jeden dzień dla standardowej kuchni o powierzchni do 12 m². Cena dojazdu zawarta w wycenie — żadnych ukrytych kosztów. Pełna realizacja od umowy do gotowej kuchni trwa średnio 5-7 tygodni.`,
+Pomiar wykonujemy w dni robocze, terminy zwykle 3-7 dni od pierwszego kontaktu. Klienci z Włocławka cenią u nas to, że nie zlecamy nic podwykonawcom — od projektu, przez produkcję w naszej hali w Toruniu, po montaż jeden zespół odpowiada za całość. Transport i montaż jednym kursem, zwykle w jeden dzień dla standardowej kuchni o powierzchni do 12 m². Cena dojazdu zawarta w wycenie — żadnych ukrytych kosztów. Pełna realizacja od umowy do gotowej kuchni trwa średnio 5-7 tygodni.
+
+Za produkcję odpowiada hala firmy MebleSystem, do której należy marka Grand Kuchnie. Ofertę dla tego miasta, razem z odnośnikami do szaf i innych zabudów, opisuje również strona [meble kuchenne we Włocławku](https://www.meblesystem.pl/wloclawek/kuchnie-na-wymiar/).`,
   },
   {
     slug: "grudziadz",
@@ -85,7 +89,9 @@ Pomiar wykonujemy w dni robocze, terminy zwykle 3-7 dni od pierwszego kontaktu. 
 
 Realizujemy projekty w głównych dzielnicach mieszkaniowych: nowoczesnych apartamentowcach przy ul. Chełmińskiej i osiedlu Lotnisko, blokach z wielkiej płyty na osiedlach Strzemięcin, Kopernika i Mniszek, a także w kamienicach Śródmieścia (rejony ul. Toruńskiej i Pl. Niepodległości) i w starszej zabudowie na Tarpnie i Wielkim Wełczu. Specyfika grudziądzkiego rynku to przewaga remontów w istniejących mieszkaniach nad nowymi realizacjami w stanie deweloperskim — dla klientów na osiedlu Strzemięcin czy w starszych blokach często projektujemy kuchnie wraz z propozycją wyburzenia ścianki działowej do salonu, co znacząco poszerza przestrzeń wizualnie.
 
-W kamienicach Śródmieścia priorytetem jest często wpasowanie zabudowy w wysokie, wąskie pomieszczenia — wówczas proponujemy zabudowy sięgające do sufitu (2.8-3.2 m), zwiększające pojemność szafek górnych o 40-60%. Pomiar w Grudziądzu wykonujemy najczęściej w terminie 5-10 dni od kontaktu, łącząc go z innymi wizytami w okolicy dla optymalizacji czasu. Montaż realizujemy w 1-2 dni roboczych jednym kursem ekipy z Torunia. Standardowa realizacja od umowy do montażu trwa 5-7 tygodni.`,
+W kamienicach Śródmieścia priorytetem jest często wpasowanie zabudowy w wysokie, wąskie pomieszczenia — wówczas proponujemy zabudowy sięgające do sufitu (2.8-3.2 m), zwiększające pojemność szafek górnych o 40-60%. Pomiar w Grudziądzu wykonujemy najczęściej w terminie 5-10 dni od kontaktu, łącząc go z innymi wizytami w okolicy dla optymalizacji czasu. Montaż realizujemy w 1-2 dni roboczych jednym kursem ekipy z Torunia. Standardowa realizacja od umowy do montażu trwa 5-7 tygodni.
+
+Grand Kuchnie to kuchenna marka toruńskiej firmy MebleSystem. Na stronie [kuchnie na zamówienie w Grudziądzu](https://www.meblesystem.pl/grudziadz/kuchnie/) w serwisie MebleSystem znajdziesz też informacje o pozostałych meblach, które wykonujemy w tym mieście.`,
   },
   {
     slug: "inowroclaw",
@@ -102,7 +108,9 @@ Często realizujemy kuchnie w zabytkowych kamienicach przy ul. Solankowej i wok�
 
 Drugi typ realizacji to nowoczesne kuchnie w deweloperce w dzielnicach Mątwy, Rąbin i nowych osiedlach przy ul. Wojska Polskiego — tam częściej stosujemy minimalistyczne fronty akrylowe lub MDF lakierowany z systemami bezuchwytowymi i wyspami kuchennymi. W starszej zabudowie na osiedlu Piastowskim i przy ul. Andrzeja często modernizujemy kuchnie po właścicielach senioralnych — wówczas projekt uwzględnia ergonomię (niższe szafki górne, wysuwane półki Magic Corner, oświetlenie LED, eliminację rączek wymagających siły).
 
-Pomiar w Inowrocławiu realizujemy w terminie 4-8 dni od pierwszego kontaktu, montaż jednym kursem ekipy z Torunia w 1-2 dni. Dla kuchni z mieszkań kuracjuszowych przeznaczanych pod krótkoterminowy wynajem proponujemy szczególnie wytrzymałe rozwiązania (HPL, akryl z powłoką anti-fingerprint) odporne na intensywną eksploatację.`,
+Pomiar w Inowrocławiu realizujemy w terminie 4-8 dni od pierwszego kontaktu, montaż jednym kursem ekipy z Torunia w 1-2 dni. Dla kuchni z mieszkań kuracjuszowych przeznaczanych pod krótkoterminowy wynajem proponujemy szczególnie wytrzymałe rozwiązania (HPL, akryl z powłoką anti-fingerprint) odporne na intensywną eksploatację.
+
+Kuchnie powstają w tej samej toruńskiej hali, w której pracuje MebleSystem, właściciel marki Grand Kuchnie. Ofertę dla Inowrocławia, łącznie z szafami i zabudowami, przedstawia też strona [kuchnie na wymiar w Inowrocławiu](https://www.meblesystem.pl/inowroclaw/kuchnie/).`,
   },
 ];
 

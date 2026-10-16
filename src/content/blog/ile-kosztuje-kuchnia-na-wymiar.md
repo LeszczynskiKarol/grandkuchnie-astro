@@ -190,3 +190,5 @@ Rynek kuchni na wymiar w 2026 roku oferuje rozwiązania dla każdego budżetu. O
 - **Kuchnia luksusowa:** 70 000 – 150 000+ zł
 
 Pamiętaj, że kuchnia to inwestycja na 15–25 lat. Warto poświęcić czas na dokładne zaplanowanie budżetu, wybór sprawdzonego wykonawcy i materiałów, które zapewnią komfort codziennego użytkowania przez wiele lat.
+
+Inne ujęcie tego tematu, z podziałem kosztów na fronty, blaty i okucia, przygotował MebleSystem, firma, do której należy Grand Kuchnie. Artykuł o tym, [od czego zależy cena kuchni na wymiar](https://www.meblesystem.pl/blog/cena-kuchni-na-wymiar-ile-kosztuje-i-od-czego-zaleza-stawki/), porównuje też zabudowę robioną po pomiarze z gotowymi zestawami. Jeśli mieszkasz w Toruniu lub w okolicy, na stronie [kuchnie na wymiar w Toruniu](https://www.meblesystem.pl/kuchnie/) umówisz bezpłatny pomiar i wycenę.
